@@ -1,0 +1,46 @@
+/**
+ * Sections
+ */
+
+.show-case {
+	text-align: center;
+	width:      100%;
+	height:     100vh;
+
+	background-image:    url("../img/VideoProd.jpg");
+	background-size:     cover;
+	background-position: center;
+
+	.big-picture {
+
+		width:            100%;
+		height:           100vh;
+		background-color: rgba(0,0,0,0.42);
+
+		div {
+			width:      100%;
+			text-align: center;
+			display:    block;
+			position:   absolute;
+			top:        50%;
+			@include    transform(translate(0, -50%));
+			
+			h2  {
+				font-size: $font-x-large;
+				color: $color-white;
+			}
+	
+			.showcase-text-1 {
+				display: block;
+				//@include transform(translate(-15%,-50%));
+			}
+
+			.showcase-text-2 {
+				display: block;
+				//@include transform(translate(15%,50%));
+			}
+		}
+	}
+
+}
+

@@ -1,0 +1,57 @@
+
+
+
+
+.watch-block {
+	height: $block-height-default;
+	margin: 0px;
+	padding: 0px;
+	background-size: cover;
+	background-position: center;
+	text-align: center;
+
+	div {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		@include transform(translate(-50%,-50%));
+	}
+
+	h3 {
+		color: $color-white;
+		font-size: $font-x-large;
+	}
+
+	i {
+		margin-top: 20px;
+		color: $color-white;
+		font-size: $font-xx-large;
+	}
+
+}
+
+.watch-block-show {
+	@extend .watch-block;
+	@include linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5),url("../img/filming-at-night.jpg"));
+	background-size: cover;
+	background-position: center;
+	
+
+
+	//background-image: url("../img/filming-at-night.jpg");
+}
+
+.watch-block-show:hover {
+	
+	@include linear-gradient(rgba(121,0,0,0.5),rgba(121,0,0,0.5),url("../img/filming-at-night.jpg"));
+	background-size: cover;
+	background-position: center;
+}
+
+.watch-block-shorts {
+	@extend .watch-block;
+	@include linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5),url("../img/film-production.jpg"));
+	background-size: cover;
+	background-position: center;
+	//background-image: url("../img/film-production.jpg");
+}

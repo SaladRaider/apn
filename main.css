@@ -1,0 +1,19 @@
+/**
+ * README
+ * main.scss -> main.css
+ * color pallete:
+ */
+/**
+ * Color Pallete
+ */
+body {
+  background-color: #eeeeee; }
+
+p {
+  margin: 10px;
+  background-color: #555;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px; }

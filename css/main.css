@@ -1,0 +1,154 @@
+/**
+ * APN Bootstrap Sass Theme
+ * Author: Peter Veerman
+ * Version: 0.0.1
+ */
+/* BASE - Base styles, variables, mixis, etc. */
+/**
+ * Variables
+ */
+/**
+ * Colors
+ */
+/**
+ * Fonts
+ */
+/**
+ * Dimensions
+ */
+/**
+ * Normalize
+ */
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px; }
+
+.watch-block, .watch-block-show, .watch-block-shorts {
+  height: 250px;
+  margin: 0px;
+  padding: 0px;
+  background-size: cover;
+  background-position: center;
+  text-align: center; }
+  .watch-block div, .watch-block-show div, .watch-block-shorts div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
+  .watch-block h3, .watch-block-show h3, .watch-block-shorts h3 {
+    color: #fff;
+    font-size: 36px; }
+  .watch-block i, .watch-block-show i, .watch-block-shorts i {
+    margin-top: 20px;
+    color: #fff;
+    font-size: 54px; }
+
+.watch-block-show {
+  background: -webkit-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/filming-at-night.jpg");
+  background: -o-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/filming-at-night.jpg");
+  background: -moz-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/filming-at-night.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/filming-at-night.jpg");
+  background-size: cover;
+  background-position: center; }
+
+.watch-block-show:hover {
+  background: -webkit-linear-gradient(rgba(121, 0, 0, 0.5), rgba(121, 0, 0, 0.5)), url("../img/filming-at-night.jpg");
+  background: -o-linear-gradient(rgba(121, 0, 0, 0.5), rgba(121, 0, 0, 0.5)), url("../img/filming-at-night.jpg");
+  background: -moz-linear-gradient(rgba(121, 0, 0, 0.5), rgba(121, 0, 0, 0.5)), url("../img/filming-at-night.jpg");
+  background: linear-gradient(rgba(121, 0, 0, 0.5), rgba(121, 0, 0, 0.5)), url("../img/filming-at-night.jpg");
+  background-size: cover;
+  background-position: center; }
+
+.watch-block-shorts {
+  background: -webkit-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/film-production.jpg");
+  background: -o-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/film-production.jpg");
+  background: -moz-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/film-production.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/film-production.jpg");
+  background-size: cover;
+  background-position: center; }
+
+/**
+ * Sections
+ */
+.show-case {
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+  background-image: url("../img/VideoProd.jpg");
+  background-size: cover;
+  background-position: center; }
+  .show-case .big-picture {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.42); }
+    .show-case .big-picture div {
+      width: 100%;
+      text-align: center;
+      display: block;
+      position: absolute;
+      top: 50%;
+      -webkit-transform: translate(0, -50%);
+      -moz-transform: translate(0, -50%);
+      -ms-transform: translate(0, -50%);
+      transform: translate(0, -50%); }
+      .show-case .big-picture div h2 {
+        font-size: 36px;
+        color: #fff; }
+      .show-case .big-picture div .showcase-text-1 {
+        display: block; }
+      .show-case .big-picture div .showcase-text-2 {
+        display: block; }
+
+/**
+ * Nav Bar
+ */
+.navbar {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0%);
+  -moz-transform: translate(-50%, 0%);
+  -ms-transform: translate(-50%, 0%);
+  transform: translate(-50%, 0%); }
+
+.nav-link {
+  color: #fff;
+  font-family: Arial;
+  display: inline-block;
+  width: 30%;
+  -webkit-transform: translate(0%, 50%);
+  -moz-transform: translate(0%, 50%);
+  -ms-transform: translate(0%, 50%);
+  transform: translate(0%, 50%); }
+
+.nav-links-left, .nav-links-right {
+  display: inline-block;
+  width: 30vw;
+  -webkit-transform: translate(0%, -32px);
+  -moz-transform: translate(0%, -32px);
+  -ms-transform: translate(0%, -32px);
+  transform: translate(0%, -32px); }
+
+.logo {
+  display: inline-block;
+  background-color: #790000;
+  width: 64px;
+  height: 64px;
+  position: relative; }
+  .logo p {
+    text-align: left;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    line-height: 25px;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
+
+/*# sourceMappingURL=main.css.map */

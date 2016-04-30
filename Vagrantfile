@@ -37,7 +37,15 @@ Vagrant.configure(2) do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder ".", "/usr/share/nginx/www"
+  config.vm.synced_folder ".", "/usr/share/nginx/www", type: "rsync",
+    rsync__exclude: ["./git"]
+
+  if Vagrant.has_plugin?("vagrant-gatling-rsync")
+    config.gatling.latency = 2.5
+    config.gatling.time_format = "%H:%M:%S"
+  end
+
+  config.gatling.rsync_on_startup=true
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.

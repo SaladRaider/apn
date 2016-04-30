@@ -1,0 +1,24 @@
+@mixin transform($trans) {
+	-webkit-transform: $trans;
+	-moz-transform: $trans;
+	-ms-transform: $trans;
+	transform: $trans;
+}
+
+@mixin linear-gradient($col1, $col2, $img:"") {
+	background: -webkit-linear-gradient($col1, $col2), $img;
+	background: -o-linear-gradient($col1, $col2), $img;
+	background: -moz-linear-gradient($col1, $col2), $img;
+	background: linear-gradient($col1, $col2), $img;
+}
+
+@mixin transition($time, $ease) {
+	-webkit-transition-timing-function: $ease;
+	-moz-transition-timing-function: $ease;
+	-o-transition-timing-function: $ease;
+	transition-timing-function: $ease;
+	-moz-transition: $time;
+	-webkit-transition: $time;
+	-o-transition: $time;
+	transition: $time;
+}
