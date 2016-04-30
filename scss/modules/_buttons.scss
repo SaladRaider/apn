@@ -1,0 +1,40 @@
+/**
+ * Buttons
+ */
+
+.btn-outline, .btn-outline:active, .btn-outline:visited  {
+	border-style: solid;
+	border-width: $border-width-default;
+	border-color: $color-muted-light;
+	color:        $color-muted-light;
+	padding:      $padding-btn-v $padding-btn-h;
+	@include transition($time-hover-fast, "ease");
+	text-decoration: none;
+	margin: $margin-default-v 0px;
+	display: inline-block;
+}
+
+.btn-outline:hover {
+	background-color: $color-muted-light;
+	color: $color-muted-dark;
+	text-decoration: none;
+	@include transition($time-hover-fast, "ease");
+}
+
+.btn-outline-white, .btn-outline-white:active, .btn-outline-white:visited {
+	border-style: solid;
+	border-width: $border-width-default;
+	color:        $color-white;
+	border-color: $color-white;
+	padding:      $padding-btn-v $padding-btn-h;
+	@include transition($time-hover-fast, "ease");
+	text-decoration: none;
+	margin: $margin-default-v 0px;
+	display: inline-block;
+}
+
+.btn-outline-white:hover {
+	@extend .btn-outline:hover;
+	color: $color-muted-light;
+	background-color: $color-white;
+}

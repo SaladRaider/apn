@@ -1,0 +1,38 @@
+/**
+ * Components
+ */
+
+.abs-centered-element {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	@include transform(translate(-50%,-50%));
+}
+
+.vert-centered-element {
+	position: absolute;
+	top: 50%;
+	@include transform(translate(0%,-50%));
+}
+
+.text-box-outline {
+	background-color: transparent;
+	border-style: solid;
+	border-width: $border-width-default;
+	border-color: $color-white;
+	text-align: center;
+	vertical-align: middle;
+	color: $color-white;
+	@include font-size($font-medium);
+	padding: $padding-btn-v;
+	resize: none;
+}
+
+.text-box-outline:hover, .text-box-outline:focus {
+	outline: none;
+}
+
+.text-box-outline:focus {
+	background-color: $color-white;
+	color: $color-muted;
+}

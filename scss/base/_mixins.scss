@@ -22,3 +22,23 @@
 	-o-transition: $time;
 	transition: $time;
 }
+
+@mixin box-shadow($h,$v,$color,$blur:"",$spread:"") {
+	-webkit-box-shadow: $h $v unquote($blur) unquote($spread) $color;
+	-moz-box-shadow: $h $v unquote($blur) unquote($spread) $color;
+	-o-box-shadow: $h $v unquote($blur) unquote($spread) $color;
+	box-shadow: $h $v unquote($blur) unquote($spread) $color;
+}
+
+@mixin text-shadow($h,$v,$color,$blur:"") {
+	-webkit-text-shadow: $h $v unquote($blur) $color;
+	-moz-text-shadow: $h $v unquote($blur) $color;
+	-o-text-shadow: $h $v unquote($blur) $color;
+	text-shadow: $h $v unquote($blur) $color;
+}
+
+@mixin font-size($font-size) {
+	font-size: $font-size;
+ 	line-height: calc-lh-from-fs($font-size);
+ 	max-width: calc-lw-from-fs($font-size);
+}

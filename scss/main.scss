@@ -4,7 +4,11 @@
  * Version: 0.0.1
  */
 
+/* LIBS - Libraries and other third party plugins */
+@import './libs/_decimal.scss';
+
 /* BASE - Base styles, variables, mixis, etc. */
+@import './base/_functions.scss';
 @import './base/_variables.scss';
 @import './base/_mixins.scss';
 @import './base/_normalize.scss';

@@ -10,11 +10,19 @@
 
 .nav-link {
 	color:       $color-white;
-	font-family: $font-primary;
 
 	display: inline-block;
 	width: 30%;
 	@include transform(translate(0%,50%));
+	text-transform: uppercase;
+	@include transition($time-hover, "ease");
+	border-bottom: solid 2px rgba(255,255,255,0);
+}
+
+.nav-link:hover {
+	cursor: pointer;
+	@include transition($time-hover, "ease");
+	border-bottom: solid 2px rgba(255,255,255,1);
 }
 
 .nav-links-left {
@@ -44,4 +52,8 @@
 
 		@include transform(translate(-50%,-50%));
 	}
+}
+
+.logo:hover {
+	cursor: pointer;
 }

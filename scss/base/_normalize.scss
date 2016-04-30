@@ -7,4 +7,30 @@ html,body {
     height:  100%;
     margin:  0px;
     padding: 0px;
+    font-size: $base-font-size;
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (min-width : 320px) {
+	font-size: 50%;
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+	font-size: 70%;
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+	font-size: 80%;
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+	font-size: 100%;
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+	font-size: 120%;
 }

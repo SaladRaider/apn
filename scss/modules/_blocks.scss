@@ -1,7 +1,5 @@
 
 
-
-
 .watch-block {
 	height: $block-height-default;
 	margin: 0px;
@@ -9,13 +7,6 @@
 	background-size: cover;
 	background-position: center;
 	text-align: center;
-
-	div {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		@include transform(translate(-50%,-50%));
-	}
 
 	h3 {
 		color: $color-white;
@@ -25,33 +16,46 @@
 	i {
 		margin-top: 20px;
 		color: $color-white;
-		font-size: $font-xx-large;
+		font-size: $font-huge;
+		@include transition($time-hover, "ease");
 	}
 
+	
+
+}
+
+.watch-block:hover i {
+	font-size: $font-x-huge;
+	@include transition($time-hover, "ease");
+}
+
+.watch-block {
+	cursor: pointer;
+}
+
+.block-filler {
+	width: 100%;
+	height: 100%;
+	background-color: $color-black-t50;
+	@include transition($time-hover-color, "ease");
+}
+
+.block-filler:hover {
+	background-color: $color-primary-t50;
+	@include transition($time-hover-color, "ease");
 }
 
 .watch-block-show {
 	@extend .watch-block;
-	@include linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5),url("../img/filming-at-night.jpg"));
-	background-size: cover;
-	background-position: center;
-	
-
-
-	//background-image: url("../img/filming-at-night.jpg");
-}
-
-.watch-block-show:hover {
-	
-	@include linear-gradient(rgba(121,0,0,0.5),rgba(121,0,0,0.5),url("../img/filming-at-night.jpg"));
+	background-image: url("../img/filming-at-night.jpg");
 	background-size: cover;
 	background-position: center;
 }
+
 
 .watch-block-shorts {
 	@extend .watch-block;
-	@include linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5),url("../img/film-production.jpg"));
+	background-image: url("../img/film-production.jpg");
 	background-size: cover;
 	background-position: center;
-	//background-image: url("../img/film-production.jpg");
 }
