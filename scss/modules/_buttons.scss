@@ -38,3 +38,21 @@
 	color: $color-muted-light;
 	background-color: $color-white;
 }
+
+.btn-see-down {
+	font-size: 3em;
+	color: $color-white;
+	position: absolute;
+	top: 85%;
+	left: 50%;
+	@include transform(translate(-50%,-50%));
+
+	div {
+		@include transform(translate(-50%,0%));
+	}
+
+}
+
+.btn-see-down:hover {
+	cursor: pointer;
+}

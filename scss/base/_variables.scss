@@ -51,6 +51,7 @@ $border-width-default: 2px;
  * Padding
  */
 $padding-standard-vert: 20px;
+$padding-standard-hor:  20px;
 $padding-btn-v:         8px;
 $padding-btn-h:         30px;
 
@@ -58,7 +59,11 @@ $padding-btn-h:         30px;
  * Margin
  */
 $margin-default-v: 10px;
+$margin-default-h: 10px;
 $margin-default-p-v: 25px;
+
+$margin-nav-link-h: 20px;
+$margin-nav-link-small-h: 2vw;
 
 /**
  * Times
@@ -67,3 +72,11 @@ $margin-default-p-v: 25px;
 $time-hover-color: 0.5s;
 $time-hover: 0.5s;
 $time-hover-fast: 0.1s;
+
+$time-animation-delay: 0.25s;
+$time-animation-default: 1s;
+
+/**
+ * Other
+ */
+$show-case-video: "Show2Intro_4";

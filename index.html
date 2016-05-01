@@ -14,15 +14,45 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <!--load amimate.css from CDN-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css"> 
     <link type="text/css" href="css/font-awesome.css" rel="stylesheet">
     <link type="text/css" href="css/main.css" rel="stylesheet">
   </head>
 
   <body>
 
+    <div class="navbar-scroll hide-init">
+      <div class="container-fluid">
+        <div class="container">
+          <div class="collapseable-menu hide-init">
+            <div class="nav-link-outer"><div class="nav-link">Show</div></div>
+            <div class="nav-link-outer"><div class="nav-link">Shorts</div></div>
+            <div class="nav-link-outer"><div class="nav-link">Join</div></div>
+            <div class="nav-link-outer"><div class="nav-link">About</div></div>
+            <div class="nav-link-outer"><div class="nav-link">Contact</div></div>
+            <div class="nav-link-outer"><div class="nav-link">Login</div></div>
+          </div>
+          <div class="logo-small"><p>A&nbsp;&nbsp;&nbsp;P<br />N</p></div>
+            <div class="link-container hidden-xs">
+            <div class="nav-link-outer"><div class="nav-link">Show</div></div>
+            <div class="nav-link-outer"><div class="nav-link">Shorts</div></div>
+            <div class="nav-link-outer"><div class="nav-link">Join</div></div>
+            <div class="nav-link-outer"><div class="nav-link">About</div></div>
+            <div class="nav-link-outer"><div class="nav-link">Contact</div></div>
+            <div class="nav-link-outer"><div class="nav-link">Login</div></div>
+            </div>
+            <div class="visible-xs-inline-block nav-ham-toggle glyphicon glyphicon-menu-hamburger"></div>
+        </div>
+      </div>
+    </div>
+
   	<section class="show-case">
-  		<nav class="navbar hidden-xs">
-  			<div class="container">
+  		
+     <div class="big-picture">
+
+        <nav class="navbar hidden-xs">
+        <div class="container wow fadeInDown">
           <div class="nav-links-left">
             <div class="nav-link">Show</div>
             <div class="nav-link">Shorts</div>
@@ -32,25 +62,36 @@
           <div class="nav-links-right">
             <div class="nav-link">About</div>
             <div class="nav-link">Contact</div>
-  					<div class="nav-link">Login</div>
+            <div class="nav-link">Login</div>
           </div>
-  			</div>
-  		</nav>
+        </div>
+      </nav>
 
+        <video class="show-case-video" autoplay loop>
+          <source src="./media/Show2Intro_4.mp4" type="video/mp4">
+          <source src="./media/Show2Intro_4.webm" type="video/webm">
+        </video>
 
-     <div class="big-picture">
-      <div class="vert-centered-element">
-        <h2 class="showcase-text-1">We Inform...</h2><br />
-        <h2 class="showcase-text-2">...and Entertain</h2>
+      <div class="big-filler">
+        <div class="vert-centered-element">
+          <div class="wow fadeInDown" data-wow-offset="-200"><h2 class="showcase-text-1">We Inform...</h2></div>
+          <div class="wow fadeInUp" data-wow-offset="-200"><h2 class="showcase-text-2">...and Entertain</h2></div>
+
+        </div>
+        <div class="btn-see-down wow bounce animate-infinite" data-wow-offset="-400">
+        <div class="glyphicon glyphicon-chevron-down" data-wow-offset="-400"></div>
+        </div>
       </div>
     </div>
   </section>
+
+  <span id="page-content-start"></span>
 
 	<section class="normal-section">
 		<div class="container-fluid">
 			
 			<div class="row">
-				<div class="col-md-6 col-sm-12 col-xs-12 watch-block-show">
+				<div class="col-md-6 col-sm-12 col-xs-12 watch-block-show wow flipInX">
           <div class="block-filler">
             <div class="abs-centered-element">
              <h3 class="block-header-text">Watch Show</h3>
@@ -58,7 +99,7 @@
            </div>
           </div>
 				</div>
-				<div class="col-md-6 col-sm-12 col-xs-12 watch-block-shorts">
+				<div class="col-md-6 col-sm-12 col-xs-12 watch-block-shorts wow flipInX animation-delay">
           <div class="block-filler">
             <div class="abs-centered-element">
              <h3 class="block-header-text">Watch Shorts</h3>
@@ -72,10 +113,10 @@
 
 	<section class="section-muted">
 		<div class="container-fluid">
-      <div class="container">
+      <div class="container wow fadeInUp">
         
       <div class="row">
-        <div class="col-md-8 col-sm-12 block-muted">
+        <div class="col-md-8 col-sm-12 block-muted hideme">
           <h3 class="block-header-pressed-text"><i class="fa fa-check-square-o"></i> Want to Join?</h3>
           <p class="pressed text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -94,20 +135,24 @@
 	</section>
 
 	<section class="section-suggestions">
-		<div class="container-fluid">
+		<div class="container-fluid hideme">
       <div class="container">
-        <h3 class="block-header-text"><i class="fa fa-comments"></i> Have Suggestions?</h3>
-        <input type="text" class="text-box-outline" placeholder="Full Name" />
-        <textarea rows=5 class="text-box-outline" placeholder="Type suggestions here..."></textarea>
-        <a href="#" class="btn-outline-white">Suggest</a>
+        <h3 class="block-header-text wow fadeInRight"><i class="fa fa-comments"></i> Have Suggestions?</h3>
+        <div class="">
+        <input type="text" class="text-box-outline wow fadeInUp" placeholder="Full Name" />
+        <textarea rows=5 class="text-box-outline wow fadeInUp" placeholder="Type suggestions here..."></textarea>
+        <a href="#" class="btn-outline-white wow fadeInUp">Suggest</a>
+        </div>
       </div>
     </div>  
   </section>
 
-    <!-- Bootstrap core JavaScript
+    <!-- Scripts
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     <script type="text/javascript" src="./js/jquery.min.js"></script>
     <script type="text/javascript" src="./js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="./js/index.js" type="text/javascript" charset="utf-8"></script>
+</script>
 </body>
 </html>

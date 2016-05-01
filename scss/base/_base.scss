@@ -4,6 +4,7 @@
 
 body {
 	font-family: 'Lato', 'Droid Serif';
+	background-color: $color-muted-dark;
 }
 
  h3 {
@@ -21,4 +22,16 @@ body {
 
  row {
  	padding: $padding-standard-vert;
+ }
+
+ video  {
+ 	position: absolute;
+ 	top: 50%;
+ 	left: 50%;
+ 	@include transform(translate(-50%, -50%));
+ 	min-width:  100%;
+ 	min-height: 100%;
+ 	width:      auto;
+ 	height:     auto;
+ 	overflow:   hidden;
  }
