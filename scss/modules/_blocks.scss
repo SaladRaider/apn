@@ -1,4 +1,14 @@
+.header-block {
+	height: 84px;
+	text-align: center;
+}
 
+.big-block {
+	height: $block-height-default;
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+}
 
 .watch-block {
 	height: $block-height-default;
@@ -7,6 +17,7 @@
 	background-size: cover;
 	background-position: center;
 	text-align: center;
+	cursor: pointer;
 
 	h3 {
 		color: $color-white;
@@ -19,18 +30,11 @@
 		font-size: $font-huge;
 		@include transition($time-hover, "ease");
 	}
-
-	
-
 }
 
 .watch-block:hover i {
 	font-size: $font-x-huge;
 	@include transition($time-hover, "ease");
-}
-
-.watch-block {
-	cursor: pointer;
 }
 
 .block-filler {
@@ -43,6 +47,15 @@
 .block-filler:hover {
 	background-color: $color-primary-t50;
 	@include transition($time-hover-color, "ease");
+}
+
+.block-filler-transparent {
+	@extend .block-filler;
+	background-color: transparent;
+}
+
+.block-filler-transparent:hover {
+	background-color: transparent;
 }
 
 .watch-block-show {

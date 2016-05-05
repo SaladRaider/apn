@@ -18,7 +18,7 @@ $(window).load(function(){
     if($(window).width() < 768) {
         $('.navbar-scroll').show();
     }
-    $('#show-case-video').prop("volume","0.5");
+    //$('#show-case-video').prop("volume","0.5");
 })
 
 $(window).resize(function(){
@@ -47,13 +47,13 @@ $(window).resize(function(){
 // check to see if below nav bar 
 $(window).bind('scroll', function() {
 
-    if($(window).scrollTop() < $(window).height() - 48) {
+    /*if($(window).scrollTop() < $(window).height() - 48) {
         $('.show-case-video').prop("volume", 
             ($(window).height() - 48 - $(window).scrollTop()) / ($(window).height() - 48) / 2);
     }
     else  {
         $('.show-case-video').prop("volume","0.0");
-    }
+    }*/
 
     if($('.navbar-scroll').is(':animated')) {
         return;

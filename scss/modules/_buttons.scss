@@ -8,10 +8,12 @@
 	border-color: $color-muted-light;
 	color:        $color-muted-light;
 	padding:      $padding-btn-v $padding-btn-h;
+	@include font-size($font-medium);
 	@include transition($time-hover-fast, "ease");
 	text-decoration: none;
 	margin: $margin-default-v 0px;
 	display: inline-block;
+	text-align: center;
 }
 
 .btn-outline:hover {
@@ -22,15 +24,9 @@
 }
 
 .btn-outline-white, .btn-outline-white:active, .btn-outline-white:visited {
-	border-style: solid;
-	border-width: $border-width-default;
+	@extend .btn-outline;
 	color:        $color-white;
 	border-color: $color-white;
-	padding:      $padding-btn-v $padding-btn-h;
-	@include transition($time-hover-fast, "ease");
-	text-decoration: none;
-	margin: $margin-default-v 0px;
-	display: inline-block;
 }
 
 .btn-outline-white:hover {

@@ -2,6 +2,12 @@
  * Sections
  */
 
+.normal-section {
+	.jumbotron {
+		background-color: $color-muted-dark;
+	}
+}
+
 .show-case {
 	text-align: center;
 	width:      100%;
