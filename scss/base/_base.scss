@@ -7,13 +7,32 @@ body {
 	background-color: $color-muted-dark;
 }
 
+select {
+	background-color: $color-muted-dark;
+	color: $color-white;
+	border-color: $color-white;
+	border-width: 2px;
+	@include border-radius(0px);
+	@include appearance(none);
+
+	option {
+		background-color: $color-muted-dark;
+	}
+}
+
+select:focus {
+	outline: none;
+}
+
  h3 {
  	margin: 0px 0px;
  	@include font-size($font-x-large);
+ 	color: $color-white;
  }
 
  p {
  	@include font-size($font-medium);
+ 	color: $color-muted-light;
  }
 
  img {

@@ -2,10 +2,25 @@
  * Components
  */
 
+.about-img {
+	background-image: url('../img/film-production.jpg');
+	text-align: center;
+}
+
+.breadcrumb {
+	margin-bottom: 0px;
+	padding: 0px;
+	background: transparent;
+}
+
+.breadcrumb li  {
+	color: $color-muted-light;
+}
+
 .btn-group {
 
 	height: 45px;
-	margin: 20px 0px 40px 0px;
+	margin: 0px 0px 20px 0px;
 	width: 100%;
 
 	.btn-outline-white {
@@ -87,4 +102,8 @@
 
 .hide-init {
 	display: none;
+}
+
+.text-centered {
+	text-align: center;
 }

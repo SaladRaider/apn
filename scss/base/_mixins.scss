@@ -32,6 +32,22 @@
 	box-shadow: $h $v unquote($blur) unquote($spread) $color;
 }
 
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-ms-border-radius: $radius;
+	-o-border-radius: $radius;
+	border-radius: $radius;
+}
+
+@mixin appearance($ap) {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	-o-appearance: none;
+	appearance: none;
+}
+
 @mixin text-shadow($h,$v,$color,$blur:"") {
 	-webkit-text-shadow: $h $v unquote($blur) $color;
 	-moz-text-shadow: $h $v unquote($blur) $color;
@@ -96,4 +112,21 @@
 	-ms-animation-delay: $delay;
 	-o-animation-delay: $delay;
 	animation-delay: $delay;
+}
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 }

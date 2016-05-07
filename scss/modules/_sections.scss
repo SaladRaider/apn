@@ -2,7 +2,18 @@
  * Sections
  */
 
+.section-search-forms {
+	padding: 10px 0px;
+}
+
+.white-section {
+	background-color: $color-white;
+}
+
 .normal-section {
+
+	padding: 10px 0px;
+
 	.jumbotron {
 		background-color: $color-muted-dark;
 	}
@@ -16,10 +27,48 @@
 	background-image:    url("../img/VideoProd.jpg");
 	background-size:     cover;
 	background-position: center;
+	background-attachment: fixed;
 
 	nav, .navbar {
 		z-index: 1;
 	}
+
+	.video-container {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.vert-centered-element {
+		width:      100%;
+		text-align: center;
+		display:    block;
+	}
+
+	.big-filler {
+		width:      100%;
+		text-align: center;
+		display:    block;
+
+		background-color: $color-black-t50;
+		height:           100%;
+		@include align-vert();
+
+		.showcase-text-1 {
+			display: inline-block;
+			@include transform(translate(-6vw,-4vh));
+		}
+
+		.showcase-text-2 {
+			display: inline-block;
+			@include transform(translate(6vw,4vh));
+		}
+	}	
+
+	h2  {
+				font-size: $font-x-huge;
+				color: $color-white;
+				margin: 0px $margin-default-v;
+			}
 
 	.big-picture {
 
@@ -29,36 +78,7 @@
 		position: relative;
 		overflow: hidden;
 
-		.video-container {
-			position: relative;
-			overflow: hidden;
-		}
-
-		.vert-centered-element {
-			width:      100%;
-			text-align: center;
-			display:    block;
-		}
-
-		.big-filler {
-			width:      100%;
-			text-align: center;
-			display:    block;
-
-			background-color: $color-black-t50;
-			height:           100%;
-			@include align-vert();
-
-			.showcase-text-1 {
-				display: inline-block;
-				@include transform(translate(-6vw,-4vh));
-			}
-
-			.showcase-text-2 {
-				display: inline-block;
-				@include transform(translate(6vw,4vh));
-			}
-		}
+		
 
 		div {
 
@@ -67,11 +87,7 @@
 				z-index: 3;
 			}
 			
-			h2  {
-				font-size: $font-x-huge;
-				color: $color-white;
-				margin: 0px $margin-default-v;
-			}
+			
 	
 			
 		}
