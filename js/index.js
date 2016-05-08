@@ -36,7 +36,8 @@ $(window).resize(function(){
             $('.collapseable-menu').hide();
             $('.navbar-scroll').css("height", "48px");
         }
-        if($(window).scrollTop() < 48*2
+        if($('.navbar').length
+        && $(window).scrollTop() < 48*2
         && $('.navbar-scroll').css("opacity") != "0"
         && $(window).width() >= 768) {
             $('.navbar-scroll').animate({

@@ -926,6 +926,11 @@ video {
 /**
  * Components
  */
+.table-header {
+  color: #ecf0f1; }
+  .table-header p {
+    color: #ecf0f1; }
+
 .fill-width {
   width: 100%; }
 

@@ -2,6 +2,14 @@
  * Components
  */
 
+.table-header {
+	color: $color-white;
+
+	p {
+		color: $color-white;
+	}
+}
+
 .fill-width {
 	width: 100%;
 }
