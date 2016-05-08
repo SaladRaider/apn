@@ -2,6 +2,10 @@
  * Buttons
  */
 
+.really-big-btn {
+	margin: 80px !important;
+}
+
 .btn-outline, .btn-outline:active, .btn-outline:visited  {
 	border-style: solid;
 	border-width: $border-width-default;
@@ -33,6 +37,18 @@
 	@extend .btn-outline:hover;
 	color: $color-muted-light;
 	background-color: $color-white;
+}
+
+.btn-outline-primary, .btn-outline-primary:active, .btn-outline-primary:visited {
+	@extend .btn-outline;
+	color:        $color-primary;
+	border-color: $color-primary;
+}
+
+.btn-outline-primary:hover {
+	@extend .btn-outline:hover;
+	color: $color-white;
+	background-color: $color-primary;
 }
 
 .btn-see-down {

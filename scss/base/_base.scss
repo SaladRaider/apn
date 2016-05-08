@@ -27,7 +27,20 @@ select:focus {
  h3 {
  	margin: 0px 0px;
  	@include font-size($font-x-large);
+ 	//font-size: $font-x-large;
  	color: $color-white;
+ }
+
+ h4 {
+ 	@extend h3;
+ 	//font-size: $font-large;
+ 	@include font-size($font-large);
+ }
+
+  h5 {
+ 	@extend h3;
+ 	//font-size: $font-medium;
+ 	@include font-size($font-medium);
  }
 
  p {

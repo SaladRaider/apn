@@ -449,12 +449,22 @@ select {
 select:focus {
   outline: none; }
 
-h3 {
+h3, h4, h5 {
   margin: 0px 0px;
   font-size: 2.25rem;
   line-height: 3.64058rem;
   max-width: 65rem;
   color: #ecf0f1; }
+
+h4 {
+  font-size: 1.5rem;
+  line-height: 2.42705rem;
+  max-width: 65rem; }
+
+h5 {
+  font-size: 1rem;
+  line-height: 1.61803rem;
+  max-width: 65rem; }
 
 p {
   font-size: 1rem;
@@ -590,6 +600,13 @@ video {
   width: 100%;
   height: 100%; }
 
+.videoWrapper div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+
 .header-block {
   height: 84px;
   text-align: center; }
@@ -599,7 +616,7 @@ video {
   padding: 0px;
   text-align: center; }
 
-.watch-block, .watch-block-show, .watch-block-shorts {
+.watch-block, .watch-block-pad, .watch-block-square, .watch-block-show, .watch-block-shorts {
   height: 300px;
   margin: 0px;
   padding: 0px;
@@ -607,10 +624,10 @@ video {
   background-position: center;
   text-align: center;
   cursor: pointer; }
-  .watch-block h3, .watch-block-show h3, .watch-block-shorts h3 {
+  .watch-block h3, .watch-block-pad h3, .watch-block-square h3, .watch-block-show h3, .watch-block-shorts h3, .watch-block h4, .watch-block-pad h4, .watch-block-square h4, .watch-block-show h4, .watch-block-shorts h4, .watch-block h5, .watch-block-pad h5, .watch-block-square h5, .watch-block-show h5, .watch-block-shorts h5 {
     color: #ecf0f1;
     font-size: 2.25rem; }
-  .watch-block i, .watch-block-show i, .watch-block-shorts i {
+  .watch-block i, .watch-block-pad i, .watch-block-square i, .watch-block-show i, .watch-block-shorts i {
     margin-top: 20px;
     color: #ecf0f1;
     font-size: 3.75rem;
@@ -624,7 +641,13 @@ video {
     -o-transition: 0.5s;
     transition: 0.5s; }
 
-.watch-block:hover i, .watch-block-show:hover i, .watch-block-shorts:hover i {
+.watch-block-pad, .watch-block-square {
+  padding: 10px; }
+
+.watch-block-square i {
+  margin-top: 0; }
+
+.watch-block:hover i, .watch-block-pad:hover i, .watch-block-square:hover i, .watch-block-show:hover i, .watch-block-shorts:hover i {
   font-size: 4.5rem;
   -webkit-transition-timing-function: "ease";
   -moz-transition-timing-function: "ease";
@@ -690,7 +713,10 @@ video {
 /**
  * Buttons
  */
-.btn-outline, .btn-outline-white, .btn-outline-white:active, .btn-outline-white:visited, .btn-outline:active, .btn-outline-white:active, .btn-outline:visited, .btn-outline-white:visited {
+.really-big-btn {
+  margin: 80px !important; }
+
+.btn-outline, .btn-outline-white, .btn-outline-white:active, .btn-outline-white:visited, .btn-outline-primary, .btn-outline-primary:active, .btn-outline-primary:visited, .btn-outline:active, .btn-outline-white:active, .btn-outline-primary:active, .btn-outline:visited, .btn-outline-white:visited, .btn-outline-primary:visited {
   border-style: solid;
   border-width: 2px;
   border-color: #888;
@@ -713,7 +739,7 @@ video {
   display: inline-block;
   text-align: center; }
 
-.btn-outline:hover, .btn-outline-white:hover {
+.btn-outline:hover, .btn-outline-white:hover, .btn-outline-primary:hover {
   background-color: #888;
   color: #383838;
   text-decoration: none;
@@ -734,6 +760,14 @@ video {
 .btn-outline-white:hover {
   color: #888;
   background-color: #ecf0f1; }
+
+.btn-outline-primary, .btn-outline-primary:active, .btn-outline-primary:visited {
+  color: #790000;
+  border-color: #790000; }
+
+.btn-outline-primary:hover {
+  color: #ecf0f1;
+  background-color: #790000; }
 
 .btn-see-down {
   font-size: 3em;
@@ -764,7 +798,7 @@ video {
   background-color: #ecf0f1; }
 
 .normal-section {
-  padding: 10px 0px; }
+  padding: 40px 0px; }
   .normal-section .jumbotron {
     background-color: #383838; }
 
@@ -828,7 +862,7 @@ video {
   padding: 20px 0px; }
 .section-muted p {
   color: #888; }
-.section-muted h3 {
+.section-muted h3, .section-muted h4, .section-muted h5 {
   color: #000;
   -webkit-text-shadow: 0px 1.2px  #555;
   -moz-text-shadow: 0px 1.2px  #555;
@@ -879,7 +913,7 @@ video {
   .section-suggestions .container-fluid {
     padding: 0px;
     padding: 20px 0px; }
-  .section-suggestions h3 {
+  .section-suggestions h3, .section-suggestions h4, .section-suggestions h5 {
     color: #383838;
     -webkit-text-shadow: 0 1.2px  #fff;
     -moz-text-shadow: 0 1.2px  #fff;
@@ -892,6 +926,9 @@ video {
 /**
  * Components
  */
+.fill-width {
+  width: 100%; }
+
 .about-img {
   background-image: url("../img/film-production.jpg");
   text-align: center; }
