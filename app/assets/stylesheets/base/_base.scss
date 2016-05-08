@@ -1,0 +1,78 @@
+/**
+ * Base
+ */
+
+body {
+	font-family: 'Lato', 'Droid Serif';
+	background-color: $color-muted-dark;
+}
+
+select {
+	background-color: $color-muted-dark;
+	color: $color-white;
+	border-color: $color-white;
+	border-width: 2px;
+	@include border-radius(0px);
+	@include appearance(none);
+
+	option {
+		background-color: $color-muted-dark;
+	}
+}
+
+select:focus {
+	outline: none;
+}
+
+ h3 {
+ 	margin: 0px 0px;
+ 	@include font-size($font-x-large);
+ 	//font-size: $font-x-large;
+ 	color: $color-white;
+ }
+
+ h2 {
+ 	@extend h3;
+ 	@include font-size($font-xx-large);
+ }
+
+ h4 {
+ 	@extend h3;
+ 	//font-size: $font-large;
+ 	@include font-size($font-large);
+ }
+
+  h5 {
+ 	@extend h3;
+ 	//font-size: $font-medium;
+ 	@include font-size($font-medium);
+ }
+
+ p {
+ 	@include font-size($font-medium);
+ 	color: $color-muted-light;
+ }
+
+ img {
+ 	margin: $margin-default-v 0px;
+ }
+
+ row {
+ 	padding: $padding-standard-vert;
+ }
+
+ video  {
+ 	position: absolute;
+ 	top: 50%;
+ 	left: 50%;
+ 	@include transform(translate(-50%, -50%));
+ 	min-width:  100%;
+ 	min-height: 100%;
+ 	width:      auto;
+ 	height:     auto;
+ 	overflow:   hidden;
+ }
+
+ input[type="submit"] {
+ 	background:transparent;
+ }
