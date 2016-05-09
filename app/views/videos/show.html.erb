@@ -1,7 +1,9 @@
 <%
 
 # Parse video id
-video_id = @video.link[(@video.link.index("v=")+2)..@video.link.length]
+start_pos = @video.link.index("v=")+2;
+end_pos = (@video.link[start_pos..@video.link.length].index('&') == nil) ? @video.link.length : @video.link[start_pos..@video.link.length].index('&') - 1
+video_id = @video.link[start_pos..(start_pos+end_pos)]
 
 %>
 
@@ -10,10 +12,8 @@ video_id = @video.link[(@video.link.index("v=")+2)..@video.link.length]
 <section class="normal-section">
   <div class="jumbotron">
     <div class="container">
-      <div class="col-xs-12">
-        <h2><%= @video.title %></h2>
-      </div>
-      <div class="col-md-12 wow flipInX animation-delay">
+     
+      <div class="col-md-12 wow flipInX animation-delay space-bottom">
         <div class="block-filler-transparent videoWrapper">
          <iframe class="video-iframe" src="https://www.youtube.com/embed/<%= video_id %>" frameborder="0" allowfullscreen></iframe>
        </div>
@@ -21,55 +21,59 @@ video_id = @video.link[(@video.link.index("v=")+2)..@video.link.length]
      
    </div>
  </div>
-</section>
 
-<section class="section-search-forms">
-  <div class="container">
+ <div class="container">
   <div class="col-xs-12">
-       <p class="color-light">Created <%= time_ago_in_words(@video.created_at) %> ago</p>
-       <p><%= @video.description %></p>
-     </div>
-    <div class="btn-group">
-      <input type="text" class="text-box-outline"></input>
-      <a class="btn-outline-white" href="#"><span class="glyphicon glyphicon-search"></span></a>
-    </div>      
-    <div class="selectDiv">
-      <select name="year">
-        <option value = "14">Shows</option>
-        <option value = "15">Shorts</option>
-      </select>
-    </div>  
-    <div class="selectDiv">
-      <select name="year">
-        <option value = "14">2014-2015</option>
-        <option value = "15">2015-2016</option>
-        <option value = "16">2016-2017</option>
-      </select>
-    </div>
-    <div class="selectDiv">
-      <select name="show-num">
-        <option value = "14">Show 1</option>
-        <option value = "14">Show 2</option>
-        <option value = "14">Show 3</option>
-        <option value = "14">Show 4</option>
-        <option value = "14">Show 5</option>
-      </select>
-    </div>
-    <div class="selectDiv">
-      <select name="year">
-        <option value = "14">Less than 5 min</option>
-        <option value = "14">Between 5-10 min</option>
-        <option value = "15">Greater than 10 min</option>
-      </select>
-    </div>
-    <div class="selectDiv">
-      <select name="year">
-        <option value = "14">Relevance</option>
-        <option value = "15">Date Created</option>
-        <option value = "16">Views</option>
-      </select>
-    </div>
-  </div>
+        <h2><%= @video.title %></h2>
+   <p class="color-light">Created <%= time_ago_in_words(@video.created_at) %> ago</p>
+   <p><%= @video.description %></p>
+   <p>
+   <%= link_to 'Edit', edit_video_path(@video) %>
+   <%= link_to 'Delete', video_path(@video), method: :destroy, data: { confirm: 'Are you sure?'} %>
+   </p>
+
+ </div>
+ <div class="btn-group">
+  <input type="text" class="text-box-outline"></input>
+  <a class="btn-outline-white" href="#"><span class="glyphicon glyphicon-search"></span></a>
+</div>      
+<div class="selectDiv">
+  <select name="year">
+    <option value = "14">Shows</option>
+    <option value = "15">Shorts</option>
+  </select>
+</div>  
+<div class="selectDiv">
+  <select name="year">
+    <option value = "14">2014-2015</option>
+    <option value = "15">2015-2016</option>
+    <option value = "16">2016-2017</option>
+  </select>
+</div>
+<div class="selectDiv">
+  <select name="show-num">
+    <option value = "14">Show 1</option>
+    <option value = "14">Show 2</option>
+    <option value = "14">Show 3</option>
+    <option value = "14">Show 4</option>
+    <option value = "14">Show 5</option>
+  </select>
+</div>
+<div class="selectDiv">
+  <select name="year">
+    <option value = "14">Less than 5 min</option>
+    <option value = "14">Between 5-10 min</option>
+    <option value = "15">Greater than 10 min</option>
+  </select>
+</div>
+<div class="selectDiv">
+  <select name="year">
+    <option value = "14">Relevance</option>
+    <option value = "15">Date Created</option>
+    <option value = "16">Views</option>
+  </select>
+</div>
+</div>
 </section>
 
 <section class="normal-section">

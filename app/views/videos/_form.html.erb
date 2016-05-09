@@ -1,0 +1,42 @@
+<%= form_for @video do |f| %>
+<% if @video.errors.any? %>
+<div id="errors">
+  <h4><%= pluralize(@video.errors.count, "error") %> preventd this video from saving</h4>
+  <ul>
+    <% @video.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<%= f.text_field :show, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-2"], placeholder: :show %>
+<%= f.text_field :title, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-10"], placeholder: :title %>
+<%= f.text_field :link, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-12"], placeholder: :link %>
+<%= f.text_area :description, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-12"], placeholder: :description, rows: 5 %>
+<%= f.text_field :keywords, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-12"], placeholder: :keywords %>
+<div class="selectDiv">
+  <%= f.select(:category) do %>
+  <% [['Show',1],['Skit', 2],['Promo',3],['Story',4]].each do |c| -%>
+  <%= content_tag(:option, c.first, value: c.last) %>
+  <% end %>
+  <% end %>
+</div>
+<div class="row col-xs-12">
+  <div class="col-xs-4 table-header">
+    <p>Name</p>
+  </div>
+  <div class="col-xs-8 table-header">
+    <p>Job</p>
+  </div>
+  <div class="col-xs-4">
+    <p>Peter Veerman</p>
+  </div>
+  <div class="col-xs-7">
+    <p>Editor</p>
+  </div>
+</div>
+<input type="text" class="text-box-outline wow fadeInUp col-xs-4" placeholder="Name" />
+<input type="text" class="text-box-outline wow fadeInUp col-xs-8" placeholder="Job Description" />
+<a href="#" class="btn-outline-white wow fadeInUp fill-width"><span class="fa fa-plus"></span></a>
+<%= f.submit :submit_video, value: "Save", class: ["btn-outline-white", "wow", "fadeInUp", "fill-width"] %>
+<% end %>
