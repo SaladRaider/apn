@@ -5,6 +5,7 @@
 .alert, .notice {
 	margin: 0;
 	padding: 0;
+	border: 0;
 }
 
 #error_explanation {
@@ -23,6 +24,10 @@
 	padding-bottom: $padding-standard-vert;
 }
 
+.space-bottom-l {
+	padding-bottom: $padding-standard-vert * 2;
+}
+
 .color-muted {
 	color: $color-muted;
 }
@@ -33,6 +38,10 @@
 	p {
 		color: $color-white;
 	}
+}
+
+.align-vert {
+	@include align-vert()
 }
 
 .fill-width {

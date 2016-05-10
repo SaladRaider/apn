@@ -1,50 +1,71 @@
+<%
+#url = request.original_fullpath
+#uri = URI.parse(url);
+#params = []
+
+#if uri.query != nil
+ #params = CGI.parse(uri.query);
+#end
+
+%>
 
 <span id="page-content-start"></span>
 
 <section class="normal-section">
   <div class="container">
-   <h2>Videos</h2>
-   <div class="btn-group">
-    <input type="text" class="text-box-outline"></input>
-    <a class="btn-outline-white" href="#"><span class="glyphicon glyphicon-search"></span></a>
-  </div>      
-  <div class="selectDiv">
-    <select name="year">
-      <option value = "14">Shows</option>
-      <option value = "15">Shorts</option>
-    </select>
-  </div>  
-  <div class="selectDiv">
-    <select name="year">
-      <option value = "14">2014-2015</option>
-      <option value = "15">2015-2016</option>
-      <option value = "16">2016-2017</option>
-    </select>
+    <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><%= link_to 'Home', root_path %></li>
+        <li class="active">Videos</li>
+      </ol>
+    </div>
+    <h2>Videos</h2>
+    <div class="btn-group">
+      <input type="text" class="text-box-outline"></input>
+      <a class="btn-outline-white" href="#"><span class="glyphicon glyphicon-search"></span></a>
+    </div>
+    <div class="selectDiv">
+      <%= content_tag :select, :name => "category" do %>
+      <% [['Show',1],['Skit', 2],['Promo',3],['Story',4]].each do |c| -%>
+      <% if params[:category] != nil && params[:category] == c.last.to_s %>
+        <%= content_tag :option, c.first, value: c.last, selected: true %>
+      <% else %>
+        <%= content_tag :option, c.first, value: c.last %>
+      <% end %>
+      <% end %>
+      <% end %>
+    </div>  
+    <div class="selectDiv">
+      <select name="year">
+        <option value = "14">2014-2015</option>
+        <option value = "15">2015-2016</option>
+        <option value = "16">2016-2017</option>
+      </select>
+    </div>
+    <div class="selectDiv">
+      <select name="show-num">
+        <option value = "14">Show 1</option>
+        <option value = "14">Show 2</option>
+        <option value = "14">Show 3</option>
+        <option value = "14">Show 4</option>
+        <option value = "14">Show 5</option>
+      </select>
+    </div>
+    <div class="selectDiv">
+      <select name="year">
+        <option value = "14">Less than 5 min</option>
+        <option value = "14">Between 5-10 min</option>
+        <option value = "15">Greater than 10 min</option>
+      </select>
+    </div>
+    <div class="selectDiv">
+      <select name="year">
+        <option value = "14">Relevance</option>
+        <option value = "15">Date Created</option>
+        <option value = "16">Views</option>
+      </select>
+    </div>
   </div>
-  <div class="selectDiv">
-    <select name="show-num">
-      <option value = "14">Show 1</option>
-      <option value = "14">Show 2</option>
-      <option value = "14">Show 3</option>
-      <option value = "14">Show 4</option>
-      <option value = "14">Show 5</option>
-    </select>
-  </div>
-  <div class="selectDiv">
-    <select name="year">
-      <option value = "14">Less than 5 min</option>
-      <option value = "14">Between 5-10 min</option>
-      <option value = "15">Greater than 10 min</option>
-    </select>
-  </div>
-  <div class="selectDiv">
-    <select name="year">
-      <option value = "14">Relevance</option>
-      <option value = "15">Date Created</option>
-      <option value = "16">Views</option>
-    </select>
-  </div>
-</div>
 </section>
 
 <section class="normal-section">

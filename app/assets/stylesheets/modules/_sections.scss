@@ -51,7 +51,7 @@
 
 		background-color: $color-black-t50;
 		height:           100%;
-		@include align-vert();
+		//@include align-vert();
 
 		.showcase-text-1 {
 			display: inline-block;

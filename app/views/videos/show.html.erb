@@ -14,9 +14,9 @@ video_id = @video.link[start_pos..(start_pos+end_pos)]
     <div class="container">
     <div class="col-md-12 space-bottom">
           <ol class="breadcrumb">
-            <li><a href="">Home</a></li>
+            <li><%= link_to 'Home', root_path %></li>
             <li><%= link_to 'Videos', videos_path %></li>
-            <li class="about-person.html"><%= truncate(@video.title, length: 30) %></li>
+            <li class="active"><%= truncate(@video.title, length: 30) %></li>
           </ol>
       </div>      <div class="col-md-12 wow flipInX animation-delay space-bottom">
       <div class="block-filler-transparent videoWrapper">

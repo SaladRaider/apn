@@ -1,0 +1,32 @@
+<nav class="navbar hidden-xs">
+  <div class="container wow fadeInDown">
+    <div class="nav-links-left">
+      <%= link_to videos_path do %>
+      <div class="nav-link">Videos</div>
+      <% end %>
+      <%= link_to '/join' do %>
+      <div class="nav-link">Join</div>
+      <% end %>
+    </div>
+    <%= link_to root_path do %>
+    <div class="logo"><p>A&nbsp;&nbsp;&nbsp;P<br />N</p></div>
+    <% end %>
+    <div class="nav-links-right">
+      <%= link_to '/about' do %>
+      <div class="nav-link">About</div>
+      <% end %>
+      <%= link_to '/contact' do %>
+      <div class="nav-link">Contact</div>
+      <% end %>
+      <% if user_signed_in? %>
+      <%= link_to destroy_user_session_path(@user), :method => :delete do %>
+      <div class="nav-link">Log Out</div>
+      <% end %>
+      <% else %>
+      <%= link_to new_user_session_path do %>
+      <div class="nav-link">Log In</div>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+</nav>

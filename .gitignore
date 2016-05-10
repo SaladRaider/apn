@@ -15,7 +15,9 @@
 /log/*
 !/log/.keep
 /tmp
-/img
-/media
-/app/assets/media
+/public/media
+/vendor/assets/fonts
 /app/assets/images
+/app/assets/fonts
+#!/public/media/
+#!/vendor/assets/fonts/

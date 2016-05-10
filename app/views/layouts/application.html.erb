@@ -12,9 +12,12 @@
 	<link href='https://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 	<!--load amimate.css from CDN-->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css"> 
+	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css"> 
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">-->
+    <%= stylesheet_link_tag 'animate', media: 'all' %>
+    <%= stylesheet_link_tag 'bootstrap', media: 'all' %>
+    <%= stylesheet_link_tag 'font-awesome', media: 'all' %>
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	
 	<%= csrf_meta_tags %>
@@ -28,9 +31,15 @@
             <%= link_to videos_path do %>
             <div class="nav-link-outer"><div class="nav-link">Videos</div></div>
             <% end %>
+            <%= link_to '/join' do %>
             <div class="nav-link-outer"><div class="nav-link">Join</div></div>
+            <% end %>
+            <%= link_to '/about' do %>
             <div class="nav-link-outer"><div class="nav-link">About</div></div>
+            <% end %>
+            <%= link_to '/contact' do %>
             <div class="nav-link-outer"><div class="nav-link">Contact</div></div>
+            <% end %>
             <% if user_signed_in? %>
             <%= link_to destroy_user_session_path(@user), :method => :delete do %>
             <div class="nav-link-outer"><div class="nav-link">Log Out</div></div>
@@ -41,14 +50,22 @@
             <% end %>
             <% end %>
         </div>
+        <%= link_to root_path do %>
         <div class="logo-small"><p>A&nbsp;&nbsp;&nbsp;P<br />N</p></div>
+        <% end %>
         <div class="link-container hidden-xs">
             <%= link_to videos_path do %>
             <div class="nav-link-outer"><div class="nav-link">Videos</div></div>
             <% end %>
+            <%= link_to '/join' do %>
             <div class="nav-link-outer"><div class="nav-link">Join</div></div>
+            <% end %>
+            <%= link_to '/about' do %>
             <div class="nav-link-outer"><div class="nav-link">About</div></div>
+            <% end %>
+            <%= link_to '/contact' do %>
             <div class="nav-link-outer"><div class="nav-link">Contact</div></div>
+            <% end %>
             <% if user_signed_in? %>
             <%= link_to destroy_user_session_path(@user), :method => :delete do %>
             <div class="nav-link-outer"><div class="nav-link">Log Out</div></div>
@@ -65,7 +82,6 @@
 </div>
 
 <div class="container">
-
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 </div>
@@ -74,9 +90,12 @@
 
 <!-- Scripts
     ================================================== -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>-->
+    <%= javascript_include_tag 'jquery' %>
+    <%= javascript_include_tag 'bootstrap' %>
+    <%= javascript_include_tag 'wow' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag "rails" %>
 </body>
