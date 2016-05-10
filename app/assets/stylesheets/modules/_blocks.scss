@@ -77,6 +77,10 @@
 	}
 }
 
+.row a:nth-of-type(even) .watch-block {
+	@extend .animation-delay;
+}
+
 .watch-block-pad {
 	@extend .watch-block;
 

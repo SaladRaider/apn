@@ -1,7 +1,9 @@
 class VideosController < ApplicationController
 	before_action :find_params, only: [:show, :edit, :update, :destroy]
+	before_action :authenticate_user!, except: [:index, :show]
 
 	def index
+		@videos = Video.all.order('created_at DESC')
 	end
 
 	def new
@@ -34,7 +36,7 @@ class VideosController < ApplicationController
 	end
 
 	def find_params
-		@video = Video.find(params[:id])
+		@video = Video.friendly.find(params[:id])
 	end
 
 	def destroy
@@ -46,6 +48,6 @@ class VideosController < ApplicationController
 	private 
 		def video_params
 			params.require(:video).permit(:title, :show, :link, 
-				:description, :keywords, :category);
+				:description, :keywords, :category, :slug, :user_id);
 		end
 end

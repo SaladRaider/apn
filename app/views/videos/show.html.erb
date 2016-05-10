@@ -12,148 +12,33 @@ video_id = @video.link[start_pos..(start_pos+end_pos)]
 <section class="normal-section">
   <div class="jumbotron">
     <div class="container">
-     
-      <div class="col-md-12 wow flipInX animation-delay space-bottom">
-        <div class="block-filler-transparent videoWrapper">
-         <iframe class="video-iframe" src="https://www.youtube.com/embed/<%= video_id %>" frameborder="0" allowfullscreen></iframe>
-       </div>
+    <div class="col-md-12 space-bottom">
+          <ol class="breadcrumb">
+            <li><a href="">Home</a></li>
+            <li><%= link_to 'Videos', videos_path %></li>
+            <li class="about-person.html"><%= truncate(@video.title, length: 30) %></li>
+          </ol>
+      </div>      <div class="col-md-12 wow flipInX animation-delay space-bottom">
+      <div class="block-filler-transparent videoWrapper">
+       <iframe class="video-iframe" src="https://www.youtube.com/embed/<%= video_id %>" frameborder="0" allowfullscreen></iframe>
      </div>
-     
    </div>
- </div>
 
- <div class="container">
+ </div>
+</div>
+
+<div class="container">
   <div class="col-xs-12">
-        <h2><%= @video.title %></h2>
-   <p class="color-light">Created <%= time_ago_in_words(@video.created_at) %> ago</p>
-   <p><%= @video.description %></p>
-   <p>
-   <%= link_to 'Edit', edit_video_path(@video) %>
-   <%= link_to 'Delete', video_path(@video), method: :destroy, data: { confirm: 'Are you sure?'} %>
+    <h2><%= @video.title %></h2>
+    <p class="color-light">Published on <%= time_tag @video.created_at, pubdate:true %></p>
+    <p><%= @video.description %></p>
+    <p>
+     <%= link_to 'Edit', edit_video_path(@video) %>
+     <%= link_to 'Delete', video_path(@video), method: :destroy, data: { confirm: 'Are you sure?'} %>
    </p>
 
  </div>
- <div class="btn-group">
-  <input type="text" class="text-box-outline"></input>
-  <a class="btn-outline-white" href="#"><span class="glyphicon glyphicon-search"></span></a>
-</div>      
-<div class="selectDiv">
-  <select name="year">
-    <option value = "14">Shows</option>
-    <option value = "15">Shorts</option>
-  </select>
-</div>  
-<div class="selectDiv">
-  <select name="year">
-    <option value = "14">2014-2015</option>
-    <option value = "15">2015-2016</option>
-    <option value = "16">2016-2017</option>
-  </select>
-</div>
-<div class="selectDiv">
-  <select name="show-num">
-    <option value = "14">Show 1</option>
-    <option value = "14">Show 2</option>
-    <option value = "14">Show 3</option>
-    <option value = "14">Show 4</option>
-    <option value = "14">Show 5</option>
-  </select>
-</div>
-<div class="selectDiv">
-  <select name="year">
-    <option value = "14">Less than 5 min</option>
-    <option value = "14">Between 5-10 min</option>
-    <option value = "15">Greater than 10 min</option>
-  </select>
-</div>
-<div class="selectDiv">
-  <select name="year">
-    <option value = "14">Relevance</option>
-    <option value = "15">Date Created</option>
-    <option value = "16">Views</option>
-  </select>
-</div>
 </div>
 </section>
 
-<section class="normal-section">
-  <div class="container-fluid">
-
-   <div class="row">
-    <div class="col-md-6 col-sm-12 col-xs-12 watch-block-show wow flipInX">
-      <div class="block-filler">
-        <div class="abs-centered-element">
-         <h3 class="block-header-text">Watch Show</h3>
-         <i class="fa fa-play"></i>
-       </div>
-     </div>
-   </div>
-   <div class="col-md-6 col-sm-12 col-xs-12 watch-block-shorts wow flipInX animation-delay">
-    <div class="block-filler">
-      <div class="abs-centered-element">
-       <h3 class="block-header-text">Watch Shorts</h3>
-       <i class="fa fa-play"></i>
-     </div>
-   </div>
- </div>
-</div>
-
-<div class="row">
-  <div class="col-md-6 col-sm-12 col-xs-12 watch-block-show wow flipInX">
-    <div class="block-filler">
-      <div class="abs-centered-element">
-       <h3 class="block-header-text">Watch Show</h3>
-       <i class="fa fa-play"></i>
-     </div>
-   </div>
- </div>
- <div class="col-md-6 col-sm-12 col-xs-12 watch-block-shorts wow flipInX animation-delay">
-  <div class="block-filler">
-    <div class="abs-centered-element">
-     <h3 class="block-header-text">Watch Shorts</h3>
-     <i class="fa fa-play"></i>
-   </div>
- </div>
-</div>
-</div>
-
-<div class="row">
-  <div class="col-md-6 col-sm-12 col-xs-12 watch-block-show wow flipInX">
-    <div class="block-filler">
-      <div class="abs-centered-element">
-       <h3 class="block-header-text">Watch Show</h3>
-       <i class="fa fa-play"></i>
-     </div>
-   </div>
- </div>
- <div class="col-md-6 col-sm-12 col-xs-12 watch-block-shorts wow flipInX animation-delay">
-  <div class="block-filler">
-    <div class="abs-centered-element">
-     <h3 class="block-header-text">Watch Shorts</h3>
-     <i class="fa fa-play"></i>
-   </div>
- </div>
-</div>
-</div>
-
-<div class="row">
-  <div class="col-md-6 col-sm-12 col-xs-12 watch-block-show wow flipInX">
-    <div class="block-filler">
-      <div class="abs-centered-element">
-       <h3 class="block-header-text">Watch Show</h3>
-       <i class="fa fa-play"></i>
-     </div>
-   </div>
- </div>
- <div class="col-md-6 col-sm-12 col-xs-12 watch-block-shorts wow flipInX animation-delay">
-  <div class="block-filler">
-    <div class="abs-centered-element">
-     <h3 class="block-header-text">Watch Shorts</h3>
-     <i class="fa fa-play"></i>
-   </div>
- </div>
-</div>
-</div>
-</div>
-</section>
 

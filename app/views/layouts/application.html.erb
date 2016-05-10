@@ -25,35 +25,59 @@
       <div class="container-fluid">
         <div class="container">
           <div class="collapseable-menu hide-init">
-            <div class="nav-link-outer"><div class="nav-link">Show</div></div>
-            <div class="nav-link-outer"><div class="nav-link">Shorts</div></div>
+            <%= link_to videos_path do %>
+            <div class="nav-link-outer"><div class="nav-link">Videos</div></div>
+            <% end %>
             <div class="nav-link-outer"><div class="nav-link">Join</div></div>
             <div class="nav-link-outer"><div class="nav-link">About</div></div>
             <div class="nav-link-outer"><div class="nav-link">Contact</div></div>
-            <div class="nav-link-outer"><div class="nav-link">Login</div></div>
-          </div>
-          <div class="logo-small"><p>A&nbsp;&nbsp;&nbsp;P<br />N</p></div>
-            <div class="link-container hidden-xs">
-            <div class="nav-link-outer"><div class="nav-link">Show</div></div>
-            <div class="nav-link-outer"><div class="nav-link">Shorts</div></div>
-            <div class="nav-link-outer"><div class="nav-link">Join</div></div>
-            <div class="nav-link-outer"><div class="nav-link">About</div></div>
-            <div class="nav-link-outer"><div class="nav-link">Contact</div></div>
-            <div class="nav-link-outer"><div class="nav-link">Login</div></div>
-            </div>
-            <div class="visible-xs-inline-block nav-ham-toggle glyphicon glyphicon-menu-hamburger"></div>
+            <% if user_signed_in? %>
+            <%= link_to destroy_user_session_path(@user), :method => :delete do %>
+            <div class="nav-link-outer"><div class="nav-link">Log Out</div></div>
+            <% end %>
+            <% else %>
+            <%= link_to user_session_path(@user) do %>
+            <div class="nav-link-outer"><div class="nav-link">Log In</div></div>
+            <% end %>
+            <% end %>
         </div>
-      </div>
+        <div class="logo-small"><p>A&nbsp;&nbsp;&nbsp;P<br />N</p></div>
+        <div class="link-container hidden-xs">
+            <%= link_to videos_path do %>
+            <div class="nav-link-outer"><div class="nav-link">Videos</div></div>
+            <% end %>
+            <div class="nav-link-outer"><div class="nav-link">Join</div></div>
+            <div class="nav-link-outer"><div class="nav-link">About</div></div>
+            <div class="nav-link-outer"><div class="nav-link">Contact</div></div>
+            <% if user_signed_in? %>
+            <%= link_to destroy_user_session_path(@user), :method => :delete do %>
+            <div class="nav-link-outer"><div class="nav-link">Log Out</div></div>
+            <% end %>
+            <% else %>
+            <%= link_to user_session_path(@user) do %>
+            <div class="nav-link-outer"><div class="nav-link">Log In</div></div>
+            <% end %>
+            <% end %>
+        </div>
+        <div class="visible-xs-inline-block nav-ham-toggle glyphicon glyphicon-menu-hamburger"></div>
     </div>
+</div>
+</div>
 
-	<%= yield %>
+<div class="container">
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+</div>
+
+<%= yield %>
 
 <!-- Scripts
     ================================================== -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-	<%= javascript_include_tag "rails" %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag "rails" %>
 </body>
 </html>

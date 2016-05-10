@@ -11,13 +11,17 @@ select {
 	background-color: $color-muted-dark;
 	color: $color-white;
 	border-color: $color-white;
-	border-width: 2px;
-	@include border-radius(0px);
+	border-width: $border-width-default;
+	@include border-radius($border-radius-default);
 	@include appearance(none);
 
 	option {
 		background-color: $color-muted-dark;
 	}
+}
+
+a:hover {
+	text-decoration: none;
 }
 
 select:focus {
@@ -32,18 +36,20 @@ select:focus {
  }
 
  h2 {
- 	@extend h3;
+ 	margin: 0px 0px;
+  	color: $color-white;
  	@include font-size($font-xx-large);
  }
 
  h4 {
- 	@extend h3;
- 	//font-size: $font-large;
+ 	margin: 0px 0px;
+  	color: $color-white;
  	@include font-size($font-large);
  }
 
   h5 {
- 	@extend h3;
+  	margin: 0px 0px;
+  	color: $color-white;
  	//font-size: $font-medium;
  	@include font-size($font-medium);
  }

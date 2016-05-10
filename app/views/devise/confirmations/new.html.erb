@@ -1,0 +1,29 @@
+<span id="page-content-start"></span>
+
+<section class="normal-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <ol class="breadcrumb">
+          <li><a href="">Home</a></li>
+          <li class="about-person.html">Resend confirmation instructions</li>
+        </ol>
+      </div>
+      <div class="col-md-5 col-sm-5 col-xs-12">
+        <h3>Resend confirmation instructions</h3>
+        <p>
+          Don't have an account?<br>
+          <%= render "devise/shared/links" %>
+        </p>
+      </div>
+      <div class="col-md-7 col-sm-7 col-xs-12">
+        <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+        <%= devise_error_messages! %>
+        <%= f.email_field :email, autofocus: true, class: ['text-box-outline', 'wow', 'fadeInUp', 'fill-width'], placeholder: "Email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+        <%= f.submit "Resend confirmation instructions", class: ['btn-outline-white','wow','fadeInUp','fill-width'] %>
+          <% end %>
+        </div>
+        
+      </div>
+    </div>
+  </section>

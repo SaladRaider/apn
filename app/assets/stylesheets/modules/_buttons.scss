@@ -18,6 +18,7 @@
 	margin: $margin-default-v 0px;
 	display: inline-block;
 	text-align: center;
+	@include border-radius($border-radius-default);
 }
 
 .btn-outline:hover {

@@ -9,8 +9,10 @@
   </ul>
 </div>
 <% end %>
-<%= f.text_field :show, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-2"], placeholder: :show %>
-<%= f.text_field :title, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-10"], placeholder: :title %>
+<div class="btn-group-standard">
+  <%= f.text_field :show, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-2"], placeholder: :show %>
+  <%= f.text_field :title, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-10"], placeholder: :title %>
+</div>
 <%= f.text_field :link, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-12"], placeholder: :link %>
 <%= f.text_area :description, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-12"], placeholder: :description, rows: 5 %>
 <%= f.text_field :keywords, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-12"], placeholder: :keywords %>
@@ -35,8 +37,10 @@
     <p>Editor</p>
   </div>
 </div>
-<input type="text" class="text-box-outline wow fadeInUp col-xs-4" placeholder="Name" />
-<input type="text" class="text-box-outline wow fadeInUp col-xs-8" placeholder="Job Description" />
+<div class="btn-group-standard">
+  <input type="text" class="text-box-outline wow fadeInUp col-xs-4" placeholder="Name" />
+  <input type="text" class="text-box-outline wow fadeInUp col-xs-8" placeholder="Job Description" />
+</div>
 <a href="#" class="btn-outline-white wow fadeInUp fill-width"><span class="fa fa-plus"></span></a>
 <%= f.submit :submit_video, value: "Save", class: ["btn-outline-white", "wow", "fadeInUp", "fill-width"] %>
 <% end %>

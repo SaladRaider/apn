@@ -2,6 +2,23 @@
  * Components
  */
 
+.alert, .notice {
+	margin: 0;
+	padding: 0;
+}
+
+#error_explanation {
+	h2 {
+		@include font-size($font-large);
+	}
+
+	ul {
+		li {
+			color: $color-muted-light;
+		}
+	}
+}
+
 .space-bottom {
 	padding-bottom: $padding-standard-vert;
 }
@@ -37,6 +54,23 @@
 	color: $color-muted-light;
 }
 
+.btn-group-standard :nth-child(n) {
+	@include border-radius(0px);
+	border-right-width: 0px;
+	border-left-width: 0px;
+}
+
+.btn-group-standard :first-child {
+	@include border-radius($border-radius-default 0px 0px $border-radius-default);
+	border-left-width: $border-width-default;
+}
+
+.btn-group-standard :last-child {
+	@include border-radius(0px $border-radius-default $border-radius-default 0px);
+	border-left-width: $border-width-default;
+	border-right-width: $border-width-default;
+}
+
 .btn-group {
 
 	height: 45px;
@@ -48,6 +82,7 @@
 		position: absolute;
 		width: 10%;
 		right: 0;
+		
 	}
 
 	.text-box-outline {
@@ -58,6 +93,23 @@
 		text-align: left;
 		padding-left: 15px;
 	}
+}
+
+.btn-group :nth-child(n) {
+	@include border-radius(0px);
+	border-right-width: 0px;
+	border-left-width: 0px;
+}
+
+.btn-group :first-child {
+	@include border-radius($border-radius-default 0px 0px $border-radius-default);
+	border-left-width: $border-width-default;
+}
+
+.btn-group :last-child {
+	@include border-radius(0px $border-radius-default $border-radius-default 0px);
+	border-left-width: $border-width-default;
+	border-right-width: $border-width-default;
 }
 
 .abs-centered-element {
@@ -87,6 +139,8 @@
 	resize: none;
 	margin: $margin-default-v 0px;
 	display: inline-block;
+
+	@include border-radius($border-radius-default);
 }
 
 .text-box-outline:hover, .text-box-outline:focus {
