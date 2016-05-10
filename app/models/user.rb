@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  has_many :videos
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 	validates :first_name, presence: true
@@ -10,5 +11,5 @@ class User < ActiveRecord::Base
 	validates :grade, presence: true, inclusion: { in: 9..12 }
 	validates :email, presence: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
 	validates :username, presence: true, length: { minimum: 5 }, uniqueness: true
-	has_many :videos
+	
 end

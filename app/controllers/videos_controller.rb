@@ -1,6 +1,7 @@
 class VideosController < ApplicationController
 	before_action :find_params, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!, except: [:index, :show]
+	before_action :find_user, only: [:create]
 
 	def index
 		@videos = Video.all.order('created_at DESC')
@@ -11,7 +12,7 @@ class VideosController < ApplicationController
 	end
 
 	def create
-		@video = Video.new(video_params)
+		@video = @user.videos.new(video_params)
 		if @video.save
 			redirect_to @video
 		else
@@ -37,6 +38,10 @@ class VideosController < ApplicationController
 
 	def find_params
 		@video = Video.friendly.find(params[:id])
+	end
+
+	def find_user
+		@user = current_user
 	end
 
 	def destroy

@@ -29,20 +29,46 @@
 
      <div class="row">
       <div class="col-md-6 col-sm-12 col-xs-12 watch-block-show wow flipInX">
+        <%= link_to '/videos?category=1' do %>
         <div class="block-filler">
           <div class="abs-centered-element">
            <h3 class="block-header-text">Watch Show</h3>
            <i class="fa fa-play"></i>
          </div>
        </div>
+       <% end %>
      </div>
      <div class="col-md-6 col-sm-12 col-xs-12 watch-block-shorts wow flipInX animation-delay">
+      <%= link_to '/videos?category=2' do %>
       <div class="block-filler">
         <div class="abs-centered-element">
          <h3 class="block-header-text">Watch Shorts</h3>
          <i class="fa fa-play"></i>
        </div>
      </div>
+     <% end %>
+   </div>
+ </div>
+ <div class="row">
+      <div class="col-md-6 col-sm-12 col-xs-12 watch-block-show wow flipInX">
+        <%= link_to '/videos?category=3' do %>
+        <div class="block-filler">
+          <div class="abs-centered-element">
+           <h3 class="block-header-text">Watch Promos</h3>
+           <i class="fa fa-play"></i>
+         </div>
+       </div>
+       <% end %>
+     </div>
+     <div class="col-md-6 col-sm-12 col-xs-12 watch-block-shorts wow flipInX animation-delay">
+      <%= link_to '/videos?category=4' do %>
+      <div class="block-filler">
+        <div class="abs-centered-element">
+         <h3 class="block-header-text">Watch Stories</h3>
+         <i class="fa fa-play"></i>
+       </div>
+     </div>
+     <% end %>
    </div>
  </div>
 </div>

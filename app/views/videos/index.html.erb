@@ -26,7 +26,7 @@
     </div>
     <div class="selectDiv">
       <%= content_tag :select, :name => "category" do %>
-      <% [['Show',1],['Skit', 2],['Promo',3],['Story',4]].each do |c| -%>
+      <% [['Shows',1],['Shorts', 2],['Promos',3],['Stories',4]].each do |c| -%>
       <% if params[:category] != nil && params[:category] == c.last.to_s %>
         <%= content_tag :option, c.first, value: c.last, selected: true %>
       <% else %>
@@ -34,14 +34,7 @@
       <% end %>
       <% end %>
       <% end %>
-    </div>  
-    <div class="selectDiv">
-      <select name="year">
-        <option value = "14">2014-2015</option>
-        <option value = "15">2015-2016</option>
-        <option value = "16">2016-2017</option>
-      </select>
-    </div>
+    </div> 
     <div class="selectDiv">
       <select name="show-num">
         <option value = "14">Show 1</option>
@@ -53,11 +46,18 @@
     </div>
     <div class="selectDiv">
       <select name="year">
+        <option value = "14">2014-2015</option>
+        <option value = "15">2015-2016</option>
+        <option value = "16">2016-2017</option>
+      </select>
+    </div>
+    <!--<div class="selectDiv">
+      <select name="year">
         <option value = "14">Less than 5 min</option>
         <option value = "14">Between 5-10 min</option>
         <option value = "15">Greater than 10 min</option>
       </select>
-    </div>
+    </div>-->
     <div class="selectDiv">
       <select name="year">
         <option value = "14">Relevance</option>
@@ -78,9 +78,21 @@
       start_pos = video.link.index("v=")+2;
       end_pos = (video.link[start_pos..video.link.length].index('&') == nil) ? video.link.length : video.link[start_pos..video.link.length].index('&') - 1
       video_id = video.link[start_pos..(start_pos+end_pos)]
+      
+      # check if max res thumbnail exists. If not, use hq default
+      url = 'http://img.youtube.com/vi/'+video_id+'/maxresdefault.jpg';
+      uri = URI(url)
+
+      request = Net::HTTP.new uri.host
+      response = request.request_head uri.path
+
+      if response.code.to_i != 200
+        url = 'http://img.youtube.com/vi/'+video_id+'/hqdefault.jpg'
+      end
+
       %>
       <%= link_to video do %>
-      <div class="col-md-6 col-sm-12 col-xs-12 watch-block wow flipInX" style="background-image: url('http://img.youtube.com/vi/<%= video_id %>/maxresdefault.jpg')">
+      <div class="col-md-6 col-sm-6 col-xs-12 watch-block wow flipInX" style="background-image: url(<%= url %>)">
         <div class="block-filler">
           <div class="abs-centered-element">
            <h4 class="block-header-text"><%= truncate(video.title, length: 30) %></h4>
