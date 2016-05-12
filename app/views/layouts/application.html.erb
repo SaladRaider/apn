@@ -18,9 +18,12 @@
     <%= stylesheet_link_tag 'animate', media: 'all' %>
     <%= stylesheet_link_tag 'bootstrap', media: 'all' %>
     <%= stylesheet_link_tag 'font-awesome', media: 'all' %>
-	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-	
-	<%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'jquery-ui', media: 'all' %>
+    <%= stylesheet_link_tag 'jquery-ui.structure', media: 'all' %>
+    <%= stylesheet_link_tag 'jquery-ui.theme', media: 'all' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+
+    <%= csrf_meta_tags %>
 </head>
 <body>
 
@@ -92,6 +95,9 @@
     <p class="alert"><%= alert %></p>
 </div>
 
+<%= javascript_include_tag 'jquery' %>
+<%= javascript_include_tag 'jquery-ui' %>
+
 <%= yield %>
 
 <!-- Scripts
@@ -99,7 +105,7 @@
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>-->
-    <%= javascript_include_tag 'jquery' %>
+    
     <%= javascript_include_tag 'bootstrap' %>
     <%= javascript_include_tag 'wow' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>

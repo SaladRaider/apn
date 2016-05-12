@@ -59,7 +59,7 @@
 @mixin font-size($font-size) {
 	font-size: $font-size;
  	line-height: calc-lh-from-fs($font-size);
- 	max-width: calc-lw-from-fs($font-size);
+ 	//max-width: calc-lw-from-fs($font-size);
 }
 
 @mixin text-overflow() {

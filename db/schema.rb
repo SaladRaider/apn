@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160510225130) do
+ActiveRecord::Schema.define(version: 20160511153112) do
+
+  create_table "assigned_jobs", force: :cascade do |t|
+    t.string   "job_descriptoin", limit: 255, default: "", null: false
+    t.integer  "user_id",         limit: 4
+    t.integer  "video_id",        limit: 4
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",           limit: 255, null: false
@@ -63,11 +71,11 @@ ActiveRecord::Schema.define(version: 20160510225130) do
     t.text     "description", limit: 65535
     t.string   "keywords",    limit: 255
     t.integer  "category",    limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.integer  "user_id",     limit: 4
     t.string   "slug",        limit: 255
-    t.integer  "views",       limit: 4,     default: 0,                 null: false  
+    t.integer  "views",       limit: 4,     default: 0, null: false
   end
 
   add_index "videos", ["slug"], name: "index_videos_on_slug", unique: true, using: :btree

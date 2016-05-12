@@ -23,24 +23,48 @@
   <% end %>
   <% end %>
 </div>
-<div class="row col-xs-12">
+<div id="list_of_jobs" class="row col-xs-12">
   <div class="col-xs-4 table-header">
     <p>Name</p>
   </div>
-  <div class="col-xs-8 table-header">
+  <div class="col-xs-7 table-header">
     <p>Job</p>
   </div>
-  <div class="col-xs-4">
-    <p>Peter Veerman</p>
+  <div class="col-xs-1 table-header">
   </div>
-  <div class="col-xs-7">
-    <p>Editor</p>
-  </div>
+</div>
+<div class="col-xs-12">
+  <p id="job_error"></p>
 </div>
 <div class="btn-group-standard">
-  <input type="text" class="text-box-outline wow fadeInUp col-xs-4" placeholder="Name" />
-  <input type="text" class="text-box-outline wow fadeInUp col-xs-8" placeholder="Job Description" />
+  <input id="user_name_search" type="text" class="text-box-outline wow fadeInUp col-xs-4" placeholder="Name" />
+  <!--<select id="user_name_search" type="text" class="text-box-outline wow fadeInUp col-xs-4" placeholder="Name">
+    <% @users.each do |user| %>
+          <option value="<%= user.first_name + " " + user.last_name %>"><%= user.first_name + " " + user.last_name %></option>
+      <% end %>
+  </select>-->
+  <input id="job_description" type="text" class="text-box-outline wow fadeInUp col-xs-8" placeholder="Job Description" />
 </div>
-<a href="#" class="btn-outline-white wow fadeInUp fill-width"><span class="fa fa-plus"></span></a>
-<%= f.submit :submit_video, value: "Save", class: ["btn-outline-white", "wow", "fadeInUp", "fill-width"] %>
+<a id="add_job" class="btn-outline-white wow fadeInUp fill-width "><span class="fa fa-plus"></span></a>
+<%= f.submit :submit_video, value: "Save", class: ["btn-outline-white", "wow", "fadeInUp", "col-xs-12"] %>
 <% end %>
+
+<script type="text/javascript" async defer>
+  var availableUsers;
+  $(function() {
+    availableUsers = [
+      <% @users.each do |user| %>
+        <% if user != @users.last %>
+          "<%= user.first_name + " " + user.last_name %>",
+        <% else %>
+          "<%= user.first_name + " " + user.last_name %>"
+        <% end %>
+      <% end %>
+    ];
+    $("#user_name_search").autocomplete({
+      source: availableUsers
+    });
+  });
+</script>
+
+<%= javascript_include_tag "videos.form" %>
