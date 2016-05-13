@@ -32,39 +32,65 @@
   </div>
   <div class="col-xs-1 table-header">
   </div>
-</div>
-<div class="col-xs-12">
-  <p id="job_error"></p>
-</div>
-<div class="btn-group-standard">
-  <input id="user_name_search" type="text" class="text-box-outline wow fadeInUp col-xs-4" placeholder="Name" />
+  
+  <% @assigned_jobs.each do |job| 
+    job_id = job.first_name+job.last_name+job.id.to_s
+    full_name = job.first_name + " " + job.last_name
+    %>
+
+    <span id="user-<%= job_id %>">
+      <div class="col-xs-4">
+        <p><%= full_name %></p>
+      </div>
+      <div class="col-xs-7">
+        <p><%= job.job_descriptoin %></p>
+      </div>
+      <div class="col-xs-1">
+        <p><a onclick="$('#user-<%= job_id %>').remove();" id="delete-<%= job_id %>">Delete</a></p>
+      </div>
+      <input type="hidden" name="assigned_jobs[][full_name]" value="<%= full_name %>" />
+      <input type="hidden" name=assigned_jobs[][job_description] value="<%= job.job_descriptoin %>" />
+    </span>
+
+    <% end %>
+
+
+
+
+
+  </div>
+  <div class="col-xs-12">
+    <p id="job_error"></p>
+  </div>
+  <div class="btn-group-standard">
+    <input id="user_name_search" type="text" class="text-box-outline wow fadeInUp col-xs-4" placeholder="Name" />
   <!--<select id="user_name_search" type="text" class="text-box-outline wow fadeInUp col-xs-4" placeholder="Name">
     <% @users.each do |user| %>
           <option value="<%= user.first_name + " " + user.last_name %>"><%= user.first_name + " " + user.last_name %></option>
       <% end %>
-  </select>-->
-  <input id="job_description" type="text" class="text-box-outline wow fadeInUp col-xs-8" placeholder="Job Description" />
-</div>
-<a id="add_job" class="btn-outline-white wow fadeInUp fill-width "><span class="fa fa-plus"></span></a>
-<%= f.submit :submit_video, value: "Save", class: ["btn-outline-white", "wow", "fadeInUp", "col-xs-12"] %>
-<% end %>
+    </select>-->
+    <input id="job_description" type="text" class="text-box-outline wow fadeInUp col-xs-8" placeholder="Job Description" />
+  </div>
+  <a id="add_job" class="btn-outline-white wow fadeInUp fill-width "><span class="fa fa-plus"></span></a>
+  <%= f.submit :submit_video, value: "Save", class: ["btn-outline-white", "wow", "fadeInUp", "col-xs-12"] %>
+  <% end %>
 
-<script type="text/javascript" async defer>
-  var availableUsers;
-  $(function() {
-    availableUsers = [
+  <script type="text/javascript" async defer>
+    var availableUsers;
+    $(function() {
+      availableUsers = [
       <% @users.each do |user| %>
-        <% if user != @users.last %>
-          "<%= user.first_name + " " + user.last_name %>",
-        <% else %>
-          "<%= user.first_name + " " + user.last_name %>"
-        <% end %>
+      <% if user != @users.last %>
+      "<%= user.first_name + " " + user.last_name %>",
+      <% else %>
+      "<%= user.first_name + " " + user.last_name %>"
       <% end %>
-    ];
-    $("#user_name_search").autocomplete({
-      source: availableUsers
+      <% end %>
+      ];
+      $("#user_name_search").autocomplete({
+        source: availableUsers
+      });
     });
-  });
-</script>
+  </script>
 
-<%= javascript_include_tag "videos.form" %>
+  <%= javascript_include_tag "videos.form" %>

@@ -12,12 +12,12 @@ video_id = @video.link[start_pos..(start_pos+end_pos)]
 <section class="normal-section">
   <div class="jumbotron">
     <div class="container">
-    <div class="col-md-12 space-bottom">
-          <ol class="breadcrumb">
-            <li><%= link_to 'Home', root_path %></li>
-            <li><%= link_to 'Videos', videos_path %></li>
-            <li class="active"><%= truncate(@video.title, length: 30) %></li>
-          </ol>
+      <div class="col-md-12 space-bottom">
+        <ol class="breadcrumb">
+          <li><%= link_to 'Home', root_path %></li>
+          <li><%= link_to 'Videos', videos_path %></li>
+          <li class="active"><%= truncate(@video.title, length: 30) %></li>
+        </ol>
       </div>      <div class="col-md-12 wow flipInX animation-delay space-bottom">
       <div class="block-filler-transparent videoWrapper">
        <iframe class="video-iframe" src="https://www.youtube.com/embed/<%= video_id %>" frameborder="0" allowfullscreen></iframe>
@@ -32,23 +32,27 @@ video_id = @video.link[start_pos..(start_pos+end_pos)]
     <h2><%= @video.title %></h2>
     <p class="color-light">Published on <%= time_tag @video.created_at, pubdate:true %></p>
     <p><%= @video.description %></p>
-    <% if current_user.id == @video.user_id %>
+    
     <p>
-     <%= link_to 'Edit', edit_video_path(@video) %>
-     <%= link_to 'Delete', video_path(@video), method: :destroy, data: { confirm: 'Are you sure?'} %>
-   </p>
-   <% end %>
+      <% if can? :edit, @video %>
+      <%= link_to 'Edit', edit_video_path(@video) %>
+      <% end %>
+      <% if can? :destroy, @video %>
+      <%= link_to 'Delete', video_path(@video), method: :destroy, data: { confirm: 'Are you sure?'} %>
+      <% end %>
+    </p>
+    
 
-  <% if !@assigned_jobs.empty? %>
-  <div class="col-xs-12 no-padding">
-    <h5>People who worked on the video:</h5>
-  </div>
+    <% if !@assigned_jobs.empty? %>
+    <div class="col-xs-12 no-padding">
+      <h5>People who worked on the video:</h5>
+    </div>
     <% @assigned_jobs.each_with_index do |job, index| %>
     <div class="col-xs-4 no-padding"><p><%= @full_names[index] %></p></div><div class="col-xs-8 no-padding"><p><%= job.job_descriptoin %></p></div>
     <% end %>
-  <% end %>
+    <% end %>
 
- </div>
+  </div>
 </div>
 </section>
 
