@@ -1,0 +1,28 @@
+<% 
+# Parse video id
+start_pos = video.link.index("v=")+2;
+end_pos = (video.link[start_pos..video.link.length].index('&') == nil) ? video.link.length : video.link[start_pos..video.link.length].index('&') - 1
+video_id = video.link[start_pos..(start_pos+end_pos)]
+
+# check if max res thumbnail exists. If not, use hq default
+url = 'http://img.youtube.com/vi/'+video_id+'/maxresdefault.jpg';
+uri = URI(url)
+
+request = Net::HTTP.new uri.host
+response = request.request_head uri.path
+
+if response.code.to_i != 200
+  url = 'http://img.youtube.com/vi/'+video_id+'/hqdefault.jpg'
+end
+
+%>
+<%= link_to video do %>
+<div class="col-md-6 col-sm-6 col-xs-12 watch-block wow flipInX" style="background-image: url(<%= url %>)">
+  <div class="block-filler">
+    <div class="abs-centered-element">
+     <h4 class="block-header-text"><%= truncate(video.title, length: 30) %></h4>
+     <i class="fa fa-play"></i>
+   </div>
+ </div>
+</div>
+<% end %>

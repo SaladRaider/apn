@@ -43,8 +43,13 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
+    betterlorem (0.1.2)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.0.3.0)
+      sass (~> 3.2)
+    bootstrap-will_paginate (0.0.10)
+      will_paginate
     builder (3.2.2)
     byebug (8.2.5)
     cancan (1.6.10)
@@ -135,6 +140,7 @@ GEM
       json (~> 1.4)
     responders (2.2.0)
       railties (>= 4.2.0, < 5.1)
+    ruby-mysql (2.9.14)
     sass (3.4.22)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
@@ -170,12 +176,16 @@ GEM
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
+    will_paginate (3.0.7)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   better_errors
+  betterlorem (~> 0.1.2)
+  bootstrap-sass (~> 3.0.3.0)
+  bootstrap-will_paginate (~> 0.0.10)
   byebug
   cancan
   coffee-rails (~> 4.1.0)
@@ -188,6 +198,7 @@ DEPENDENCIES
   mysql
   rails (= 4.2.6)
   rails_12factor
+  ruby-mysql
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
@@ -195,6 +206,7 @@ DEPENDENCIES
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
+  will_paginate (~> 3.0.5)
 
 BUNDLED WITH
    1.12.1

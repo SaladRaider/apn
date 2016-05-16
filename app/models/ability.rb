@@ -31,10 +31,9 @@ class Ability
     
     user ||= User.new
 
-    can [:read, :create], Video
+    can [:read], Video
 
-    can :read, Video
-    can [:edit, :create, :update, :new], Video, :user_id => user.id
+    can [:edit, :update, :new, :create], Video, :user_id => user.id
 
     if user.role == "admin"
         can [:destroy, :edit, :update], Video

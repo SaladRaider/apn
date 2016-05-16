@@ -21,45 +21,41 @@
     </div>
     <h2>Videos</h2>
     <div class="btn-group">
-      <input type="text" class="text-box-outline"></input>
-      <a class="btn-outline-white" href="#"><span class="glyphicon glyphicon-search"></span></a>
+    <input id="search-str" type="text" class="text-box-outline"></input>
+      <a id="search-btn" class="btn-outline-white" href="#"><span class="glyphicon glyphicon-search"></span></a>
     </div>
     <div class="selectDiv">
-      <%= content_tag :select, :name => "category" do %>
-      <% [['Shows',1],['Shorts', 2],['Promos',3],['Stories',4]].each do |c| -%>
+      <%= content_tag :select, :id => "category", :name => "category" do %>
+      <% [['Any', -1], ['Shows',1],['Shorts', 2],['Promos',3],['Stories',4]].each do |c| -%>
       <% if params[:category] != nil && params[:category] == c.last.to_s %>
-        <%= content_tag :option, c.first, value: c.last, selected: true %>
+      <%= content_tag :option, c.first, value: c.last, selected: true %>
       <% else %>
-        <%= content_tag :option, c.first, value: c.last %>
+      <%= content_tag :option, c.first, value: c.last %>
       <% end %>
       <% end %>
       <% end %>
     </div> 
     <div class="selectDiv">
-      <select name="show-num">
-        <option value = "14">Show 1</option>
-        <option value = "14">Show 2</option>
-        <option value = "14">Show 3</option>
-        <option value = "14">Show 4</option>
-        <option value = "14">Show 5</option>
+      <select id="show-num" name="show-num">
+        <option value="-1">Any Show</option>
+        <% @shows.each do |show| %>
+        <option value="<%= show %>">Show <%= show %></option>
+        <% end %>
       </select>
     </div>
     <div class="selectDiv">
-      <select name="year">
-        <option value = "14">2014-2015</option>
-        <option value = "15">2015-2016</option>
-        <option value = "16">2016-2017</option>
+      <select id="year" name="year">
+        <option value="-1">Any Year</option>
+        <% cur_year = @min_year.month < 8 ? @min_year.year - 1 : @min_year.year
+        stop_year = @max_year.month < 8 ? @max_year.year - 1 : @max_year.year
+        while(cur_year <= stop_year) %>
+        <option value="<%= cur_year %>"><%= cur_year %>-<%= cur_year + 1 %></option>
+        <% cur_year+=1
+        end %>
       </select>
     </div>
-    <!--<div class="selectDiv">
-      <select name="year">
-        <option value = "14">Less than 5 min</option>
-        <option value = "14">Between 5-10 min</option>
-        <option value = "15">Greater than 10 min</option>
-      </select>
-    </div>-->
     <div class="selectDiv">
-      <select name="year">
+      <select id="sort-method" name="sort-method">
         <option value = "14">Relevance</option>
         <option value = "15">Date Created</option>
         <option value = "16">Views</option>
@@ -70,43 +66,10 @@
 
 <section class="normal-section">
   <div class="container-fluid">
-    <div class="row">
-
-      <% counter = 1
-      @videos.each do |video| 
-      # Parse video id
-      start_pos = video.link.index("v=")+2;
-      end_pos = (video.link[start_pos..video.link.length].index('&') == nil) ? video.link.length : video.link[start_pos..video.link.length].index('&') - 1
-      video_id = video.link[start_pos..(start_pos+end_pos)]
-      
-      # check if max res thumbnail exists. If not, use hq default
-      url = 'http://img.youtube.com/vi/'+video_id+'/maxresdefault.jpg';
-      uri = URI(url)
-
-      request = Net::HTTP.new uri.host
-      response = request.request_head uri.path
-
-      if response.code.to_i != 200
-        url = 'http://img.youtube.com/vi/'+video_id+'/hqdefault.jpg'
-      end
-
-      %>
-      <%= link_to video do %>
-      <div class="col-md-6 col-sm-6 col-xs-12 watch-block wow flipInX" style="background-image: url(<%= url %>)">
-        <div class="block-filler">
-          <div class="abs-centered-element">
-           <h4 class="block-header-text"><%= truncate(video.title, length: 30) %></h4>
-           <i class="fa fa-play"></i>
-         </div>
-       </div>
-     </div>
-     <% end %>
-     <% if (counter % 2 == 0) %>
-   </div><div class="row">
-   <% end %>
-   <% 
-   counter+=1
-   end %>
- </div>
-</div>
+    <div id='search-videos' class="row">
+      <%= render @videos %>
+    </div>
+  </div>
 </section>
+
+<%= javascript_include_tag "videos" %>

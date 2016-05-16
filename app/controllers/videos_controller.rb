@@ -3,15 +3,101 @@ class VideosController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show]
 	before_action :find_user, only: [:create]
 	before_action :find_users_this_year, only: [:new, :edit, :create, :update]
-	before_action :find_assigned_jobs, only: [:new, :edit]
+	before_action :find_assigned_jobs, only: [:edit]
 	#load_and_authorize_resource
 
 	def index
-		@videos = Video.all.order('created_at DESC')
+
+		#get search time
+		@min_year = Video.minimum("created_at")
+		@max_year = Video.maximum("created_at")
+
+		start_year = @min_year
+		end_year = @max_year
+
+		default_vid_limit = 6
+		vid_offset = params[:num_loaded] != nil ? params[:num_loaded] : 0
+
+		if params[:year] != nil && params[:year] != "-1"
+			start_year = Time.new(params[:year].to_i, 8)
+			end_year = Time.new(params[:year].to_i + 1, 8)
+		end
+
+		select_str = "`videos`.*";
+
+		if params[:search_str] != nil && !params[:search_str].empty?
+			select_str += ", ("
+			str_ar = params[:search_str].split(' ')
+			str_ar.each_with_index do |str, index|
+				#str = ActiveRecord::Base.connection.quote(str)
+				select_str += "(
+					CASE
+						WHEN UPPER(`videos`.title) LIKE '%"+str.upcase+"%' THEN 3
+					ElSE 0 END
+				) + (
+					CASE
+						WHEN UPPER(`videos`.description) LIKE '%"+str.upcase+"%' THEN 2
+					ElSE 0 END
+				) + (
+					CASE
+						WHEN UPPER(`videos`.keywords) LIKE '%"+str.upcase+"%' THEN 1
+					ElSE 0 END
+				)";
+				if index != str_ar.length - 1
+					select_str += "+"
+				end
+			end
+			select_str += "+ (
+					CASE
+						WHEN UPPER(`videos`.title) LIKE '%"+params[:search_str].upcase+"%' THEN 9
+					ElSE 0 END
+				) + (
+					CASE
+						WHEN UPPER(`videos`.description) LIKE '%"+params[:search_str].upcase+"%' THEN 6
+					ElSE 0 END
+				) + (
+					CASE
+						WHEN UPPER(`videos`.keywords) LIKE '%"+params[:search_str].upcase+"%' THEN 3
+					ElSE 0 END
+				)";
+			select_str += ") AS score"
+		else
+			select_str = "`videos`.*, CASE WHEN 1=1 THEN 0 ELSE 0 END AS score"
+		end
+
+		@sql = Video.select(select_str)
+			.where("(`category` = ? OR ?) AND (`show` = ? OR ?)", 
+			params[:category], 
+			(params[:category] == nil || params[:category] == "-1"),
+			params[:show_num], 
+			(params[:show_num] == nil || params[:show_num] == "-1")
+			).where(created_at: start_year..end_year)
+			.order('score DESC')
+			.order(created_at: :desc).to_sql
+
+		@videos = Video.select(select_str)
+			.where("(`category` = ? OR ?) AND (`show` = ? OR ?)", 
+			params[:category], 
+			(params[:category] == nil || params[:category] == "-1"),
+			params[:show_num], 
+			(params[:show_num] == nil || params[:show_num] == "-1")
+			).where(created_at: start_year..end_year)
+			.order('score DESC')
+			.order(created_at: :desc)
+			
+
+		max_rows = @videos.count(:id)
+		@videos = @videos.limit(default_vid_limit).offset(vid_offset)
+		@shows = Video.where.not(show: nil).order(show: :asc).uniq.pluck(:show)
+		respond_to do |format|
+			format.html
+			format.json { render :json => { videos: @videos, max_rows: max_rows, select_str: select_str } }
+		end
 	end
 
 	def new
 		@video = Video.new
+		@assigned_jobs = []
 	end
 
 	def create
