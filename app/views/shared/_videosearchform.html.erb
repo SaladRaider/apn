@@ -1,0 +1,41 @@
+ <div class="btn-group">
+  <input id="search-str" type="text" class="text-box-outline"></input>
+  <a id="search-btn" class="btn-outline-white" href="#"><span class="glyphicon glyphicon-search"></span></a>
+</div>
+<div class="selectDiv">
+  <%= content_tag :select, :id => "category", :name => "category" do %>
+  <% [['Any', -1], ['Shows',1],['Shorts', 2],['Promos',3],['Stories',4]].each do |c| -%>
+  <% if params[:category] != nil && params[:category] == c.last.to_s %>
+  <%= content_tag :option, c.first, value: c.last, selected: true %>
+  <% else %>
+  <%= content_tag :option, c.first, value: c.last %>
+  <% end %>
+  <% end %>
+  <% end %>
+</div> 
+<div class="selectDiv">
+  <select id="show-num" name="show-num">
+    <option value="-1">Any Show</option>
+    <% @shows.each do |show| %>
+    <option value="<%= show %>">Show <%= show %></option>
+    <% end %>
+  </select>
+</div>
+<div class="selectDiv">
+  <select id="year" name="year">
+    <option value="-1">Any Year</option>
+    <% cur_year = @min_year.month < 8 ? @min_year.year - 1 : @min_year.year
+    stop_year = @max_year.month < 8 ? @max_year.year - 1 : @max_year.year
+    while(cur_year <= stop_year) %>
+    <option value="<%= cur_year %>"><%= cur_year %>-<%= cur_year + 1 %></option>
+    <% cur_year+=1
+    end %>
+  </select>
+</div>
+<div class="selectDiv">
+  <select id="sort-method" name="sort-method">
+    <option value = "14">Relevance</option>
+    <option value = "15">Date Created</option>
+    <option value = "16">Views</option>
+  </select>
+</div>

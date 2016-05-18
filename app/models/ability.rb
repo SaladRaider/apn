@@ -34,6 +34,7 @@ class Ability
     can [:read], Video
 
     can [:edit, :update, :new, :create], Video, :user_id => user.id
+    can [:edit, :update], User, :id => user.id
 
     if user.role == "admin"
         can [:destroy, :edit, :update], Video

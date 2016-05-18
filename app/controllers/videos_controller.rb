@@ -65,18 +65,12 @@ class VideosController < ApplicationController
 			select_str = "`videos`.*, CASE WHEN 1=1 THEN 0 ELSE 0 END AS score"
 		end
 
-		@sql = Video.select(select_str)
-			.where("(`category` = ? OR ?) AND (`show` = ? OR ?)", 
-			params[:category], 
-			(params[:category] == nil || params[:category] == "-1"),
-			params[:show_num], 
-			(params[:show_num] == nil || params[:show_num] == "-1")
-			).where(created_at: start_year..end_year)
-			.order('score DESC')
-			.order(created_at: :desc).to_sql
+		user_id = (params[:user_id] != nil) ? params[:user_id] : -1
 
 		@videos = Video.select(select_str)
-			.where("(`category` = ? OR ?) AND (`show` = ? OR ?)", 
+			.where("(`user_id` = ? OR -1 = ?) AND (`category` = ? OR ?) AND (`show` = ? OR ?)", 
+			user_id,
+			user_id,
 			params[:category], 
 			(params[:category] == nil || params[:category] == "-1"),
 			params[:show_num], 
@@ -85,7 +79,6 @@ class VideosController < ApplicationController
 			.order('score DESC')
 			.order(created_at: :desc)
 			
-
 		max_rows = @videos.count(:id)
 		@videos = @videos.limit(default_vid_limit).offset(vid_offset)
 		@shows = Video.where.not(show: nil).order(show: :asc).uniq.pluck(:show)

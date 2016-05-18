@@ -47,11 +47,11 @@
             <div class="nav-link-outer"><div class="nav-link">Contact</div></div>
             <% end %>
             <% if user_signed_in? %>
-            <%= link_to destroy_user_session_path(@user), :method => :delete do %>
+            <%= link_to destroy_user_session_path, :method => :delete do %>
             <div class="nav-link-outer"><div class="nav-link">Log Out</div></div>
             <% end %>
             <% else %>
-            <%= link_to user_session_path(@user) do %>
+            <%= link_to user_session_path do %>
             <div class="nav-link-outer"><div class="nav-link">Log In</div></div>
             <% end %>
             <% end %>
@@ -76,11 +76,11 @@
             <div class="nav-link-outer"><div class="nav-link">Contact</div></div>
             <% end %>
             <% if user_signed_in? %>
-            <%= link_to destroy_user_session_path(@user), :method => :delete do %>
+            <%= link_to destroy_user_session_path, :method => :delete do %>
             <div class="nav-link-outer"><div class="nav-link">Log Out</div></div>
             <% end %>
             <% else %>
-            <%= link_to user_session_path(@user) do %>
+            <%= link_to user_session_path do %>
             <div class="nav-link-outer"><div class="nav-link">Log In</div></div>
             <% end %>
             <% end %>
@@ -95,8 +95,7 @@
     <p class="alert"><%= alert %></p>
 </div>
 
-<%= javascript_include_tag 'jquery' %>
-<%= javascript_include_tag 'jquery-ui' %>
+
 
 <%= yield %>
 
@@ -106,9 +105,12 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>-->
     
+    <%= javascript_include_tag 'jquery' %>
+    <%= javascript_include_tag 'jquery-ui' %>
     <%= javascript_include_tag 'bootstrap' %>
     <%= javascript_include_tag 'wow' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag "rails" %>
+    <%= yield :footer %>
 </body>
 </html>

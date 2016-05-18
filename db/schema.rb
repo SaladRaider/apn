@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160512193920) do
+ActiveRecord::Schema.define(version: 20160516163055) do
 
   create_table "assigned_jobs", force: :cascade do |t|
     t.string   "job_descriptoin", limit: 255, default: "", null: false
@@ -59,11 +59,13 @@ ActiveRecord::Schema.define(version: 20160512193920) do
     t.datetime "updated_at",                                           null: false
     t.text     "bio",                    limit: 65535
     t.string   "role",                   limit: 255
+    t.string   "slug",                   limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
 
   create_table "videos", force: :cascade do |t|
     t.string   "title",       limit: 255

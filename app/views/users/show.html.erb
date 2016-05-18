@@ -1,0 +1,70 @@
+
+<span id="page-content-start"></span>
+
+<section class="normal-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <ol class="breadcrumb">
+          <li><%= link_to 'Home', root_path %></li>
+          <li class="about-person.html">Dashboard</li>
+        </ol>
+      </div>
+      <div class="col-xs-6 col-sm-4">
+        <%= image_tag 'film-production', class: ['img-responsive'] %>
+      </div>
+      <div class="col-xs-6 col-sm-8">
+        <h3><%= @user.first_name + " " + @user.last_name %></h3>
+        <p>
+          Grade: <%= @user.grade %><br>
+          <br>
+          ID Number: <%= @user.id_number %><br>
+          <br>
+          Email: <%= @user.email %>
+        </p>
+      </div>
+      <div class="col-xs-12">
+        <h3>About <%= @user.first_name + " " + @user.last_name %></h3>
+        <p>
+          <%= @user.bio %><br>
+          <% if can? :edit, @user %>
+          <%= link_to 'Edit', edit_user_path %>
+          <% end %>
+        </p>
+      </div>
+
+      <div class="col-xs-12">
+          <h3>Videos that <%= @user.first_name + " " + @user.last_name %> worked on:</h3>
+          <%= render :partial => "shared/videosearchform" %>
+        <div class="row">
+
+          <% if can? :create, @video %>
+          <div class="col-sm-6 watch-block-square">
+            <div class="block-filler">
+              <div class="abs-centered-element">
+               <i class="fa fa-plus"></i>
+             </div>
+           </div>
+         </div>
+         <% end %>
+
+         <div id="search-videos">
+           <% @videos.each do |vid| %>
+           <%= render :partial => 'video', :locals => { :video => vid } %>
+           <% end %>
+         </div>
+
+       </div>
+     </div>
+
+   </div>
+ </section>
+
+ <% content_for :footer do %>
+ <script>
+  window.App = window.App || {};
+  window.App.Data = window.App.Data || {};
+  window.App.Data.user = $.parseJSON('<%= @user.to_json.html_safe %>');
+</script>
+<%= javascript_include_tag "users" %>
+<% end %>

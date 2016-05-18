@@ -1,3 +1,12 @@
+.video-block-flag {
+	position: absolute;
+	top: 30px;
+	background-color: $color-primary;
+	color: $color-white;
+	padding: 5px 10px;
+	@include font-size($font-large);
+}
+
 .selectDiv {
 	display: inline-block;
 	margin-bottom: 10px;
@@ -84,7 +93,8 @@
 .watch-block-pad {
 	@extend .watch-block;
 
-	padding: 10px;
+	margin: 0;
+	padding: 10px
 }
 
 .watch-block-square {
@@ -99,6 +109,11 @@
 .watch-block:hover i {
 	font-size: $font-x-huge;
 	@include transition($time-hover, "ease");
+}
+
+.watch-block-pad-inner {
+	@extend .watch-block;
+	height: 280px;
 }
 
 .block-filler {

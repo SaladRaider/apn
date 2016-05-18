@@ -17,24 +17,26 @@ end
 
 %>
 <%= link_to video do %>
-<div class="col-md-6 col-sm-6 col-xs-12 watch-block wow flipInX" style="background-image: url(<%= url %>)">
-	<div class="video-block-flag">
-		<% if video.category == 1 %>
+<div class="col-sm-6 watch-block-pad">
+	<div class="watch-block-pad-inner" style="background-image: url(<%= url %>);">
+		<div class="video-block-flag">
+			<% if video.category == 1 %>
 			Show
-		<% elsif video.category == 2 %>
+			<% elsif video.category == 2 %>
 			Short
-		<% elsif video.category == 3 %>
+			<% elsif video.category == 3 %>
 			Promo
-		<% elsif video.category == 4 %>
+			<% elsif video.category == 4 %>
 			Story
-		<% else %>
+			<% else %>
 			Other
-		<% end %>
-	</div>
-	<div class="block-filler">
-		<div class="abs-centered-element">
-			<h4 class="block-header-text"><%= truncate(video.title, length: 30) %></h4>
-			<i class="fa fa-play"></i>
+			<% end %>
+		</div>
+		<div class="block-filler">
+			<div class="abs-centered-element">
+				<h4 class="block-header-text"><%= truncate(video.title, length: 30) %></h4>
+				<i class="fa fa-pencil"></i>
+			</div>
 		</div>
 	</div>
 </div>

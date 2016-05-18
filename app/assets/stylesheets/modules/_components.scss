@@ -82,7 +82,7 @@
 .btn-group-standard :nth-child(n) {
 	@include border-radius(0px);
 	border-right-width: 0px;
-	border-left-width: 0px;
+	border-left-width: $border-width-default;
 }
 
 .btn-group-standard :first-child {

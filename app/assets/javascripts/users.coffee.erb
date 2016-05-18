@@ -2,6 +2,10 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://coffeescript.org/
+
 $ -> 
 	loading = false
 	max_rows = -1
@@ -18,7 +22,8 @@ $ ->
 				year: $('#year').val()
 				sort_method: $("#sort-method").val()
 				search_str: $("#search-str").val()
-				num_loaded: num_loaded
+				num_loaded: $("#search-videos a").length
+				user_id: window.App.Data.user.id
 			}
 			success: 
 				(data) ->
@@ -51,15 +56,17 @@ $ ->
 
 						video_box.append("
 						<a href='/videos/"+data['videos'][i]['slug']+"'>
-						<div id='vid-"+data['videos'][i]['slug']+"' class=\"col-md-6 col-sm-6 col-xs-12 watch-block wow flipInX\" style=\"background-image: url("+url+")\">
+						<div id='vid-"+data['videos'][i]['slug']+"' class=\"col-md-6 watch-block-pad\">
+							<div class=\"watch-block-pad-inner\" style=\"background-image: url("+url+")\">
 						  <div class=\"video-block-flag\">
 						  " + video_cat + "
 						  </div>
 						  <div class=\"block-filler\">
 						     <div class=\"abs-centered-element\">
 						     <h4 class=\"block-header-text\">"+video_title+"</h4>
-						     <i class=\"fa fa-play\"></i>
+						     <i class=\"fa fa-pencil\"></i>
 						  </div>
+						 </div>
 						 </div>
 						</div>
 						</a>")

@@ -1,7 +1,7 @@
 <%= form_for @video do |f| %>
 <% if @video.errors.any? %>
 <div id="errors">
-  <h4><%= pluralize(@video.errors.count, "error") %> preventd this video from saving</h4>
+  <h4><%= pluralize(@video.errors.count, "error") %> prevented this video from saving</h4>
   <ul>
     <% @video.errors.full_messages.each do |msg| %>
     <li><%= msg %></li>
