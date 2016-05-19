@@ -16,6 +16,7 @@
 !/log/.keep
 /tmp
 /public/media
+/public/assets
 /vendor/assets/fonts
 /app/assets/images
 /app/assets/fonts
