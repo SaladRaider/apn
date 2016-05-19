@@ -177,6 +177,12 @@
 	color: $color-muted;
 }
 
+.text-area-outline {
+	@extend .text-box-outline;
+
+	text-align: left;
+}
+
 .animation-delay {
 	@include animation-delay($time-animation-delay);
 }

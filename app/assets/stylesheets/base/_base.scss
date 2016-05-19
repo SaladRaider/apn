@@ -20,6 +20,12 @@ select {
 	}
 }
 
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
 a:hover {
 	text-decoration: none;
 	cursor: pointer;
@@ -27,6 +33,30 @@ a:hover {
 
 select:focus {
 	outline: none;
+}
+
+blockquote {
+	border-color: $color-muted-light;
+	border-width: 2px;
+}
+
+ol {
+	color: $color-muted-light;
+}
+
+li {
+	color: $color-muted-light;
+}
+
+mark {
+	background-color: $color-highlighted;
+}
+
+h1 {
+	margin: 0px 0px;
+ 	@include font-size($font-xx-large);
+ 	//font-size: $font-x-large;
+ 	color: $color-white;
 }
 
  h3 {
