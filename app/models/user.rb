@@ -15,4 +15,11 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
   validates :username, presence: true, length: { minimum: 5 }, uniqueness: true
 
+  has_attached_file :avatar, :styles => { :small => "150x150>", :medium => "200x200>", :large => "250x250>" },
+    :url  => "/assets/users/:id/:style/:basename.:extension",
+    :path => ":rails_root/public/assets/users/:id/:style/:basename.:extension"
+
+  validates_attachment_size :avatar, :less_than => 5.megabytes
+  validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png']
+
 end

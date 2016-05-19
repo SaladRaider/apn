@@ -31,7 +31,7 @@ class Ability
     
     user ||= User.new
 
-    can [:read], Video
+    can [:read], [Video, User]
 
     can [:edit, :update, :new, :create], Video, :user_id => user.id
     can [:edit, :update], User, :id => user.id

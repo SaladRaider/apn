@@ -30,5 +30,7 @@ module Apn
     config.active_record.raise_in_transactional_callbacks = true
 
     config.assets.initialize_on_precompile = false
+
+    Paperclip::Attachment.default_options[:default_url] = "/assets/images/missing.png"
   end
 end

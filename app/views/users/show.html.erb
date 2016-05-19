@@ -10,21 +10,23 @@
           <li class="about-person.html">Dashboard</li>
         </ol>
       </div>
-      <div class="col-xs-6 col-sm-4">
+      <div class="col-xs-4 col-sm-3 col-md-2">
+        <% if @user.avatar != nil %>
+        <%= image_tag @user.avatar.url(:medium), class: ['img-responsive'] %>
+        <% else %>
         <%= image_tag 'film-production', class: ['img-responsive'] %>
+        <% end %>
       </div>
-      <div class="col-xs-6 col-sm-8">
+      <div class="col-xs-8 col-sm-9 col-md-10">
         <h3><%= @user.first_name + " " + @user.last_name %></h3>
         <p>
           Grade: <%= @user.grade %><br>
-          <br>
           ID Number: <%= @user.id_number %><br>
-          <br>
           Email: <%= @user.email %>
         </p>
       </div>
       <div class="col-xs-12">
-        <h3>About <%= @user.first_name + " " + @user.last_name %></h3>
+        <h3>About</h3>
         <p>
           <%= @user.bio %><br>
           <% if can? :edit, @user %>
@@ -34,7 +36,7 @@
       </div>
 
       <div class="col-xs-12">
-          <h3>Videos that <%= @user.first_name + " " + @user.last_name %> worked on:</h3>
+          <h3>Videos <%= @user.first_name + " " + @user.last_name %> worked on:</h3>
           <%= render :partial => "shared/videosearchform" %>
         <div class="row">
 

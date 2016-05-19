@@ -4,7 +4,7 @@ class VideosController < ApplicationController
 	before_action :find_user, only: [:create]
 	before_action :find_users_this_year, only: [:new, :edit, :create, :update]
 	before_action :find_assigned_jobs, only: [:edit]
-	#load_and_authorize_resource
+	load_and_authorize_resource
 
 	def index
 

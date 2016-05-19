@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160516163055) do
+ActiveRecord::Schema.define(version: 20160518050551) do
 
   create_table "assigned_jobs", force: :cascade do |t|
     t.string   "job_descriptoin", limit: 255, default: "", null: false
@@ -60,6 +60,10 @@ ActiveRecord::Schema.define(version: 20160516163055) do
     t.text     "bio",                    limit: 65535
     t.string   "role",                   limit: 255
     t.string   "slug",                   limit: 255
+    t.string   "avatar_file_name",       limit: 255
+    t.string   "avatar_content_type",    limit: 255
+    t.integer  "avatar_file_size",       limit: 4
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

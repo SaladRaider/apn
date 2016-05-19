@@ -1,4 +1,4 @@
-<%= form_for @user do |f| %>
+<%= form_for @user, html: { multipart: true } do |f| %>
 <% if @user.errors.any? %>
 <div id="errors">
   <h4><%= pluralize(@user.errors.count, "error") %> prevented this user from saving</h4>
@@ -13,6 +13,9 @@
 <%= f.text_field :first_name, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-6"], placeholder: 'First Name' %>
   <%= f.text_field :last_name, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-6"], placeholder: 'Last Name' %>
 </div>
+
+<%= f.file_field :avatar, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-12"] %>
+
 <div class="btn-group-standard">
 <%= f.number_field :id_number, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-4"], placeholder: "ID Number" %>
 <%= f.number_field :grade, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-2"], placeholder: 'Grade' %>

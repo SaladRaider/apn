@@ -75,6 +75,7 @@
   <%= f.submit :submit_video, value: "Save", class: ["btn-outline-white", "wow", "fadeInUp", "col-xs-12"] %>
   <% end %>
 
+<% content_for :footer do %>
   <script type="text/javascript" async defer>
     var availableUsers;
     $(function() {
@@ -92,5 +93,5 @@
       });
     });
   </script>
-
   <%= javascript_include_tag "videos.form" %>
+<% end %>

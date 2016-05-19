@@ -37,14 +37,20 @@
             <%= link_to '/suggest' do %>
             <div class="nav-link-outer"><div class="nav-link">Suggest</div></div>
             <% end %>
-            <%= link_to '/join' do %>
-            <div class="nav-link-outer"><div class="nav-link">Join</div></div>
+            <%= link_to '/contact' do %>
+            <div class="nav-link-outer"><div class="nav-link">Contact</div></div>
             <% end %>
             <%= link_to '/about' do %>
             <div class="nav-link-outer"><div class="nav-link">About</div></div>
             <% end %>
-            <%= link_to '/contact' do %>
-            <div class="nav-link-outer"><div class="nav-link">Contact</div></div>
+            <% if !user_signed_in? %>
+            <%= link_to '/join' do %>
+            <div class="nav-link-outer"><div class="nav-link">Join</div></div>
+            <% end %>
+            <% else %>
+            <%= link_to user_path(current_user) do %>
+            <div class="nav-link-outer"><div class="nav-link">Profile</div></div>
+            <% end %>
             <% end %>
             <% if user_signed_in? %>
             <%= link_to destroy_user_session_path, :method => :delete do %>
@@ -66,14 +72,20 @@
             <%= link_to '/suggest' do %>
             <div class="nav-link-outer"><div class="nav-link">Suggest</div></div>
             <% end %>
-            <%= link_to '/join' do %>
-            <div class="nav-link-outer"><div class="nav-link">Join</div></div>
+            <%= link_to '/contact' do %>
+            <div class="nav-link-outer"><div class="nav-link">Contact</div></div>
             <% end %>
             <%= link_to '/about' do %>
             <div class="nav-link-outer"><div class="nav-link">About</div></div>
             <% end %>
-            <%= link_to '/contact' do %>
-            <div class="nav-link-outer"><div class="nav-link">Contact</div></div>
+            <% if !user_signed_in? %>
+            <%= link_to '/join' do %>
+            <div class="nav-link-outer"><div class="nav-link">Join</div></div>
+            <% end %>
+            <% else %>
+            <%= link_to user_path(current_user) do %>
+            <div class="nav-link-outer"><div class="nav-link">Profile</div></div>
+            <% end %>
             <% end %>
             <% if user_signed_in? %>
             <%= link_to destroy_user_session_path, :method => :delete do %>
