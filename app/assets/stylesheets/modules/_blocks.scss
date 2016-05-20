@@ -7,6 +7,22 @@
 	@include font-size($font-large);
 }
 
+.user-block-flag {
+	@extend .video-block-flag;
+	top: inherit;
+	bottom: 30px;
+	@include opacity(0);
+	@include transition($time-hover, "ease");
+}
+
+.avatar-hover:hover  {
+	cursor: pointer;
+	.user-block-flag {
+		@include opacity(100);
+		@include transition($time-hover, "ease");
+	}
+}
+
 .selectDiv {
 	display: inline-block;
 	margin-bottom: 10px;

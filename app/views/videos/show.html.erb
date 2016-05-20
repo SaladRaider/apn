@@ -31,7 +31,7 @@ video_id = @video.link[start_pos..(start_pos+end_pos)]
   <div class="col-xs-12">
     <h2><%= @video.title %></h2>
     <p class="color-light">Published on <%= time_tag @video.created_at, pubdate:true %></p>
-    <p><%= @video.description %></p>
+    <p><%= markdown(@video.description) %></p>
     
     <p>
       <% if can? :edit, @video %>

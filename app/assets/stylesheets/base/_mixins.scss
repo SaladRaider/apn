@@ -114,6 +114,11 @@
 	animation-delay: $delay;
 }
 
+@mixin opacity($o) {
+	opacity: $o / 100;
+	filter: alpha(opacity=$o);
+}
+
 @mixin aspect-ratio($width, $height) {
   position: relative;
   &:before {

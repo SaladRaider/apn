@@ -1,0 +1,8 @@
+<%= link_to user_path(user) do %>
+<div class="col-md-4 col-sm-6 col-xs-12 text-centered avatar-hover">
+	<div class="user-block-flag">
+		<%= user.first_name + " " + user.last_name %>
+	</div>
+	<%= image_tag user.avatar.url(:large), class: ['img-responsive', 'fill-width'] %>
+</div>
+<% end %>
