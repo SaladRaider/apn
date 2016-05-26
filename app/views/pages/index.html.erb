@@ -28,7 +28,7 @@
     <div class="container-fluid">
 
      <div class="row">
-      <div class="col-md-6 col-sm-12 col-xs-12 watch-block-show wow flipInX">
+      <div class="col-md-6 col-sm-12 col-xs-12 watch-block-show wow flipInX"  style="background-image: url('<%= Content.find(1).media.url(:original) %>')">
         <%= link_to '/videos?category=1' do %>
         <div class="block-filler">
           <div class="abs-centered-element">
@@ -38,7 +38,7 @@
        </div>
        <% end %>
      </div>
-     <div class="col-md-6 col-sm-12 col-xs-12 watch-block-shorts wow flipInX animation-delay">
+     <div class="col-md-6 col-sm-12 col-xs-12 watch-block-shorts wow flipInX animation-delay"  style="background-image: url('<%= Content.find(2).media.url(:original) %>')">
       <%= link_to '/videos?category=2' do %>
       <div class="block-filler">
         <div class="abs-centered-element">
@@ -50,64 +50,63 @@
    </div>
  </div>
  <div class="row">
-      <div class="col-md-6 col-sm-12 col-xs-12 watch-block-show wow flipInX">
-        <%= link_to '/videos?category=3' do %>
-        <div class="block-filler">
-          <div class="abs-centered-element">
-           <h3 class="block-header-text">Watch Promos</h3>
-           <i class="fa fa-play"></i>
-         </div>
-       </div>
-       <% end %>
+  <div class="col-md-6 col-sm-12 col-xs-12 watch-block-show wow flipInX"  style="background-image: url('<%= Content.find(3).media.url(:original) %>')">
+    <%= link_to '/videos?category=3' do %>
+    <div class="block-filler">
+      <div class="abs-centered-element">
+       <h3 class="block-header-text">Watch Promos</h3>
+       <i class="fa fa-play"></i>
      </div>
-     <div class="col-md-6 col-sm-12 col-xs-12 watch-block-shorts wow flipInX animation-delay">
-      <%= link_to '/videos?category=4' do %>
-      <div class="block-filler">
-        <div class="abs-centered-element">
-         <h3 class="block-header-text">Watch Stories</h3>
-         <i class="fa fa-play"></i>
-       </div>
-     </div>
-     <% end %>
+   </div>
+   <% end %>
+ </div>
+ <div class="col-md-6 col-sm-12 col-xs-12 watch-block-shorts wow flipInX animation-delay" style="background-image: url('<%= Content.find(4).media.url(:original) %>')">
+  <%= link_to '/videos?category=4' do %>
+  <div class="block-filler">
+    <div class="abs-centered-element">
+     <h3 class="block-header-text">Watch Stories</h3>
+     <i class="fa fa-play"></i>
    </div>
  </div>
+ <% end %>
+</div>
+</div>
 </div>
 </section>
 
 <section class="section-muted">
   <div class="container-fluid">
     <div class="container wow fadeInUp">
-
       <div class="row">
-        <div class="col-md-8 col-sm-12 block-muted hideme">
+        <div class="col-xs-12 block-muted hideme">
           <h3 class="block-header-pressed-text"><i class="fa fa-check-square-o"></i> Want to Join?</h3>
-          <p class="pressed text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <%= link_to '/join', :class => "btn-outline", :style => "padding-left: 25px;" do %>
-            <i class="fa fa-check"></i> Learn More
-            <% end %>
-          </div>
-          <div class="col-md-4 col-sm-12">
-            <%= image_tag 'unnamed.jpg', class: ['img-responsive']  %>
-          </div>
+          <p class="pressed text-muted">
+          <%= markdown(Content.find(5).text) %>
+          </p>
+          <%= link_to '/join', :class => "btn-outline", :style => "padding-left: 25px;" do %>
+          <i class="fa fa-check"></i> Learn More
+          <% end %>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section-suggestions">
-    <div class="container-fluid hideme">
-      <div class="container">
-        <h3 class="block-header-text wow fadeInRight"><i class="fa fa-comments"></i> Have Suggestions?</h3>
-        <div class="">
-          <input type="text" class="text-box-outline wow fadeInUp" placeholder="Full Name" />
-          <textarea rows=5 class="text-box-outline wow fadeInUp" placeholder="Type suggestions here..."></textarea>
-          <a href="#" class="btn-outline-white wow fadeInUp">Suggest</a>
-        </div>
+<section class="section-suggestions">
+  <div class="container-fluid hideme">
+    <div class="container">
+      <h3 class="block-header-text wow fadeInRight"><i class="fa fa-comments"></i> Have Suggestions?</h3>
+      <div class="">
+        <input type="text" class="text-box-outline wow fadeInUp" placeholder="Full Name" />
+        <textarea rows=5 class="text-box-outline wow fadeInUp" placeholder="Type suggestions here..."></textarea>
+        <a href="#" class="btn-outline-white wow fadeInUp">Suggest</a>
       </div>
-    </div>  
-  </section>
+    </div>
+  </div>  
+</section>
+
+<% content_for :footer do %>
+<script>
+  
+</script>
+<% end %>

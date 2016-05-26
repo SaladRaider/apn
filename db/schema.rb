@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160518050551) do
+ActiveRecord::Schema.define(version: 20160526035853) do
 
   create_table "assigned_jobs", force: :cascade do |t|
     t.string   "job_descriptoin", limit: 255, default: "", null: false
@@ -19,6 +19,25 @@ ActiveRecord::Schema.define(version: 20160518050551) do
     t.integer  "video_id",        limit: 4
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string   "full_name",  limit: 255
+    t.string   "email",      limit: 255
+    t.string   "subject",    limit: 255
+    t.text     "message",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "contents", force: :cascade do |t|
+    t.text     "text",               limit: 65535, null: false
+    t.string   "media_file_name",    limit: 255
+    t.string   "media_content_type", limit: 255
+    t.integer  "media_file_size",    limit: 4
+    t.datetime "media_updated_at"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -33,6 +52,18 @@ ActiveRecord::Schema.define(version: 20160518050551) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
+  create_table "grading", force: :cascade do |t|
+    t.string  "grader",        limit: 100
+    t.string  "gs1",           limit: 20
+    t.string  "gs2",           limit: 20
+    t.string  "gs3",           limit: 20
+    t.string  "gs4",           limit: 20
+    t.string  "gs5",           limit: 20
+    t.string  "gs6",           limit: 20
+    t.string  "gs7",           limit: 20
+    t.integer "submission_id", limit: 4
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name",             limit: 255

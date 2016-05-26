@@ -1,0 +1,7 @@
+<div class="col-xs-12 col-sm-6 col-md-4">
+	<p><%= content.text %></p>
+	<% if content.media_file_name != nil %>
+	<%= image_tag content.media.url(:medium), class: ['img-responsive'] %>
+	<% end %>
+	<%= link_to 'Edit', edit_content_path(content) %>
+</div>

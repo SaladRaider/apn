@@ -1,0 +1,40 @@
+<section class="normal-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <ol class="breadcrumb">
+          <li><%= link_to 'Home', root_path %></li>
+          <li class="active">Contact</li>
+        </ol>
+      </div>
+      <div class="col-md-8">
+      <%= form_for @contact do |f| %>
+          <% if @contact.errors.any? %>
+          <div id="errors">
+            <h4><%= pluralize(@contact.errors.count, "error") %> prevented this message from saving</h4>
+            <ul>
+              <% @contact.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+          <% end %>
+        <div class="btn-group-standard">
+          <%= f.text_field :full_name, class: ['text-box-outline','wow','fadeInUp','col-xs-6'], placeholder: 'Full Name' %>
+          <%= f.text_field :email, class: ['text-box-outline','wow','fadeInUp','col-xs-6'], placeholder: 'Email' %>
+        </div>
+          <%= f.text_field :subject, class: ['text-box-outline','wow','fadeInUp','col-xs-12'], placeholder: 'Subject' %>
+          <%= f.text_area :message, class: ['text-box-outline','wow','fadeInUp','col-xs-12'], placeholder: 'Type message here...' %>
+          <%= f.submit :submit_contact, value: 'Send', class: ['btn-outline-white','wow','fadeInUp','col-xs-12'] %>
+        <% end %>
+      </div>
+      <div class="col-md-4">
+        <h3>Contact Info</h3>
+        <p>
+          Email: apachenews2016@gmail.com
+          Phone: 626-123-4567
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

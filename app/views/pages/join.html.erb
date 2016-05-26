@@ -30,31 +30,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-4 hidden-xs hidden-sm">
-        <%= image_tag 'film-production.jpg', class: ['img-responsive'] %>
-      </div>
-      <div class="col-md-8">
-        <h3>Name Here</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos aliquam expedita, accusantium voluptas inventore quas, repellendus praesentium in dolorem quia distinctio explicabo hic doloremque voluptatibus unde cumque rem! Aliquid, a.</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-8">
-        <h3>Name Here</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos aliquam expedita, accusantium voluptas inventore quas, repellendus praesentium in dolorem quia distinctio explicabo hic doloremque voluptatibus unde cumque rem! Aliquid, a.</p>
-      </div>
-      <div class="col-md-4 hidden-xs hidden-sm">
-        <%= image_tag 'film-production.jpg', class: ['img-responsive'] %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4 hidden-xs hidden-sm">
-        <%= image_tag 'film-production.jpg', class: ['img-responsive'] %>
-      </div>
-      <div class="col-md-8">
-        <h3>Name Here</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos aliquam expedita, accusantium voluptas inventore quas, repellendus praesentium in dolorem quia distinctio explicabo hic doloremque voluptatibus unde cumque rem! Aliquid, a.</p>
-      </div>
+      <%= markdown(Content.find(6).text) %>
     </div>
   </div>
 </section>
