@@ -1,6 +1,6 @@
 <section>
 
-  <div class="show-case about-img">
+  <div class="show-case about-img" style="background-image: url('<%= Content.find(10).media.url(:original) %>')">
     
     <%= render :partial => "shared/bignavbar" %>
 
@@ -27,8 +27,9 @@
         <li class="active">About</li>
       </ol>
     </div>
-    <div class="row">
+      <div class="col-xs-12">
+        <%= markdown(Content.find(11).text) %>
+      </div>
       <%= render @users %>
-    </div>
   </div>
 </section>

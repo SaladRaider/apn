@@ -29,11 +29,7 @@
         <% end %>
       </div>
       <div class="col-md-4">
-        <h3>Contact Info</h3>
-        <p>
-          Email: apachenews2016@gmail.com
-          Phone: 626-123-4567
-        </p>
+        <%= markdown(Content.find(8).text) %>
       </div>
     </div>
   </div>

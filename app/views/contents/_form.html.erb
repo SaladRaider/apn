@@ -1,7 +1,7 @@
 <%= form_for @content, html: { multipart: true } do |f| %>
 <% if @content.errors.any? %>
 <div id="errors">
-  <h4><%= pluralize(@user.errors.count, "error") %> prevented this user from saving</h4>
+  <h4><%= pluralize(@content.errors.count, "error") %> prevented this content from saving</h4>
   <ul>
     <% @content.errors.full_messages.each do |msg| %>
     <li><%= msg %></li>
@@ -9,6 +9,7 @@
   </ul>
 </div>
 <% end %>
+<%= f.text_field :title, class: ["text-area-outline", "wow", "fadeInUp", "col-xs-12"], placeholder: "Title"%>
 <%= f.text_area :text, class: ["text-area-outline", "wow", "fadeInUp", "col-xs-12"], placeholder: "Text...", rows: 5 %>
 <%= f.file_field :media, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-12"] %>
 

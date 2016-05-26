@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160526044214) do
+ActiveRecord::Schema.define(version: 20160526051631) do
 
   create_table "assigned_jobs", force: :cascade do |t|
     t.string   "job_descriptoin", limit: 255, default: "", null: false
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20160526044214) do
     t.datetime "media_updated_at"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.string   "title",              limit: 255
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|

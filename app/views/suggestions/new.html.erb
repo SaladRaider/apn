@@ -25,10 +25,7 @@
         <% end %>
       </div>
       <div class="col-md-4">
-        <h3>Suggest Stuff</h3>
-        <p>
-          We are always looking for suggestions!
-        </p>
+        <%= markdown(Content.find(7).text) %>
       </div>
     </div>
   </div>

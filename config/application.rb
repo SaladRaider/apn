@@ -32,5 +32,6 @@ module Apn
     config.assets.initialize_on_precompile = false
 
     Paperclip::Attachment.default_options[:default_url] = "/assets/images/missing.png"
+    Paperclip.options[:content_type_mappings] = {webm: "video/webm"}
   end
 end

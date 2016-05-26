@@ -5,9 +5,9 @@
   <%= render :partial => "shared/bignavbar" %>
 
   <video class="show-case-video" autoplay loop muted>
-    <source src="media/Show2Intro_4.mp4" type="video/mp4">
-      <source src="Show2Intro_4.webm" type="video/webm">
-      </video>
+    <source src="<%= Content.find(12).media.url %>" type="video/mp4">
+    <source src="Show2Intro_4.webm" type="video/webm">
+  </video>
 
       <div class="big-filler align-vert">
         <div class="vert-centered-element">
@@ -19,8 +19,8 @@
           <div class="glyphicon glyphicon-chevron-down" data-wow-offset="-400"></div>
         </div>
       </div>
-    </div>
-  </section>
+  </div>
+</section>
 
   <span id="page-content-start"></span>
 
