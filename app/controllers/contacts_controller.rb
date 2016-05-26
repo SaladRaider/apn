@@ -7,7 +7,7 @@ class ContactsController < ApplicationController
 		@contact = Contact.new(contact_params)
 		
 		if @contact.save
-			redirect_to root_path
+			redirect_to '/thanks'
 		else
 			render 'new'
 		end

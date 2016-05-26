@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160526035853) do
+ActiveRecord::Schema.define(version: 20160526044214) do
 
   create_table "assigned_jobs", force: :cascade do |t|
     t.string   "job_descriptoin", limit: 255, default: "", null: false
@@ -63,6 +63,13 @@ ActiveRecord::Schema.define(version: 20160526035853) do
     t.string  "gs6",           limit: 20
     t.string  "gs7",           limit: 20
     t.integer "submission_id", limit: 4
+  end
+
+  create_table "suggestions", force: :cascade do |t|
+    t.string   "subject",    limit: 255
+    t.text     "message",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "users", force: :cascade do |t|

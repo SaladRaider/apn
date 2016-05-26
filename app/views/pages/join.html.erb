@@ -1,7 +1,7 @@
 <section>
 
   <div class="show-case about-img">
-    
+
     <%= render :partial => "shared/bignavbar" %>
 
     <div class="big-filler">
@@ -30,7 +30,9 @@
       </div>
     </div>
     <div class="row">
-      <%= markdown(Content.find(6).text) %>
+      <div class="col-xs-12">
+        <%= markdown(Content.find(6).text) %>
+      </div>
     </div>
   </div>
 </section>

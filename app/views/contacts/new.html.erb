@@ -24,7 +24,7 @@
           <%= f.text_field :email, class: ['text-box-outline','wow','fadeInUp','col-xs-6'], placeholder: 'Email' %>
         </div>
           <%= f.text_field :subject, class: ['text-box-outline','wow','fadeInUp','col-xs-12'], placeholder: 'Subject' %>
-          <%= f.text_area :message, class: ['text-box-outline','wow','fadeInUp','col-xs-12'], placeholder: 'Type message here...' %>
+          <%= f.text_area :message, class: ['text-box-outline','wow','fadeInUp','col-xs-12'], placeholder: 'Type message here...', rows: 5 %>
           <%= f.submit :submit_contact, value: 'Send', class: ['btn-outline-white','wow','fadeInUp','col-xs-12'] %>
         <% end %>
       </div>

@@ -1,0 +1,35 @@
+<section class="normal-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <ol class="breadcrumb">
+          <li><%= link_to 'Home', root_path %></li>
+          <li class="active">Suggest</li>
+        </ol>
+      </div>
+      <div class="col-md-8">
+        <%= form_for @suggestion do |f| %>
+        <% if @suggestion.errors.any? %>
+        <div id="errors">
+          <h4><%= pluralize(@suggestion.errors.count, "error") %> prevented this suggestion from saving</h4>
+          <ul>
+            <% @suggestion.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+        <%= f.text_field :subject, class: ['text-box-outline','wow','fadeInUp','col-xs-12'], placeholder: 'Subject' %>
+        <%= f.text_area :message, class: ['text-box-outline','wow','fadeInUp','col-xs-12'], placeholder: 'Type message here...', rows: 5 %>
+        <%= f.submit :submit_suggestion, value: 'Send', class: ['btn-outline-white','wow','fadeInUp','fill-width'] %>
+        <% end %>
+      </div>
+      <div class="col-md-4">
+        <h3>Suggest Stuff</h3>
+        <p>
+          We are always looking for suggestions!
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

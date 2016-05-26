@@ -81,7 +81,7 @@
         <div class="col-xs-12 block-muted hideme">
           <h3 class="block-header-pressed-text"><i class="fa fa-check-square-o"></i> Want to Join?</h3>
           <p class="pressed text-muted">
-          <%= markdown(Content.find(5).text) %>
+            <%= markdown(Content.find(5).text) %>
           </p>
           <%= link_to '/join', :class => "btn-outline", :style => "padding-left: 25px;" do %>
           <i class="fa fa-check"></i> Learn More
@@ -97,9 +97,22 @@
     <div class="container">
       <h3 class="block-header-text wow fadeInRight"><i class="fa fa-comments"></i> Have Suggestions?</h3>
       <div class="">
-        <input type="text" class="text-box-outline wow fadeInUp" placeholder="Full Name" />
-        <textarea rows=5 class="text-box-outline wow fadeInUp" placeholder="Type suggestions here..."></textarea>
-        <a href="#" class="btn-outline-white wow fadeInUp">Suggest</a>
+        <% @suggestion = Suggestion.new %>
+        <%= form_for @suggestion do |f| %>
+        <% if @suggestion.errors.any? %>
+        <div id="errors">
+          <h4><%= pluralize(@suggestion.errors.count, "error") %> prevented this suggestion from saving</h4>
+          <ul>
+            <% @suggestion.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+        <%= f.text_field :subject, class: ['text-box-outline','wow','fadeInUp','col-xs-12'], placeholder: 'Subject' %>
+        <%= f.text_area :message, class: ['text-box-outline','wow','fadeInUp','col-xs-12'], placeholder: 'Type message here...', rows: 5 %>
+        <%= f.submit :submit_suggestion, value: 'Send', class: ['btn-outline-white','wow','fadeInUp','fill-width'] %>
+        <% end %>
       </div>
     </div>
   </div>  
@@ -107,6 +120,6 @@
 
 <% content_for :footer do %>
 <script>
-  
+
 </script>
 <% end %>
