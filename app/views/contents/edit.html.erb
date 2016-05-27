@@ -13,7 +13,14 @@
           <li class="active">Edit</li>
         </ol>
       </div>
+      <div class="col-xs-12">
+        
         <%= render 'form' %>
+      </div>
+      <div class="col-xs-12">
+      <%= markdown(Content.find(13).text) %>
     </div>
+    </div>
+    
   </div>
 </section>
