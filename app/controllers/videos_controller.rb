@@ -31,35 +31,35 @@ class VideosController < ApplicationController
 			str_ar.each_with_index do |str, index|
 				#str = ActiveRecord::Base.connection.quote(str)
 				select_str += "(
-					CASE
-						WHEN UPPER(`videos`.title) LIKE '%"+str.upcase+"%' THEN 3
-					ElSE 0 END
+				CASE
+				WHEN UPPER(`videos`.title) LIKE '%"+str.upcase+"%' THEN 3
+				ElSE 0 END
 				) + (
-					CASE
-						WHEN UPPER(`videos`.description) LIKE '%"+str.upcase+"%' THEN 2
-					ElSE 0 END
+				CASE
+				WHEN UPPER(`videos`.description) LIKE '%"+str.upcase+"%' THEN 2
+				ElSE 0 END
 				) + (
-					CASE
-						WHEN UPPER(`videos`.keywords) LIKE '%"+str.upcase+"%' THEN 1
-					ElSE 0 END
+				CASE
+				WHEN UPPER(`videos`.keywords) LIKE '%"+str.upcase+"%' THEN 1
+				ElSE 0 END
 				)";
 				if index != str_ar.length - 1
 					select_str += "+"
 				end
 			end
 			select_str += "+ (
-					CASE
-						WHEN UPPER(`videos`.title) LIKE '%"+params[:search_str].upcase+"%' THEN 9
-					ElSE 0 END
-				) + (
-					CASE
-						WHEN UPPER(`videos`.description) LIKE '%"+params[:search_str].upcase+"%' THEN 6
-					ElSE 0 END
-				) + (
-					CASE
-						WHEN UPPER(`videos`.keywords) LIKE '%"+params[:search_str].upcase+"%' THEN 3
-					ElSE 0 END
-				)";
+			CASE
+			WHEN UPPER(`videos`.title) LIKE '%"+params[:search_str].upcase+"%' THEN 9
+			ElSE 0 END
+			) + (
+			CASE
+			WHEN UPPER(`videos`.description) LIKE '%"+params[:search_str].upcase+"%' THEN 6
+			ElSE 0 END
+			) + (
+			CASE
+			WHEN UPPER(`videos`.keywords) LIKE '%"+params[:search_str].upcase+"%' THEN 3
+			ElSE 0 END
+			)";
 			select_str += ") AS score"
 		else
 			select_str = "`videos`.*, CASE WHEN 1=1 THEN 0 ELSE 0 END AS score"
@@ -68,7 +68,7 @@ class VideosController < ApplicationController
 		user_id = (params[:user_id] != nil) ? params[:user_id] : -1
 
 		@videos = Video.select(select_str)
-			.where("(`user_id` = ? OR -1 = ?) AND (`category` = ? OR ?) AND (`show` = ? OR ?)", 
+		.where("(`user_id` = ? OR -1 = ?) AND (`category` = ? OR ?) AND (`show` = ? OR ?)", 
 			user_id,
 			user_id,
 			params[:category], 
@@ -76,9 +76,14 @@ class VideosController < ApplicationController
 			params[:show_num], 
 			(params[:show_num] == nil || params[:show_num] == "-1")
 			).where(created_at: start_year..end_year)
-			.order('score DESC')
-			.order(created_at: :desc)
-			
+		.order('score DESC')
+
+		if params[:sort_method] != '2'
+			@videos = @videos.order(created_at: :desc)
+		else
+			@videos = @videos.order(views: :desc)
+		end
+
 		max_rows = @videos.count(:id)
 		@videos = @videos.limit(default_vid_limit).offset(vid_offset)
 		@shows = Video.where.not(show: nil).order(show: :asc).uniq.pluck(:show)
@@ -135,11 +140,15 @@ class VideosController < ApplicationController
 	def show
 		@assigned_jobs = AssignedJob.select(:user_id,:job_descriptoin).where(video_id: @video.id)
 		@full_names = []
+		@users = []
+
+		@video.update_column :views, @video.views+1
 
 		if @assigned_jobs != nil
 			@assigned_jobs.each do |job|
 				user = User.find(job.user_id)
 				@full_names << (user.first_name + " " + user.last_name)
+				@users << user
 			end
 		end
 	end

@@ -30,7 +30,17 @@ video_id = @video.link[start_pos..(start_pos+end_pos)]
 <div class="container">
   <div class="col-xs-12">
     <h2><%= @video.title %></h2>
+    </div>
+    <div class="col-xs-8">
+      
     <p class="color-light">Published on <%= time_tag @video.created_at, pubdate:true %></p>
+    </div>
+  <div class="col-xs-4">
+    <p style='text-align:right;'><%= @video.views %> views</p>
+    
+  </div>
+  <div class="col-xs-12">
+    
     <p><%= markdown(@video.description) %></p>
     
     <p>
@@ -48,7 +58,7 @@ video_id = @video.link[start_pos..(start_pos+end_pos)]
       <h5>People who worked on the video:</h5>
     </div>
     <% @assigned_jobs.each_with_index do |job, index| %>
-    <div class="col-xs-4 no-padding"><p><%= @full_names[index] %></p></div><div class="col-xs-8 no-padding"><p><%= job.job_descriptoin %></p></div>
+    <div class="col-xs-4 no-padding"><p><%= link_to @full_names[index], user_path(@users[index]) %></p></div><div class="col-xs-8 no-padding"><p><%= job.job_descriptoin %></p></div>
     <% end %>
     <% end %>
 
