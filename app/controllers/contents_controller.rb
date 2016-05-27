@@ -1,6 +1,7 @@
 class ContentsController < ApplicationController
-
+	before_action :authenticate_user!
 	before_action :find_content, only: [:edit, :update]
+	load_and_authorize_resource
 
 	def index
 		@contents = Content.all

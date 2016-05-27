@@ -39,6 +39,7 @@ class Ability
     if user.role == "admin"
         can [:destroy, :edit, :update], Video
         can :destroy, AssignedJob
+        can [:read, :edit, :update], Content
     end
 
   end
