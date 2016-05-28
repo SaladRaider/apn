@@ -31,6 +31,7 @@ gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'bootstrap-will_paginate', '~> 0.0.10'
 gem "paperclip", "~> 5.0.0.beta1"
 gem 'redcarpet'
+gem 'rmagick'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
