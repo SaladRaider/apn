@@ -23,7 +23,7 @@ class VideosController < ApplicationController
 			end_year = Time.new(params[:year].to_i + 1, 8)
 		end
 
-		select_str = "`videos`.*";
+		select_str = "videos.*";
 
 		if params[:search_str] != nil && !params[:search_str].empty?
 			select_str += ", ("
@@ -32,15 +32,15 @@ class VideosController < ApplicationController
 				#str = ActiveRecord::Base.connection.quote(str)
 				select_str += "(
 				CASE
-				WHEN UPPER(`videos`.title) LIKE '%"+str.upcase+"%' THEN 3
+				WHEN UPPER(videos.title) LIKE '%"+str.upcase+"%' THEN 3
 				ElSE 0 END
 				) + (
 				CASE
-				WHEN UPPER(`videos`.description) LIKE '%"+str.upcase+"%' THEN 2
+				WHEN UPPER(videos.description) LIKE '%"+str.upcase+"%' THEN 2
 				ElSE 0 END
 				) + (
 				CASE
-				WHEN UPPER(`videos`.keywords) LIKE '%"+str.upcase+"%' THEN 1
+				WHEN UPPER(videos.keywords) LIKE '%"+str.upcase+"%' THEN 1
 				ElSE 0 END
 				)";
 				if index != str_ar.length - 1
@@ -49,26 +49,26 @@ class VideosController < ApplicationController
 			end
 			select_str += "+ (
 			CASE
-			WHEN UPPER(`videos`.title) LIKE '%"+params[:search_str].upcase+"%' THEN 9
+			WHEN UPPER(videos.title) LIKE '%"+params[:search_str].upcase+"%' THEN 9
 			ElSE 0 END
 			) + (
 			CASE
-			WHEN UPPER(`videos`.description) LIKE '%"+params[:search_str].upcase+"%' THEN 6
+			WHEN UPPER(videos.description) LIKE '%"+params[:search_str].upcase+"%' THEN 6
 			ElSE 0 END
 			) + (
 			CASE
-			WHEN UPPER(`videos`.keywords) LIKE '%"+params[:search_str].upcase+"%' THEN 3
+			WHEN UPPER(videos.keywords) LIKE '%"+params[:search_str].upcase+"%' THEN 3
 			ElSE 0 END
 			)";
 			select_str += ") AS score"
 		else
-			select_str = "`videos`.*, CASE WHEN 1=1 THEN 0 ELSE 0 END AS score"
+			select_str = "videos.*, CASE WHEN 1=1 THEN 0 ELSE 0 END AS score"
 		end
 
 		user_id = (params[:user_id] != nil) ? params[:user_id] : -1
 
 		@videos = Video.select(select_str)
-		.where("(`user_id` = ? OR -1 = ?) AND (`category` = ? OR ?) AND (`show` = ? OR ?)", 
+		.where("(user_id = ? OR -1 = ?) AND (category = ? OR ?) AND (show = ? OR ?)", 
 			user_id,
 			user_id,
 			params[:category], 

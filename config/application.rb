@@ -33,5 +33,7 @@ module Apn
 
     Paperclip::Attachment.default_options[:default_url] = "/assets/images/missing.png"
     Paperclip.options[:content_type_mappings] = {webm: "video/webm"}
+
+    default_url_options[:host]
   end
 end

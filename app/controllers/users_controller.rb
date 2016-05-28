@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
 	def show
 		# find user videos
-		@videos = Video.where("(`user_id` = ?) AND(`category` = ? OR ?) AND (`show` = ? OR ?)", 
+		@videos = Video.where("(user_id = ?) AND(category = ? OR ?) AND (show = ? OR ?)", 
 			@user.id,
 			params[:category], 
 			(params[:category] == nil || params[:category] == "-1"),
