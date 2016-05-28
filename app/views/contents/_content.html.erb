@@ -2,7 +2,7 @@
 	<h4><%= content.title %></h4>
 	<p><%= truncate(content.text, length: 200) %></p>
 	<% if content.media_file_name != nil %>
-	<%= image_tag content.media.url(:medium), class: ['img-responsive'] %>
+	<%= image_tag content.media.url(:original), class: ['img-responsive'] %>
 	<% end %>
 	<%= link_to 'Edit', edit_content_path(content) %>
 </div>
