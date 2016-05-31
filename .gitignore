@@ -21,6 +21,6 @@
 /app/assets/images
 /app/assets/fonts
 rootkey.csv
-/config/secrets.yml
+#/config/secrets.yml
 #!/public/media/
 #!/vendor/assets/fonts/
