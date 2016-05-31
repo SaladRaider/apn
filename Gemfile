@@ -30,6 +30,7 @@ gem 'betterlorem', '~> 0.1.2'
 gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'bootstrap-will_paginate', '~> 0.0.10'
 gem "paperclip", "~> 5.0.0.beta1"
+gem 'aws-sdk', '~> 2.3'
 gem 'redcarpet'
 gem 'rmagick'
 

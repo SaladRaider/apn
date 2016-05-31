@@ -32,6 +32,7 @@ module Apn
     config.assets.initialize_on_precompile = false
 
     Paperclip::Attachment.default_options[:default_url] = "/assets/images/missing.png"
+    Paperclip::Attachment.default_options[:url] = ':s3_domain_url'
     Paperclip.options[:content_type_mappings] = {webm: "video/webm"}
 
     default_url_options[:host]
