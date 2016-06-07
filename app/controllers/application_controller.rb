@@ -7,4 +7,10 @@ class ApplicationController < ActionController::Base
   	redirect_to root_path, :alert => exception.message
   end
 
+  def approve_user
+  	respond_to do |f|
+  		f.js { render :layout=>false }
+  	end
+  end
+
 end
