@@ -35,6 +35,14 @@ select:focus {
 	outline: none;
 }
 
+table {
+	width: 100%;
+
+	td, th {
+		padding: 10px;
+	}
+}
+
 blockquote {
 	border-color: $color-muted-light;
 	border-width: 2px;

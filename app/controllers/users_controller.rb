@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 			params[:show_num], 
 			(params[:show_num] == nil || params[:show_num] == "-1")
 			)
-			.order(created_at: :desc)
+		.order(created_at: :desc)
 		@videos = @videos.limit(6)
 		@shows = Video.where.not(show: nil).order(show: :asc).uniq.pluck(:show)
 		@min_year = Video.minimum("created_at")
@@ -30,10 +30,20 @@ class UsersController < ApplicationController
 	end
 
 	def update
-		if @user.update(user_params)
-			redirect_to @user
-		else
-			render 'edit'
+		updated = @user.update(user_params)
+
+		respond_to do |format|
+			if !params[:approving]
+				if updated
+					format.html
+					redirect_to @user and return
+				else
+					format.html
+					render 'edit' and return
+				end
+			else
+				format.json { render :json => { user_id: @user.id } }
+			end
 		end
 	end
 
@@ -43,6 +53,6 @@ class UsersController < ApplicationController
 		end
 
 		def user_params
-			params.require(:user).permit(:last_name, :first_name, :id_number, :grade, :email, :bio, :avatar)
+			params.require(:user).permit(:last_name, :first_name, :id_number, :grade, :email, :bio, :avatar, :admin_confirmed)
 		end
 end

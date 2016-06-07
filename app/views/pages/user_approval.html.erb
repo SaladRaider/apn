@@ -1,0 +1,38 @@
+<span id="page-content-start"></span>
+
+<section class="normal-section space-bottom-l">
+  <div class="container">
+    <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><%= link_to 'Home', root_path %></li>
+        <li class="active">User Approval</li>
+      </ol>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th><p>Name</p></th>
+          <th><p>Email</p></th>
+          <th><p>ID Number</p></th>
+          <th><p>Approve</p></th>
+          <th><p>Disapprove</p></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% User.all.where(admin_confirmed: 0).each do |usr| %>
+        <tr id='user-row-<%= usr.id %>'>
+          <td><p><%= usr.first_name + ' ' + usr.last_name %></p></td>
+          <td><p><%= usr.email %></p></td>
+          <td><p><%= usr.id_number %></p></td>
+          <td><p><a value="<%= usr.id %>" class="a-btn">Approve</a></p></td>
+          <td><p><a value="<%= usr.id %>" class="d-btn">Disapprove</a></p></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<% content_for :footer do %>
+<%= javascript_include_tag "user_approval" %>
+<% end %>
