@@ -8,14 +8,33 @@
         </ol>
       </div>
       <div class="col-md-8">
-        <div class="btn-group-standard">
-          
-        <input type="text" class="text-box-outline wow fadeInUp col-xs-6" placeholder="Full Name" />
-        <input type="text" class="text-box-outline wow fadeInUp col-xs-6" placeholder="Email" />
+      <%= form_for @contact do |f| %>
+        <% if @contact.errors.any? %>
+        <div id="errors">
+          <h4><%= pluralize(@contact.errors.count, "error") %> prevented this contact from saving</h4>
+          <ul>
+            <% @contact.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+          </ul>
         </div>
-        <input type="text" class="text-box-outline wow fadeInUp fill-width" placeholder="Subject" />
-        <textarea rows=5 class="text-box-outline wow fadeInUp fill-width" placeholder="Type message here..."></textarea>
-        <a href="#" class="btn-outline-white wow fadeInUp fill-width">Send Message</a>
+        <% end %>
+        <%= f.text_field :org_club, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-12"], placeholder: 'Organization/Club' %>
+
+        <input type="text" class="text-box-outline wow fadeInUp col-xs-12" placeholder="Organization/Club" />
+        <div class="btn-group-standard">
+        <div class="text-box-outline wow fadeInUp col-xs-4">Date to Air:</div>
+        <%= f.date :sub_date, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-12"], placeholder: 'Date to Air' %>
+        </div>
+        <div class="btn-group-standard">
+        <%= f.text_field :sub_date, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-8"], placeholder: 'Full Name' %>
+        <%= f.text_field :full_name, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-4"], placeholder: 'Full Name' %>
+        </div>
+        <%= f.text_field :email, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-12"], placeholder: 'Email' %>
+        <%= f.text_field :subject, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-12"], placeholder: 'Subject' %>
+        <%= f.text_area :subject, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-12"], placeholder: 'Type message here...' %>
+        <%= f.submit :submit_contact, value: "Send", class: ["btn-outline-white", "wow", "fadeInUp", "col-xs-12"] %>
+        <% end %>
       </div>
       <div class="col-md-4">
         <h3>Contact Info</h3>

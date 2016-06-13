@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   resources :videos, :assigned_jobs, :contents, :contacts, :suggestions, :users
   
   get "/join" => 'pages#show', format: false, id: 'join'
-  get "/about" => 'pages#show', format: false, id: 'about'
-  get "/contact" => 'pages#show', format: false, id: 'contact'
+  get "/about" => 'users#index', format: false, id: 'about'
+  get "/contact" => 'contacts#new', format: false, id: 'contact'
   get "/suggest" => 'pages#show', format: false, id: 'suggest'
   get "/thanks" => 'pages#show', format: false, id: 'thanks'
   get "/user_approval" => 'pages#show', format: false, id: 'user_approval'

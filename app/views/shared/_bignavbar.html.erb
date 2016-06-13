@@ -4,33 +4,21 @@
       <%= link_to videos_path do %>
       <div class="nav-link">Videos</div>
       <% end %>
-      <%= link_to '/suggest' do %>
-      <div class="nav-link">Suggest</div>
-      <% end %>
-      <% if user_signed_in? %>
-      <%= link_to '/contact' do %>
-      <div class="nav-link">Contact</div>
-      <% end %>
-      <% else %>
-      <%= link_to '/join' do %>
-      <div class="nav-link">Join</div>
-      <% end %>
+      <%= link_to '/about' do %>
+      <div class="nav-link">About</div>
       <% end %>
     </div>
     <%= link_to root_path do %>
     <div class="logo"><p>A&nbsp;&nbsp;&nbsp;P<br />N</p></div>
     <% end %>
     <div class="nav-links-right">
-      <%= link_to '/about' do %>
-      <div class="nav-link">About</div>
-      <% end %>
-       <% if user_signed_in? %>
+      <% if user_signed_in? %>
       <%= link_to user_path(current_user) do %>
       <div class="nav-link">Profile</div>
       <% end %>
       <% else %>
       <%= link_to '/contact' do %>
-      <div class="nav-link">Contact</div>
+      <div class="nav-link">Request Read</div>
       <% end %>
       <% end %>
       <% if user_signed_in? %>
