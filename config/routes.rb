@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "/join" => 'pages#show', format: false, id: 'join'
   get "/about" => 'users#index', format: false, id: 'about'
   get "/contact" => 'contacts#new', format: false, id: 'contact'
+  get "/read_request" => 'contacts#index', format: false, id: 'index'
   get "/suggest" => 'pages#show', format: false, id: 'suggest'
   get "/thanks" => 'pages#show', format: false, id: 'thanks'
   get "/user_approval" => 'pages#show', format: false, id: 'user_approval'

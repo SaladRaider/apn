@@ -43,8 +43,14 @@
             <div class="nav-link-outer"><div class="nav-link">Request Read</div></div>
             <% end %>
             <% end %>
+            <% if user_signed_in? %>
+            <%= link_to '/read_request' do %>
+            <div class="nav-link-outer"><div class="nav-link">Read Requests</div></div>
+            <% end %>
+            <% else %>
             <%= link_to '/about' do %>
             <div class="nav-link-outer"><div class="nav-link">About</div></div>
+            <% end %>
             <% end %>
             <% if user_signed_in? %>
             <%= link_to destroy_user_session_path, :method => :delete do %>
@@ -72,8 +78,14 @@
             <div class="nav-link-outer"><div class="nav-link">Request Read</div></div>
             <% end %>
             <% end %>
+            <% if user_signed_in? %>
+            <%= link_to '/read_request' do %>
+            <div class="nav-link-outer"><div class="nav-link">Read Requests</div></div>
+            <% end %>
+            <% else %>
             <%= link_to '/about' do %>
             <div class="nav-link-outer"><div class="nav-link">About</div></div>
+            <% end %>
             <% end %>
             <% if user_signed_in? %>
             <%= link_to destroy_user_session_path, :method => :delete do %>

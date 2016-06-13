@@ -4,8 +4,14 @@
       <%= link_to videos_path do %>
       <div class="nav-link">Videos</div>
       <% end %>
+      <% if user_signed_in? %>
+      <%= link_to '/read_request' do %>
+      <div class="nav-link">Read Requests</div>
+      <% end %>
+      <% else %>
       <%= link_to '/about' do %>
       <div class="nav-link">About</div>
+      <% end %>
       <% end %>
     </div>
     <%= link_to root_path do %>

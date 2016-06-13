@@ -1,0 +1,31 @@
+<% contacts = Contact.paginate(:page => params[:page], :per_page => 10).order(created_at: :desc) %>
+<span id="page-content-start"></span>
+
+<section class="normal-section space-bottom-l">
+  <div class="container">
+    <div class="col-md-12 margin-bottom">
+      <ol class="breadcrumb">
+        <li><%= link_to 'Home', root_path %></li>
+        <li class="active">Read Requests</li>
+      </ol>
+    </div>
+    <div class="col-xs-12">
+    <table class="read-request-table">
+      <thead>
+        <tr>
+          <th><p>Organization/Club</p></th>
+          <th><p>Name</p></th>
+          <th><p>Show Date</p></th>
+          <th><p>Email</p></th>
+          <th><p>ID Number</p></th>
+          <th><p>Subject</p></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render contacts %>
+      </tbody>
+    </table>
+    <%= will_paginate contacts %>
+    </div>
+  </div>
+</section>

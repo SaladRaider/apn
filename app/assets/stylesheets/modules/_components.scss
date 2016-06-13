@@ -32,6 +32,18 @@
 	}
 }
 
+.margin-bottom {
+	margin-bottom: $margin-default-v;
+}
+
+.read-request-table tr:nth-child(4n+1), .read-request-table tr:nth-child(4n+2) {
+	background-color: $color-dark;
+}
+
+.read-request-table tr:nth-child(4n+3), .read-request-table tr:nth-child(4n+4) {
+	background-color: $color-darker;
+}
+
 .clickable:hover {
 	cursor: pointer;
 }
