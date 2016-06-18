@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "/suggest" => 'pages#show', format: false, id: 'suggest'
   get "/thanks" => 'pages#show', format: false, id: 'thanks'
   get "/user_approval" => 'pages#show', format: false, id: 'user_approval'
+  get '/pending_videos' => 'videos#pending'
 
   #get '/join' => 'high_voltage/pages#show', id: 'join'
   #get '/about' => 'users#index', id: 'about'

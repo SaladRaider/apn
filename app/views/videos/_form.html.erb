@@ -13,9 +13,8 @@
   <%= f.text_field :show, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-2"], placeholder: :show %>
   <%= f.text_field :title, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-10"], placeholder: :title %>
 </div>
-<%= f.text_field :link, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-12"], placeholder: :link %>
-<%= f.text_area :description, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-12"], placeholder: :description, rows: 5 %>
-<%= f.text_field :keywords, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-12"], placeholder: :keywords %>
+  <%= f.text_area :bite, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-12"], placeholder: :bite, rows: 5 %>
+  <%= f.text_field :computer, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-12"], placeholder: "Computer" %>
 <div class="selectDiv">
   <%= f.select(:category) do %>
   <% [['Show',1],['Skit', 2],['Promo',3],['Story',4]].each do |c| -%>
@@ -34,8 +33,21 @@
   </div>
   
   <% @assigned_jobs.each do |job| 
-    job_id = job.first_name+job.last_name+job.id.to_s
-    full_name = job.first_name + " " + job.last_name
+
+    job_id = ''
+    full_name = ''
+    job_descriptoin = ''
+
+    if job['full_name'] != nil
+      job_id = job['full_name']
+      full_name = job['full_name']
+      job_descriptoin = job['job_description']
+    else
+      job_id = job.first_name+job.last_name+job.id.to_s
+      full_name = job.first_name + " " + job.last_name
+      job_descriptoin = job.job_descriptoin
+    end
+
     %>
 
     <span id="user-<%= job_id %>">
@@ -43,21 +55,16 @@
         <p><%= full_name %></p>
       </div>
       <div class="col-xs-7">
-        <p><%= job.job_descriptoin %></p>
+        <p><%= job_descriptoin %></p>
       </div>
       <div class="col-xs-1">
         <p><a onclick="$('#user-<%= job_id %>').remove();" id="delete-<%= job_id %>">Delete</a></p>
       </div>
       <input type="hidden" name="assigned_jobs[][full_name]" value="<%= full_name %>" />
-      <input type="hidden" name=assigned_jobs[][job_description] value="<%= job.job_descriptoin %>" />
+      <input type="hidden" name=assigned_jobs[][job_description] value="<%= job_descriptoin %>" />
     </span>
 
     <% end %>
-
-
-
-
-
   </div>
   <div class="col-xs-12">
     <p id="job_error"></p>
@@ -72,10 +79,18 @@
     <input id="job_description" type="text" class="text-box-outline wow fadeInUp col-xs-8" placeholder="Job Description" />
   </div>
   <a id="add_job" class="btn-outline-white wow fadeInUp fill-width "><span class="fa fa-plus"></span></a>
+  <hr>
+  <p>Leave Blank Until Video Is Done:</p>
+  <div class="btn-group-standard">
+  <%= f.text_field :link, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-6"], placeholder: :link %>
+  <%= f.text_field :duration, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-6"], placeholder: "Duration" %>
+  </div>
+  <%= f.text_area :description, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-12"], placeholder: :description, rows: 5 %>
+  <%= f.text_field :keywords, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-12"], placeholder: :keywords %>
   <%= f.submit :submit_video, value: "Save", class: ["btn-outline-white", "wow", "fadeInUp", "col-xs-12"] %>
   <% end %>
 
-<% content_for :footer do %>
+  <% content_for :footer do %>
   <script type="text/javascript" async defer>
     var availableUsers;
     $(function() {
@@ -94,4 +109,4 @@
     });
   </script>
   <%= javascript_include_tag "videos.form" %>
-<% end %>
+  <% end %>

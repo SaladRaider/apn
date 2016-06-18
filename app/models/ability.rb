@@ -33,9 +33,10 @@ class Ability
 
         can [:read], [Video, User]
 
-        if user.admin_confirmed == "1"
-            can [:edit, :update, :new, :create], Video, :user_id => user.id
+        if user.admin_confirmed == 1
+            can [:edit, :update, :new, :create, :pending], Video, :user_id => user.id
             can [:edit, :update], User, :id => user.id
+            can [:new, :create, :destroy, :delete], AssignedJob
         end
 
         if user.role == "admin"

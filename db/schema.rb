@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160613150541) do
+ActiveRecord::Schema.define(version: 20160613184453) do
 
   create_table "assigned_jobs", force: :cascade do |t|
     t.string   "job_descriptoin", limit: 255, default: "", null: false
@@ -125,6 +125,9 @@ ActiveRecord::Schema.define(version: 20160613150541) do
     t.integer  "user_id",     limit: 4
     t.string   "slug",        limit: 255
     t.integer  "views",       limit: 4,     default: 0, null: false
+    t.text     "bite",        limit: 65535
+    t.string   "duration",    limit: 255
+    t.string   "computer",    limit: 255
   end
 
   add_index "videos", ["slug"], name: "index_videos_on_slug", unique: true, using: :btree

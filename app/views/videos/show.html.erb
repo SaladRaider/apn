@@ -48,7 +48,7 @@ video_id = @video.link[start_pos..(start_pos+end_pos)]
       <%= link_to 'Edit', edit_video_path(@video) %>
       <% end %>
       <% if can? :destroy, @video %>
-      <%= link_to 'Delete', video_path(@video), method: :destroy, data: { confirm: 'Are you sure?'} %>
+      <%= link_to 'Delete', video_path(@video), method: :delete, data: { confirm: 'Are you sure?'} %>
       <% end %>
     </p>
     

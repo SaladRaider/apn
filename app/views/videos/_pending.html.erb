@@ -1,0 +1,49 @@
+<%
+assigned_jobs = AssignedJob.select(:user_id,:job_descriptoin).where(video_id: video.id)
+full_names = []
+users = []
+
+if assigned_jobs != nil
+	assigned_jobs.each do |job|
+		user = User.find(job.user_id)
+		full_names << (user.first_name + " " + user.last_name)
+		users << user
+	end
+end
+%>
+<tr id='video-row-<%= video.id %>'>
+	<td><p><%= video.title %></p></td>
+	<td><p><%= video.show %></p></td>
+	<td><p><%= video.computer %></p></td>
+	<td><p><%= 
+		if video.category == 1
+			'Show'
+		elsif video.category == 2
+			'Skit'
+		elsif video.category == 3
+			'Promo'
+		elsif video.category == 4
+			'Story'
+		end
+		%></p></td>
+	</tr>
+	<tr><td colspan="6">
+		<p>
+			<%= video.bite %>
+		</p>
+		<% if !assigned_jobs.empty? %>
+		<div class="col-xs-12 no-padding">
+			<h5>People who are working on the video:</h5>
+		</div>
+		<% assigned_jobs.each_with_index do |job, index| %>
+		<div class="col-xs-4 no-padding"><p><%= link_to full_names[index], user_path(users[index]) %></p></div><div class="col-xs-8 no-padding"><p><%= job.job_descriptoin %></p></div>
+		<% end %>
+		<% end %>
+		<% if can? :edit, video %>
+		<%= link_to 'Edit', edit_video_path(video) %>
+		<% end %>
+		<% if can? :destroy, video %>
+		<%= link_to 'Delete', video_path(video), method: :delete, data: { confirm: 'Are you sure?'} %>
+		<% end %>
+	</td>
+</tr>
