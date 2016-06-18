@@ -29,7 +29,29 @@
 
 <section class="normal-section">
   <div class="container-fluid">
+  <% if can? :create, Video %>
     <div id='search-videos' class="row">
+    <%= link_to new_video_path do %>
+      <div class="col-md-6 col-sm-6 col-xs-12 watch-block wow flipInX" style="background-image: url('<%= asset_path 'film-production.jpg' %>')">
+        <div class="block-filler">
+          <div class="abs-centered-element">
+            <h4 class="block-header-text">New Video</h4>
+            <i class="fa fa-plus"></i>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= link_to '/pending_videos' do %>
+      <div class="col-md-6 col-sm-6 col-xs-12 watch-block wow flipInX" style="background-image: url('<%= asset_path 'filming-at-night.jpg' %>')">
+        <div class="block-filler">
+          <div class="abs-centered-element">
+            <h4 class="block-header-text">Pending Videos</h4>
+            <i class="fa fa-search"></i>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <% end %>
       <%= render @videos %>
     </div>
   </div>

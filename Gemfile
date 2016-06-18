@@ -24,7 +24,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise', '~> 4.1'
 gem 'friendly_id', '~> 5.1.0'
 gem 'high_voltage', '~> 3.0.0'
-gem "cancan"
+gem 'cancancan', '~> 1.15'
 gem 'will_paginate', '~> 3.0.5'
 gem 'betterlorem', '~> 0.1.2'
 gem 'bootstrap-sass', '~> 3.0.3.0'

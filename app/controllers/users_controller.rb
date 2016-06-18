@@ -19,6 +19,9 @@ class UsersController < ApplicationController
 			params[:show_num], 
 			(params[:show_num] == nil || params[:show_num] == "-1")
 			)
+		.where.not(link: nil)
+		.where('length(link) > 0')
+		.where('link LIKE \'%youtu%\'')
 		.order(created_at: :desc)
 		@videos = @videos.limit(6)
 		@shows = Video.where.not(show: nil).order(show: :asc).uniq.pluck(:show)

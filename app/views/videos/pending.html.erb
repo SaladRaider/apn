@@ -1,0 +1,31 @@
+<span id="page-content-start"></span>
+
+<section class="normal-section space-bottom-l">
+  <div class="container">
+    <div class="col-md-12 margin-bottom">
+      <ol class="breadcrumb">
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Videos', videos_path %></li>
+        <li class="active">Pending Videos</li>
+      </ol>
+    </div>
+    <div class="col-xs-12">
+    <table class="read-request-table">
+      <thead>
+        <tr>
+          <th><p>Title</p></th>
+          <th><p>Show</p></th>
+          <th><p>Computer</p></th>
+          <th><p>Category</p></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @videos.each do |vid| %>
+           <%= render :partial => 'pending', :locals => { :video => vid } %>
+        <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate @videos %>
+    </div>
+  </div>
+</section>

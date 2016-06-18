@@ -6,8 +6,8 @@ class Video < ActiveRecord::Base
 	accepts_nested_attributes_for :assigned_jobs
 
 	validates :title, presence: true, length: { minimum: 3 }
-	validates :description, presence: true
-	validates :link, presence: true
+	validates :computer, presence: true
+	validates :bite, presence: true
 	validates :show, presence: true
 	friendly_id :title, use: :slugged
 end

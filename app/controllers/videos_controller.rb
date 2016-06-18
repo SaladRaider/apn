@@ -69,6 +69,9 @@ class VideosController < ApplicationController
 		user_id = (params[:user_id] != nil) ? params[:user_id] : -1
 
 		@videos = Video.select(select_str)
+		.where.not(link: nil)
+		.where('length(link) > 0')
+		.where('link LIKE \'%youtu%\'')
 		.where("(#{@esc}user_id#{@esc} = ? OR -1 = ?) AND (#{@esc}category#{@esc} = ? OR ?) AND (#{@esc}show#{@esc} = ? OR ?)", 
 			user_id,
 			user_id,
@@ -94,6 +97,11 @@ class VideosController < ApplicationController
 		end
 	end
 
+	def pending
+		@videos = Video.paginate(:page => params[:page], :per_page => 10)
+		.where("link = NULL OR length(link) <= 0 OR link NOT LIKE '%youtub%'")
+	end
+
 	def new
 		@video = Video.new
 		@assigned_jobs = []
@@ -101,6 +109,8 @@ class VideosController < ApplicationController
 
 	def create
 		@video = @user.videos.new(video_params)
+		@assigned_jobs = []
+
 		jobs = params[:assigned_jobs]
 		saving_jobs = params[:assigned_jobs] != nil
 
@@ -125,13 +135,21 @@ class VideosController < ApplicationController
 			if saving_jobs
 				if @assigned_jobs.all?(&:valid?)
 					@assigned_jobs.each(&:save!)
-					redirect_to @video
+					if @video.link.length > 0
+						redirect_to @video
+					else
+						redirect_to '/pending_videos'
+					end
 				else
 					@video.destroy
 					render 'new'
 				end
 			else
-				redirect_to @video
+				if @video.link.length > 0
+					redirect_to @video
+				else
+					redirect_to '/pending_videos'
+				end
 			end
 		else
 			render 'new'
@@ -155,11 +173,10 @@ class VideosController < ApplicationController
 	end
 
 	def edit
-
 	end
 
 	def update
-		if @video.update(params[:video].permit(:title, :show, :link, :description, :keywords, :category))
+		if @video.update(video_params)
 			if params[:assigned_jobs] != nil
 				# update the assigned_jobs
 				params[:assigned_jobs].each_with_index do |job, index|
@@ -195,8 +212,15 @@ class VideosController < ApplicationController
 			else
 				@existing_jobs = AssignedJob.destroy_all(:video_id => @video.id)
 			end
-			redirect_to @video
+
+			if @video.link.length > 0
+				redirect_to @video
+			else
+				redirect_to '/pending_videos'
+			end
 		else
+			#redirect_to edit_video_path(@video)
+			@assigned_jobs = params[:assigned_jobs];
 			render 'edit'
 		end
 	end
@@ -228,8 +252,7 @@ class VideosController < ApplicationController
 
 	private 
 	def video_params
-		params.require(:video).permit(:title, :show, :link, 
-			:description, :keywords, :category, :slug, :user_id);
+		params.require(:video).permit(:title, :show, :link, :description, :keywords, :category, :slug, :user_id, :bite, :computer, :duration)
 	end
 
 	def assigned_job_params
