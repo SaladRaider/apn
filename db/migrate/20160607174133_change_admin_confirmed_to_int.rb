@@ -1,8 +1,8 @@
 class ChangeAdminConfirmedToInt < ActiveRecord::Migration
   def up
-  	add_column :users, :convert_admin_confirmed, :integer, :default => true
+  	add_column :users, :convert_admin_confirmed, :integer, :default => 0
 
-    Project.all.each do |p|
+    User.all.each do |p|
       if p.admin_confirmed
         p.convert_admin_confirmed = 1
       else
