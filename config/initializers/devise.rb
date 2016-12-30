@@ -13,7 +13,6 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   config.mailer_sender = 'support@apachenewsapn.org'
-  config.action_mailer.default_url_options = { :host => 'www.apachenewsapn.org' }
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
