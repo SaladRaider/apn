@@ -1,7 +1,7 @@
 <section>
 
   <div class="show-case about-img">
-    
+
     <%= render :partial => "shared/bignavbar" %>
 
     <div class="big-filler">
@@ -21,11 +21,16 @@
 
 <section class="normal-section space-bottom-l">
   <div class="container">
-    <div class="col-md-12">
+    <div class="col-md-10">
       <ol class="breadcrumb">
         <li><%= link_to 'Home', root_path %></li>
         <li class="active">Contact</li>
       </ol>
+    </div>
+    <div class="col-md-2">
+      <%= link_to new_user_session_path do %>
+      Login
+      <% end %>
     </div>
     <div class="row">
       <div class="col-md-4 col-sm-6 col-xs-12">

@@ -10,7 +10,7 @@
 </div>
 <% end %>
 <div class="btn-group-standard">
-  <%= f.text_field :show, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-2"], placeholder: :show %>
+  <%= f.number_field :show, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-2"], placeholder: :show %>
   <%= f.text_field :title, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-10"], placeholder: :title %>
 </div>
   <%= f.text_area :bite, class: ["text-box-outline", "wow", "fadeInUp", "col-xs-12"], placeholder: :bite, rows: 5 %>
@@ -31,8 +31,8 @@
   </div>
   <div class="col-xs-1 table-header">
   </div>
-  
-  <% @assigned_jobs.each do |job| 
+
+  <% @assigned_jobs.each do |job|
 
     job_id = ''
     full_name = ''

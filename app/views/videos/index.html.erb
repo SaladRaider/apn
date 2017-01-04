@@ -21,9 +21,9 @@
       <h2>Videos</h2>
       <%= render :partial => "shared/videosearchform" %>
     </div>
-    
 
-    
+
+
   </div>
 </section>
 
@@ -52,6 +52,52 @@
       </div>
     <% end %>
     <% end %>
+  <% if !@category_is_set %>
+    <div class="row">
+      <div class="col-md-6 col-sm-12 col-xs-12 watch-block-show wow flipInX"  style="background-image: url('<%= Content.find(14).media.url(:original) %>')">
+        <%= link_to '/videos?category=1' do %>
+        <div class="block-filler">
+          <div class="abs-centered-element">
+           <h3 class="block-header-text">Watch Shows</h3>
+           <i class="fa fa-play"></i>
+         </div>
+       </div>
+       <% end %>
+     </div>
+     <div class="col-md-6 col-sm-12 col-xs-12 watch-block-shorts wow flipInX animation-delay"  style="background-image: url('<%= Content.find(15).media.url(:original) %>')">
+      <%= link_to '/videos?category=2' do %>
+      <div class="block-filler">
+        <div class="abs-centered-element">
+         <h3 class="block-header-text">Watch Shorts</h3>
+         <i class="fa fa-play"></i>
+       </div>
+     </div>
+     <% end %>
+   </div>
+ </div>
+ <div class="row">
+  <div class="col-md-6 col-sm-12 col-xs-12 watch-block-show wow flipInX"  style="background-image: url('<%= Content.find(16).media.url(:original) %>')">
+    <%= link_to '/videos?category=3' do %>
+    <div class="block-filler">
+      <div class="abs-centered-element">
+       <h3 class="block-header-text">Watch Promos</h3>
+       <i class="fa fa-play"></i>
+     </div>
+   </div>
+   <% end %>
+ </div>
+ <div class="col-md-6 col-sm-12 col-xs-12 watch-block-shorts wow flipInX animation-delay" style="background-image: url('<%= Content.find(17).media.url(:original) %>')">
+  <%= link_to '/videos?category=4' do %>
+  <div class="block-filler">
+    <div class="abs-centered-element">
+     <h3 class="block-header-text">Watch Stories</h3>
+     <i class="fa fa-play"></i>
+   </div>
+ </div>
+ <% end %>
+</div>
+</div>
+  <% end %>
       <%= render @videos %>
     </div>
   </div>

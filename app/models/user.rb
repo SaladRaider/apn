@@ -22,4 +22,18 @@ class User < ActiveRecord::Base
   validates_attachment_size :avatar, :less_than => 5.megabytes
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png']
 
+  def get_current_grade
+    now = DateTime.now
+    current_grade = grade
+    #created_date_time = created_at # "2016-05-10 23:03:24" "Tue, 10 May 2016 23:03:24 UTC +00:00:Time"
+    starting_august_date = (created_at > DateTime.new(created_at.year, 8, 1)) ? DateTime.new(created_at.year, 8, 1) : DateTime.new(created_at.year - 1, 8, 1)
+    current_august_date = (now > DateTime.new(now.year, 8, 1)) ? DateTime.new(now.year, 8, 1) : DateTime.new(now.year - 1, 8, 1)
+    years_in_apn_completed = current_august_date.year - starting_august_date.year
+    current_grade += years_in_apn_completed
+    if current_grade > 12
+      current_grade = 'Alumni'
+    end
+    return current_grade.to_s
+  end
+
 end

@@ -12,6 +12,7 @@ class VideosController < ApplicationController
 		@min_year = Video.minimum("created_at")
 		@max_year = Video.maximum("created_at")
 		@esc = (Rails.env == "production") ? "\"" : "`"
+		@category_is_set = !params[:category].nil?
 
 		start_year = @min_year
 		end_year = @max_year
@@ -72,12 +73,12 @@ class VideosController < ApplicationController
 		.where.not(link: nil)
 		.where('length(link) > 0')
 		.where('link LIKE \'%youtu%\'')
-		.where("(#{@esc}user_id#{@esc} = ? OR -1 = ?) AND (#{@esc}category#{@esc} = ? OR ?) AND (#{@esc}show#{@esc} = ? OR ?)", 
+		.where("(#{@esc}user_id#{@esc} = ? OR -1 = ?) AND (#{@esc}category#{@esc} = ? OR ?) AND (#{@esc}show#{@esc} = ? OR ?)",
 			user_id,
 			user_id,
-			params[:category], 
+			params[:category],
 			(params[:category] == nil || params[:category] == "-1"),
-			params[:show_num], 
+			params[:show_num],
 			(params[:show_num] == nil || params[:show_num] == "-1")
 			).where(created_at: start_year..end_year)
 		.order('score DESC')
@@ -250,7 +251,7 @@ class VideosController < ApplicationController
 		redirect_to root_path
 	end
 
-	private 
+	private
 	def video_params
 		params.require(:video).permit(:title, :show, :link, :description, :keywords, :category, :slug, :user_id, :bite, :computer, :duration)
 	end

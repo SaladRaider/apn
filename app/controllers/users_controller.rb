@@ -1,22 +1,23 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show]
 	before_action :find_user, only: [:show, :edit, :update]
+	before_action :find_users_this_year, only: [:index]
+	before_action :find_alumni_by_years, only: [:index]
 	load_and_authorize_resource
 
 	def index
-		@users = User.all
 	end
 
 	def show
 		# find user videos
-		
+
 		@esc = (Rails.env == "production") ? "\"" : "`"
 
-		@videos = Video.where("(user_id = ?) AND(category = ? OR ?) AND (#{@esc}show#{@esc} = ? OR ?)", 
+		@videos = Video.where("(user_id = ?) AND(category = ? OR ?) AND (#{@esc}show#{@esc} = ? OR ?)",
 			@user.id,
-			params[:category], 
+			params[:category],
 			(params[:category] == nil || params[:category] == "-1"),
-			params[:show_num], 
+			params[:show_num],
 			(params[:show_num] == nil || params[:show_num] == "-1")
 			)
 		.where.not(link: nil)
@@ -57,5 +58,29 @@ class UsersController < ApplicationController
 
 		def user_params
 			params.require(:user).permit(:last_name, :first_name, :id_number, :grade, :email, :bio, :avatar, :admin_confirmed)
+		end
+
+		def find_users_this_year
+			# figure out what school year it is. New year starts on August 1
+			now = DateTime.now
+			august_date = (now > DateTime.new(now.year, 8, 1)) ? DateTime.new(now.year, 8, 1) : DateTime.new(now.year - 1, 8, 1)
+			@current_users = User.where(created_at: august_date..now)
+		end
+
+		def find_alumni_by_years
+			now = DateTime.now
+			august_date = (now > DateTime.new(now.year, 8, 1)) ? DateTime.new(now.year, 8, 1) : DateTime.new(now.year - 1, 8, 1)
+			old_august_date = DateTime.new(august_date.year - 1, august_date.month, august_date.day)
+			@alumni = []
+			@years = []
+			loop do
+				user = User.where(created_at: old_august_date..august_date)
+				@alumni << user
+				@years << old_august_date.year.to_s + "-" + august_date.year.to_s
+				august_date = old_august_date.clone()
+				old_august_date = old_august_date.change(year: old_august_date.year-1)
+				break if @alumni.last.empty?
+			end
+			@alumni = @alumni[0..-2]
 		end
 end

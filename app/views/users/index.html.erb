@@ -1,7 +1,7 @@
 <section>
 
   <div class="show-case about-img" style="background-image: url('<%= Content.find(10).media.url(:original) %>')">
-    
+
     <%= render :partial => "shared/bignavbar" %>
 
     <div class="big-filler">
@@ -21,15 +21,44 @@
 
 <section class="normal-section space-bottom-l">
   <div class="container">
-    <div class="col-md-12">
+    <div class="col-md-10">
       <ol class="breadcrumb">
         <li><%= link_to 'Home', root_path %></li>
         <li class="active">About</li>
       </ol>
     </div>
+    <div class="col-xs-2">
+      <%= link_to new_user_session_path do %>
+      Login
+      <% end %>
+    </div>
       <div class="col-xs-12">
         <%= markdown(Content.find(11).text) %>
       </div>
-      <%= render @users %>
+      <div class="col-md-12">
+        <h3>Current Members</h3>
+      </div>
+      <%= render @current_users %>
+      <% @alumni.each_with_index do |users, i| %>
+        <% users.each do |user| %>
+          <% if user.get_current_grade != "Alumni" %>
+            <%= render user %>
+          <% end %>
+        <% end %>
+        <% break if i >= 3 %>
+      <% end %>
+    <div class="col-md-12">
+      <h3>Alumni</h3>
+    </div>
+      <% @alumni.each_with_index do |users, i| %>
+        <div class="col-md-12">
+          <h4>Year <%= @years[i] %></h4>
+        </div>
+        <% users.each do |user| %>
+          <% if user.get_current_grade == "Alumni" %>
+            <%= render user %>
+          <% end %>
+        <% end %>
+      <% end %>
   </div>
 </section>

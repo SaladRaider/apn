@@ -29,20 +29,20 @@
 
      <div class="row">
       <div class="col-md-6 col-sm-12 col-xs-12 watch-block-show wow flipInX"  style="background-image: url('<%= Content.find(1).media.url(:original) %>')">
-        <%= link_to '/videos?category=1' do %>
+        <%= link_to '/videos' do %>
         <div class="block-filler">
           <div class="abs-centered-element">
-           <h3 class="block-header-text">Watch Show</h3>
+           <h3 class="block-header-text">Videos</h3>
            <i class="fa fa-play"></i>
          </div>
        </div>
        <% end %>
      </div>
      <div class="col-md-6 col-sm-12 col-xs-12 watch-block-shorts wow flipInX animation-delay"  style="background-image: url('<%= Content.find(2).media.url(:original) %>')">
-      <%= link_to '/videos?category=2' do %>
+      <%= link_to '/about' do %>
       <div class="block-filler">
         <div class="abs-centered-element">
-         <h3 class="block-header-text">Watch Shorts</h3>
+         <h3 class="block-header-text">About</h3>
          <i class="fa fa-play"></i>
        </div>
      </div>
@@ -51,20 +51,20 @@
  </div>
  <div class="row">
   <div class="col-md-6 col-sm-12 col-xs-12 watch-block-show wow flipInX"  style="background-image: url('<%= Content.find(3).media.url(:original) %>')">
-    <%= link_to '/videos?category=3' do %>
+    <%= link_to '/contact' do %>
     <div class="block-filler">
       <div class="abs-centered-element">
-       <h3 class="block-header-text">Watch Promos</h3>
+       <h3 class="block-header-text">Contact</h3>
        <i class="fa fa-play"></i>
      </div>
    </div>
    <% end %>
  </div>
  <div class="col-md-6 col-sm-12 col-xs-12 watch-block-shorts wow flipInX animation-delay" style="background-image: url('<%= Content.find(4).media.url(:original) %>')">
-  <%= link_to '/videos?category=4' do %>
+  <%= link_to 'http://medium.com/', :target => "_blank" do %>
   <div class="block-filler">
     <div class="abs-centered-element">
-     <h3 class="block-header-text">Watch Stories</h3>
+     <h3 class="block-header-text">News</h3>
      <i class="fa fa-play"></i>
    </div>
  </div>
@@ -115,7 +115,7 @@
         <% end %>
       </div>
     </div>
-  </div>  
+  </div>
 </section>
 
 <% content_for :footer do %>
