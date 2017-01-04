@@ -119,7 +119,7 @@
 		position: absolute;
 		width: 10%;
 		right: 0;
-		
+
 	}
 
 	.text-box-outline {
@@ -147,6 +147,31 @@
 	@include border-radius(0px $border-radius-default $border-radius-default 0px);
 	border-left-width: $border-width-default;
 	border-right-width: $border-width-default;
+}
+
+.btn-size-half  {
+	width: 50%;
+	margin-left: -3px !important;
+}
+
+.btn-size-quarter  {
+	width: 25%;
+	margin-left: -3px !important;
+}
+
+.btn-size-three-quarters  {
+	width: 75%;
+	margin-left: -3px !important;
+}
+
+.btn-size-third  {
+	width: 33%;
+	margin-left: -3px !important;
+}
+
+.btn-size-two-thirds  {
+	width: 67%;
+	margin-left: -3px !important;
 }
 
 .abs-centered-element {

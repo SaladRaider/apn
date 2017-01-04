@@ -17,32 +17,30 @@
         </p>
       </div>
       <div class="col-md-8 col-xs-12">
-        <div class="row">
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
           <%= devise_error_messages! %>
           <div class="btn-group-standard">
-            <%= f.text_field :first_name, class: ['text-box-outline','wow','fadeInUp','col-xs-6'], placeholder: 'First Name', autofocus: true %>
-            <%= f.text_field :last_name, class: ['text-box-outline','wow','fadeInUp','col-xs-6'], placeholder: 'Last Name' %>
+            <%= f.text_field :first_name, class: ['text-box-outline','wow','fadeInUp','btn-size-half'], placeholder: 'First Name', autofocus: true %>
+            <%= f.text_field :last_name, class: ['text-box-outline','wow','fadeInUp','btn-size-half'], placeholder: 'Last Name' %>
           </div>
           <div class="btn-group-standard">
-            <%= f.number_field :id_number, class: ['text-box-outline','wow','fadeInUp','col-xs-8'], placeholder: 'ID #' %>
-            <%= f.number_field :grade, class: ['text-box-outline','wow','fadeInUp','col-xs-4'], placeholder: 'Grade #' %>
+            <%= f.number_field :id_number, class: ['text-box-outline','wow','fadeInUp','btn-size-two-thirds'], placeholder: 'ID #' %>
+            <%= f.number_field :grade, class: ['text-box-outline','wow','fadeInUp','btn-size-third'], placeholder: 'Grade #' %>
           </div>
-          <%= f.text_field :username, class: ['text-box-outline','wow','fadeInUp','col-xs-12'], placeholder: 'Username' %>
-          <%= f.email_field :email, class: ['text-box-outline','wow','fadeInUp','col-xs-12'], placeholder: 'Email' %>
+          <%= f.text_field :username, class: ['text-box-outline','wow','fadeInUp','fill-width'], placeholder: 'Username' %>
+          <%= f.email_field :email, class: ['text-box-outline','wow','fadeInUp','fill-width'], placeholder: 'Email' %>
           <% if @minimum_password_length %>
           <p class='wow fadeInLeft'>
             <em>(<%= @minimum_password_length %> characters minimum)</em>
           </p>
           <% end %>
           <div class="btn-group-standard">
-            <%= f.password_field :password, class: ['text-box-outline','wow','fadeInUp','col-xs-6'], placeholder: 'Password', autocomplete: 'off' %>
-            <%= f.password_field :password_confirmation, class: ['text-box-outline','wow','fadeInUp','col-xs-6'], placeholder: 'Re-Type Password', autocomplete: 'off' %>
+            <%= f.password_field :password, class: ['text-box-outline','wow','fadeInUp','btn-size-half'], placeholder: 'Password', autocomplete: 'off' %>
+            <%= f.password_field :password_confirmation, class: ['text-box-outline','wow','fadeInUp','btn-size-half'], placeholder: 'Re-Type Password', autocomplete: 'off' %>
           </div>
 
           <%= f.submit "Sign up", class: ['btn-outline-white','wow','fadeInUp','fill-width'] %>
           <% end %>
-        </div>
       </div>
 
     </div>
