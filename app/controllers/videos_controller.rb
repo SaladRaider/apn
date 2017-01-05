@@ -1,3 +1,5 @@
+require 'uri'
+
 class VideosController < ApplicationController
 	before_action :find_params, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!, except: [:index, :show]
@@ -109,9 +111,14 @@ class VideosController < ApplicationController
 	end
 
 	def create
-		@video = @user.videos.new(video_params)
 		@assigned_jobs = []
 
+		if !valid_youtube_url?(params[:video][:link])
+			@video.errors.add(:base, 'Please enter a valid YouTube link. (Copy and paste the video link from the address bar on YouTube)')
+			render 'new' and return
+		end
+
+		@video = @user.videos.new(video_params)
 		jobs = params[:assigned_jobs]
 		saving_jobs = params[:assigned_jobs] != nil
 
@@ -177,6 +184,10 @@ class VideosController < ApplicationController
 	end
 
 	def update
+		if !valid_youtube_url?(params[:video_link])
+			@video.errors.add(:base, 'Please enter a valid YouTube link. (Copy and paste the video link from the address bar on YouTube)')
+			render 'edit' and return
+		end
 		if @video.update(video_params)
 			if params[:assigned_jobs] != nil
 				# update the assigned_jobs
@@ -249,6 +260,11 @@ class VideosController < ApplicationController
 		@video.destroy
 
 		redirect_to root_path
+	end
+
+
+	def valid_youtube_url?(uri)
+	  !uri.nil? && uri.index("v=") && uri =~ /\A#{URI::regexp}\z/
 	end
 
 	private
