@@ -29,8 +29,8 @@
 
 <section class="normal-section">
   <div class="container-fluid">
+  <div id='search-videos' class="row">
   <% if can? :create, Video %>
-    <div id='search-videos' class="row">
     <%= link_to new_video_path do %>
       <div class="col-md-6 col-sm-6 col-xs-12 watch-block wow flipInX" style="background-image: url('<%= asset_path 'film-production.jpg' %>')">
         <div class="block-filler">
@@ -53,7 +53,21 @@
     <% end %>
     <% end %>
   <% if !@category_is_set %>
-    <div class="row">
+    <%
+    count = 0
+    new_show_index = [-1, -1]
+    %>
+    <% @videos.each_with_index do |video, i| %>
+      <% break if count > 1 %>
+      <% if video.category ==1 %>
+        <%
+        video.category = -1
+        new_show_index[count] = i
+        count += 1
+        %>
+        <%= render video %>
+      <% end %>
+    <% end %>
       <div class="col-md-6 col-sm-12 col-xs-12 watch-block-show wow flipInX"  style="background-image: url('<%= Content.find(14).media.url(:original) %>')">
         <%= link_to '/videos?category=1' do %>
         <div class="block-filler">
@@ -74,8 +88,6 @@
      </div>
      <% end %>
    </div>
- </div>
- <div class="row">
   <div class="col-md-6 col-sm-12 col-xs-12 watch-block-show wow flipInX"  style="background-image: url('<%= Content.find(16).media.url(:original) %>')">
     <%= link_to '/videos?category=3' do %>
     <div class="block-filler">
@@ -96,9 +108,15 @@
  </div>
  <% end %>
 </div>
-</div>
+  <% @videos.each_with_index do |video, i| %>
+    <% if i != new_show_index[0] and i != new_show_index[1] %>
+      <% render video %>
+    <% end %>
   <% end %>
-      <%= render @videos %>
+  <% else %>
+    <%= render @videos %>
+  <% end %>
+
     </div>
   </div>
 </section>

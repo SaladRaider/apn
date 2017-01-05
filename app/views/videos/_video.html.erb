@@ -1,4 +1,4 @@
-<% 
+<%
 # Parse video id
 start_pos = video.link.index("v=")+2;
 end_pos = (video.link[start_pos..video.link.length].index('&') == nil) ? video.link.length : video.link[start_pos..video.link.length].index('&') - 1
@@ -27,6 +27,8 @@ end
 			Promo
 		<% elsif video.category == 4 %>
 			Story
+		<% elsif video.category == -1 %>
+			<strong>New</strong> Show
 		<% else %>
 			Other
 		<% end %>
