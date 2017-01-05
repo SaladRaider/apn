@@ -1,6 +1,6 @@
 <%= link_to user_path(user) do %>
 <div id="user-box-<%= user.id %>" class="col-md-4 col-sm-6 col-xs-12 text-centered avatar-hover">
-    <% if current_user.role == "admin" %>
+    <% if user_signed_in? and current_user.role == "admin" %>
         <a value="<%= user.id %>" class="d-btn">Remove User</a>
     <% end %>
 	<div class="user-block-flag">
