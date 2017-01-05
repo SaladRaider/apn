@@ -26,6 +26,15 @@
           Email: <%= @user.email %>
         </p>
       </div>
+      <% if @user.role == "admin" %>
+        <div class='col-xs-12'>
+          <h3>Admin Controls</h3>
+          <ul>
+            <li><a href='/contents'>Edit Static Content</a></li>
+            <li><a href='/user_approval'>Approve New Users</a></li>
+          </ul>
+        </div>
+      <% end %>
       <div class="col-xs-12">
         <h3>About</h3>
         <p>

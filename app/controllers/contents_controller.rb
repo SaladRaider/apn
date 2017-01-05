@@ -1,6 +1,7 @@
 class ContentsController < ApplicationController
 	before_action :authenticate_user!
 	before_action :find_content, only: [:edit, :update]
+	before_action :find_user, only: [:index, :edit, :new]
 	load_and_authorize_resource
 
 	def index
@@ -32,12 +33,16 @@ class ContentsController < ApplicationController
 		end
 	end
 
-	private 
+	private
 		def content_params
 			params.require(:content).permit(:title, :text, :media);
 		end
 
 		def find_content
 			@content = Content.find(params[:id])
+		end
+
+		def find_user
+			@user = current_user
 		end
 end

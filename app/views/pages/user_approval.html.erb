@@ -5,6 +5,7 @@
     <div class="col-md-12">
       <ol class="breadcrumb">
         <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to (current_user.first_name + " " + current_user.last_name), user_path(current_user) %></li>
         <li class="active">User Approval</li>
       </ol>
     </div>

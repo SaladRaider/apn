@@ -9,18 +9,19 @@
       <div class="col-md-12">
         <ol class="breadcrumb">
           <li><%= link_to 'Home', root_path %></li>
+          <li><%= link_to (@user.first_name + " " + @user.last_name), user_path(@user) %></li>
           <li><%= link_to 'Contents', contents_path %></li>
           <li class="active">Edit</li>
         </ol>
       </div>
       <div class="col-xs-12">
-        
+
         <%= render 'form' %>
       </div>
       <div class="col-xs-12">
       <%= markdown(Content.find(13).text) %>
     </div>
     </div>
-    
+
   </div>
 </section>
