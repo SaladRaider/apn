@@ -1,0 +1,25 @@
+$ ->
+    ajax_approval = (conf,id) ->
+        console.log("ran function")
+        $.ajax({
+            type: "POST"
+            url: '/users/' + id
+            data: {
+                "_method":"put"
+                approving: true
+                user:
+                    admin_confirmed: conf
+            }
+            success:
+                (data) ->
+                    $("#user-box-"+data.user_id).remove();
+            error:
+                (data) ->
+                    $("#user-box-"+data.user_id).append('error');
+
+            dataType: 'json'
+        })
+
+    $('.d-btn').on 'click', ->
+        console.log "clicked d btn; id: " + $(this).attr("value")
+        ajax_approval('0',$(this).attr("value"))

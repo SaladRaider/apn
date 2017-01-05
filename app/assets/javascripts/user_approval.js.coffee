@@ -5,7 +5,7 @@
 
 
 
-$ -> 
+$ ->
 	ajax_approval = (conf,id) ->
 		console.log("ran function")
 		$.ajax({
@@ -14,23 +14,23 @@ $ ->
 			data: {
 				"_method":"put"
 				approving: true
-				user: 
+				user:
 					admin_confirmed: conf
 			}
-			success: 
+			success:
 				(data) ->
 					$("#user-row-"+data.user_id).remove();
 			error:
 				(data) ->
 					$("#user-row-"+data.user_id).append('error');
-					
+
 			dataType: 'json'
 		})
 
-	$('.a-btn').on 'click', -> 
+	$('.a-btn').on 'click', ->
 		console.log "clicked a btn; id: " + $(this).attr("value")
 		ajax_approval('1',$(this).attr("value"))
 
-	$('.d-btn').on 'click', -> 
-		console.log "clicked b btn; id: " + $(this).attr("value")
+	$('.d-btn').on 'click', ->
+		console.log "clicked d btn; id: " + $(this).attr("value")
 		ajax_approval('-1',$(this).attr("value"))

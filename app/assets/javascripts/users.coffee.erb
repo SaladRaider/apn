@@ -6,7 +6,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$ -> 
+$ ->
 	loading = false
 	max_rows = -1
 
@@ -25,7 +25,7 @@ $ ->
 				num_loaded: $("#search-videos a").length
 				user_id: window.App.Data.user
 			}
-			success: 
+			success:
 				(data) ->
 					console.log('successful ajax request: ' + JSON.stringify(data))
 					max_rows = data['max_rows']
@@ -36,7 +36,7 @@ $ ->
 
 						end_pos = if video_link.indexOf("&", start_pos) != -1 then video_link.indexOf("&", start_pos) else video_link.length
 						video_id = video_link.substring(start_pos, end_pos)
-						
+
 						# check if max res thumbnail exists. If not, use hq default
 						url = 'http://img.youtube.com/vi/'+video_id+'/hqdefault.jpg'
 
@@ -108,6 +108,12 @@ $ ->
 
 	$('select').change search_for_videos
 
-	$(window).scroll -> 
+	$(window).scroll ->
 		if !loading && (max_rows == -1 || $("#search-videos a").length < max_rows) && $(window).scrollTop() > $(document).height() - $(window).height() - 60
 			load_more_videos()
+
+
+
+
+
+

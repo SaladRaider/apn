@@ -28,8 +28,10 @@
       </ol>
     </div>
     <div class="col-xs-2">
-      <%= link_to new_user_session_path do %>
-      Login
+      <% if !user_signed_in? %>
+        <%= link_to new_user_session_path do %>
+        Login
+        <% end %>
       <% end %>
     </div>
       <div class="col-xs-12">
@@ -62,3 +64,7 @@
       <% end %>
   </div>
 </section>
+
+<% content_for :footer do %>
+<%= javascript_include_tag "about" %>
+<% end %>
