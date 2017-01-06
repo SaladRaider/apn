@@ -66,7 +66,7 @@ class UsersController < ApplicationController
 			august_date = (now > DateTime.new(now.year, 8, 1)) ? DateTime.new(now.year - 3, 8, 1) : DateTime.new(now.year - 4, 8, 1)
 			if Rails.env.production?
 				@current_users = User.where(created_at: august_date..now).where("
-					ABS(FLOOR((DATE_PART('day',CAST(created_at AS date)) - DATE_PART('day','" + august_date.change(year: august_date.year + 4).to_s + "'::date)) / 365))
+					ABS(FLOOR((DATE_PART('day',CAST(created_at AS date)) - DATE_PART('day','" + august_date.change(year: august_date.year + 2).to_s + "'::date)) / 365))
 					+ grade <= 12
 					")
 			else
@@ -89,7 +89,7 @@ class UsersController < ApplicationController
 			loop do
 				if Rails.env.production?
 					user = User.where(created_at: old_august_date..august_date).where("
-						ABS(FLOOR((DATE_PART('day',CAST(created_at AS date)) - DATE_PART('day','" + present_august_date.change(year: present_august_date.year + 1).to_s + "'::date)) / 365))
+						ABS(FLOOR((DATE_PART('day',CAST(created_at AS date)) - DATE_PART('day','" + present_august_date.change(year: present_august_date.year - 1).to_s + "'::date)) / 365))
 						+ grade > 12
 						")
 				else
