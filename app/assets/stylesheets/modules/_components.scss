@@ -249,3 +249,29 @@
 .text-centered {
 	text-align: center;
 }
+
+ul.ui-autocomplete.ui-menu li{
+	background-color: $color-white;
+	list-style-type: none;
+	margin-left: -40px;
+	padding: $padding-small;
+	width: 300px;
+}
+
+ul.ui-autocomplete.ui-menu li:hover{
+	background-color: $color-muted-light;
+	color: $color-white;
+	cursor: pointer;
+}
+
+.ui-autocomplete {
+
+}
+
+.ui-autocomplete.source:hover {
+
+}
+
+.ui-menu .ui-menu-item a{
+	width: 50%;
+}
