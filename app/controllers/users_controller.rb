@@ -66,7 +66,7 @@ class UsersController < ApplicationController
 			august_date = (now > DateTime.new(now.year, 8, 1)) ? DateTime.new(now.year - 3, 8, 1) : DateTime.new(now.year - 4, 8, 1)
 			if Rails.env.production?
 				@current_users = User.where(created_at: august_date..now).where("
-					ABS(DATE_PART('year',CAST(created_at AS date)) - DATE_PART('year','" + august_date.change(year: august_date.year + 4).to_s + "'::date))
+					ABS(FLOOR((DATE_PART('day',CAST(created_at AS date)) - DATE_PART('day','" + august_date.change(year: august_date.year + 3).to_s + "'::date)) / 365))
 					+ grade <= 12
 					")
 			else
@@ -81,22 +81,22 @@ class UsersController < ApplicationController
 		def find_alumni_by_years
 
 			now = DateTime.now
-			present_august_date = (now > DateTime.new(now.year, 8, 1)) ? DateTime.new(now.year + 1, 8, 1) : DateTime.new(now.year, 8, 1)
-			august_date = present_august_date.change(year: present_august_date.year - 1).clone()
+			present_august_date = (now > DateTime.new(now.year, 8, 1)) ? DateTime.new(now.year, 8, 1) : DateTime.new(now.year - 1, 8, 1)
+			august_date = present_august_date.clone()
 			old_august_date = DateTime.new(august_date.year - 1, august_date.month, august_date.day)
 			@alumni = []
 			@years = []
 			loop do
 				if Rails.env.production?
 					user = User.where(created_at: old_august_date..august_date).where("
-						ABS(DATE_PART('year',CAST(created_at AS date)) - DATE_PART('year','" + present_august_date.to_s + "'::date))
+						ABS(FLOOR((DATE_PART('day',CAST(created_at AS date)) - DATE_PART('day','" + present_august_date.to_s + "'::date)) / 365))
 						+ grade > 12
 						")
 				else
 					user = User.where(created_at: old_august_date..august_date).where(
 					"ABS(FLOOR(DATEDIFF(
 								created_at,
-								'" + present_august_date.change(year: present_august_date.year - 1).to_s + "'
+								'" + present_august_date.to_s + "'
 							) / 365)) + grade > 12").where(admin_confirmed: 1)
 				end
 				@alumni << user
