@@ -66,8 +66,8 @@ class UsersController < ApplicationController
 			august_date = (now > DateTime.new(now.year, 8, 1)) ? DateTime.new(now.year - 3, 8, 1) : DateTime.new(now.year - 4, 8, 1)
 			@current_users = User.where(created_at: august_date..now).where(
 			"ABS(FLOOR(DATEDIFF(
-						created_at,
-						'" + august_date.change(year: august_date.year + 3).to_s + "'
+						created_at::timestamp,
+						'" + august_date.change(year: august_date.year + 3).to_s + "'::timestamp
 					) / 365)) + grade <= 12").where(admin_confirmed: 1)
 		end
 
@@ -82,8 +82,8 @@ class UsersController < ApplicationController
 			loop do
 				user = User.select('*').where(created_at: old_august_date..august_date).where(
 				"ABS(FLOOR(DATEDIFF(
-						created_at,
-						'" + present_august_date.to_s + "'
+						created_at::timestamp,
+						'" + present_august_date.to_s + "'::timestamp
 					) / 365)) + grade > 12").where(admin_confirmed: 1)
 				@alumni << user
 				@years << old_august_date.year.to_s + "-" + august_date.year.to_s
