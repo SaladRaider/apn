@@ -68,7 +68,7 @@ class UsersController < ApplicationController
 				@current_users = User.where(created_at: august_date..now).where("
 					ABS(((DATE_PART('year',CAST(created_at AS date)) - DATE_PART('year','" + august_date.change(year: august_date.year + 3).to_s + "'::date))))
 					+ CASE WHEN DATE_PART('month',CAST(created_at AS date)) < 8 AND DATE_PART('year',CAST(created_at AS date)) != DATE_PART('year',CURRENT_DATE) THEN 1 ELSE 0 END
-					- CASE WHEN DATE_PART('month',CAST(created_at AS date)) < 8 AND DATE_PART('year',CAST(created_at AS date)) == DATE_PART('year',CURRENT_DATE) THEN 1 ELSE 0 END
+					+ CASE WHEN DATE_PART('month',CAST(created_at AS date)) < 8 AND DATE_PART('year',CAST(created_at AS date)) = DATE_PART('year',CURRENT_DATE) THEN -1 ELSE 0 END
 					+ grade <= 12
 					")
 			else
@@ -93,7 +93,7 @@ class UsersController < ApplicationController
 					user = User.where(created_at: old_august_date..august_date).where("
 						ABS(((DATE_PART('year',CAST(created_at AS date)) - DATE_PART('year','" + present_august_date.change(year: present_august_date.year).to_s + "'::date)) ))
 						+ CASE WHEN DATE_PART('month',CAST(created_at AS date)) < 8 AND DATE_PART('year',CAST(created_at AS date)) != DATE_PART('year',CURRENT_DATE) THEN 1 ELSE 0 END
-						- CASE WHEN DATE_PART('month',CAST(created_at AS date)) < 8 AND DATE_PART('year',CAST(created_at AS date)) == DATE_PART('year',CURRENT_DATE) THEN 1 ELSE 0 END
+						+ CASE WHEN DATE_PART('month',CAST(created_at AS date)) < 8 AND DATE_PART('year',CAST(created_at AS date)) = DATE_PART('year',CURRENT_DATE) THEN -1 ELSE 0 END
 						+ grade > 12
 						")
 				else
