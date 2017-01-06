@@ -64,12 +64,18 @@ class UsersController < ApplicationController
 			# figure out what school year it is. New year starts on August 1
 			now = DateTime.now
 			august_date = (now > DateTime.new(now.year, 8, 1)) ? DateTime.new(now.year - 3, 8, 1) : DateTime.new(now.year - 4, 8, 1)
-			@current_users = User.where(created_at: august_date..now).where(
-			"ABS(FLOOR(DATEDIFF(
-						" + (if Rails.env.production? then "'year'," else '' end) + "
-						created_at,
-						'" + august_date.change(year: august_date.year + 3).to_s + "'
-					) / 365)) + grade <= 12").where(admin_confirmed: 1)
+			if Rails.env.production?
+				@current_users = User.where(created_at: august_date..now).where("
+					DATE_PART('year',CAST(created_at AS date)) - DATE_PART('year','" + august_date.change(year: august_date.year + 3).to_s + "'::date)
+					+ grade <= 12
+					")
+			else
+				@current_users = User.where(created_at: august_date..now).where(
+				"ABS(FLOOR(DATEDIFF(
+							created_at,
+							'" + august_date.change(year: august_date.year + 3).to_s + "'
+						) / 365)) + grade <= 12").where(admin_confirmed: 1)
+			end
 		end
 
 		def find_alumni_by_years
@@ -81,12 +87,18 @@ class UsersController < ApplicationController
 			@alumni = []
 			@years = []
 			loop do
-				user = User.select('*').where(created_at: old_august_date..august_date).where(
-				"ABS(FLOOR(DATEDIFF(
-						" + (if Rails.env.production? then "'year'," else '' end) + "
-						created_at,
-						'" + present_august_date.to_s + "'
-					) / 365)) + grade > 12").where(admin_confirmed: 1)
+				if Rails.env.production?
+					user = User.where(created_at: old_august_date..august_date).where("
+						DATE_PART('year',CAST(created_at AS date)) - DATE_PART('year','" + present_august_date.to_s + "'::date)
+						+ grade > 12
+						")
+				else
+					user = User.where(created_at: old_august_date..august_date).where(
+					"ABS(FLOOR(DATEDIFF(
+								created_at,
+								'" + present_august_date.to_s + "'
+							) / 365)) + grade > 12").where(admin_confirmed: 1)
+				end
 				@alumni << user
 				@years << old_august_date.year.to_s + "-" + august_date.year.to_s
 				august_date = old_august_date.clone()
