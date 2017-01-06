@@ -41,14 +41,6 @@
         <h3>Current Members</h3>
       </div>
       <%= render @current_users %>
-      <% @alumni.each_with_index do |users, i| %>
-        <% users.each do |user| %>
-          <% if user.get_current_grade != "Alumni" %>
-            <%= render user %>
-          <% end %>
-        <% end %>
-        <% break if i >= 3 %>
-      <% end %>
     <div class="col-md-12">
       <h3>Alumni</h3>
     </div>

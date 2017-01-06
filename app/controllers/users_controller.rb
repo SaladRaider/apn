@@ -63,18 +63,28 @@ class UsersController < ApplicationController
 		def find_users_this_year
 			# figure out what school year it is. New year starts on August 1
 			now = DateTime.now
-			august_date = (now > DateTime.new(now.year, 8, 1)) ? DateTime.new(now.year, 8, 1) : DateTime.new(now.year - 1, 8, 1)
-			@current_users = User.where(created_at: august_date..now).where(admin_confirmed: 1)
+			august_date = (now > DateTime.new(now.year, 8, 1)) ? DateTime.new(now.year - 3, 8, 1) : DateTime.new(now.year - 4, 8, 1)
+			@current_users = User.where(created_at: august_date..now).where(
+			"ABS(FLOOR(DATEDIFF(
+						created_at,
+						'" + august_date.change(year: august_date.year + 3).to_s + "'
+					) / 365)) + grade <= 12").where(admin_confirmed: 1)
 		end
 
 		def find_alumni_by_years
+
 			now = DateTime.now
-			august_date = (now > DateTime.new(now.year, 8, 1)) ? DateTime.new(now.year, 8, 1) : DateTime.new(now.year - 1, 8, 1)
+			present_august_date = (now > DateTime.new(now.year, 8, 1)) ? DateTime.new(now.year, 8, 1) : DateTime.new(now.year - 1, 8, 1)
+			august_date = present_august_date.clone()
 			old_august_date = DateTime.new(august_date.year - 1, august_date.month, august_date.day)
 			@alumni = []
 			@years = []
 			loop do
-				user = User.where(created_at: old_august_date..august_date).where(admin_confirmed: 1)
+				user = User.select('*').where(created_at: old_august_date..august_date).where(
+				"ABS(FLOOR(DATEDIFF(
+						created_at,
+						'" + present_august_date.to_s + "'
+					) / 365)) + grade > 12").where(admin_confirmed: 1)
 				@alumni << user
 				@years << old_august_date.year.to_s + "-" + august_date.year.to_s
 				august_date = old_august_date.clone()

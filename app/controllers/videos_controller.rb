@@ -111,9 +111,14 @@ class VideosController < ApplicationController
 	end
 
 	def create
-		@assigned_jobs = []
+		@assigned_jobs = params[:assigned_jobs]
 
-		if !valid_youtube_url?(params[:video][:link])
+		if current_user.get_current_grade == "Alumni" and current_user.role != "admin"
+			@video.errors.add(:base, 'Alumni may not create new videos.')
+			render 'new' and return
+		end
+
+		if params[:video][:link].length > 0 && !valid_youtube_url?(params[:video][:link])
 			@video.errors.add(:base, 'Please enter a valid YouTube link. (Copy and paste the video link from the address bar on YouTube)')
 			render 'new' and return
 		end
@@ -184,10 +189,17 @@ class VideosController < ApplicationController
 	end
 
 	def update
-		if !valid_youtube_url?(params[:video_link])
+		@assigned_jobs = params[:assigned_jobs]
+		if current_user.get_current_grade == "Alumni" and current_user.role != "admin"
+			@video.errors.add(:base, 'Alumni may not edit new videos.')
+			render 'edit' and return
+		end
+
+		if params[:video][:link].length > 0 && !valid_youtube_url?(params[:video_link])
 			@video.errors.add(:base, 'Please enter a valid YouTube link. (Copy and paste the video link from the address bar on YouTube)')
 			render 'edit' and return
 		end
+
 		if @video.update(video_params)
 			if params[:assigned_jobs] != nil
 				# update the assigned_jobs
@@ -248,8 +260,13 @@ class VideosController < ApplicationController
 	def find_users_this_year
 		# figure out what school year it is. New year starts on August 1
 		now = DateTime.now
-		august_date = (now > DateTime.new(now.year, 8, 1)) ? DateTime.new(now.year, 8, 1) : DateTime.new(now.year - 1, 8, 1)
-		@users = User.select(:id, :first_name, :last_name).where(created_at: august_date..now)
+		august_date = (now > DateTime.new(now.year, 8, 1)) ? DateTime.new(now.year - 3, 8, 1) : DateTime.new(now.year - 4, 8, 1)
+		@users = User.select(:first_name, :last_name, :id
+		).where(created_at: august_date..now).where(
+		"ABS(FLOOR(DATEDIFF(
+					created_at,
+					'" + august_date.change(year: august_date.year + 3).to_s + "'
+				) / 365)) + grade <= 12")
 	end
 
 	def find_assigned_jobs
