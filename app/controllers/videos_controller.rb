@@ -264,7 +264,7 @@ class VideosController < ApplicationController
 		@users = User.select(:first_name, :last_name, :id
 		).where(created_at: august_date..now).where(
 		"ABS(FLOOR(DATEDIFF(
-					" + (if Rails.env.production? then 'year,' else '' end) + "
+					" + (if Rails.env.production? then "'year'," else '' end) + "
 					created_at,
 					'" + august_date.change(year: august_date.year + 3).to_s + "'
 				) / 365)) + grade <= 12")
