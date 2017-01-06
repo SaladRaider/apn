@@ -261,13 +261,22 @@ class VideosController < ApplicationController
 		# figure out what school year it is. New year starts on August 1
 		now = DateTime.now
 		august_date = (now > DateTime.new(now.year, 8, 1)) ? DateTime.new(now.year - 3, 8, 1) : DateTime.new(now.year - 4, 8, 1)
-		@users = User.select(:first_name, :last_name, :id
-		).where(created_at: august_date..now).where(
-		"ABS(FLOOR(DATEDIFF(
-					" + (if Rails.env.production? then "'year'," else '' end) + "
-					created_at,
-					'" + august_date.change(year: august_date.year + 3).to_s + "'
-				) / 365)) + grade <= 12")
+		if Rails.env.production?
+			@users = User.select(:first_name, :last_name, :id
+			).where(created_at: august_date..now).where("
+				ABS(((DATE_PART('year',CAST(created_at AS date)) - DATE_PART('year','" + august_date.change(year: august_date.year + 3).to_s + "'::date))))
+				+ CASE WHEN DATE_PART('month',CAST(created_at AS date)) < 8 AND DATE_PART('year',CAST(created_at AS date)) != DATE_PART('year',CURRENT_DATE) THEN 1 ELSE 0 END
+				+ CASE WHEN DATE_PART('month',CAST(created_at AS date)) < 8 AND DATE_PART('year',CAST(created_at AS date)) = DATE_PART('year',CURRENT_DATE) THEN -1 ELSE 0 END
+				+ grade <= 12
+				")
+		else
+			@users = User.select(:first_name, :last_name, :id
+			).where(created_at: august_date..now).where(
+			"ABS(FLOOR(DATEDIFF(
+						created_at,
+						'" + august_date.change(year: august_date.year + 3).to_s + "'
+					) / 365)) + grade <= 12").where(admin_confirmed: 1)
+		end
 	end
 
 	def find_assigned_jobs
