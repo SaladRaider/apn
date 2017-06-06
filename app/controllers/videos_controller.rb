@@ -291,7 +291,7 @@ class VideosController < ApplicationController
 
 
 	def valid_youtube_url?(uri)
-	  !uri.nil? && uri.index("v=") && uri =~ /\A#{URI::regexp}\z/
+	  !uri.nil? && uri.index("v=")# && uri =~ /\A#{URI::regexp}\z/
 	end
 
 	private
