@@ -32,22 +32,24 @@
   <div class="col-xs-1 table-header">
   </div>
 
-  <% @assigned_jobs.each do |job|
+  <%
+  if @assigned_jobs != nil
+    @assigned_jobs.each do |job|
 
-    job_id = ''
-    full_name = ''
-    job_descriptoin = ''
+      job_id = ''
+      full_name = ''
+      job_descriptoin = ''
 
-    if job['full_name'] != nil
-      job_id = job['full_name']
-      full_name = job['full_name']
-      job_descriptoin = job['job_description']
-    else
-      job_id = job.first_name+job.last_name+job.id.to_s
-      full_name = job.first_name + " " + job.last_name
-      job_descriptoin = job.job_descriptoin
-    end
-
+      if job['full_name'] != nil
+        job_id = job['full_name']
+        full_name = job['full_name']
+        job_descriptoin = job['job_description']
+      else
+        job_id = job.first_name+job.last_name+job.id.to_s
+        full_name = job.first_name + " " + job.last_name
+        job_descriptoin = job.job_descriptoin
+      end
+  end
     %>
 
     <span id="user-<%= job_id %>">
