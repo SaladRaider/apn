@@ -195,7 +195,7 @@ class VideosController < ApplicationController
 			render 'edit' and return
 		end
 
-		if params[:video][:link].length > 0 && !valid_youtube_url?(params[:video_link])
+		if params[:video][:link].length > 0 && !valid_youtube_url?(params[:video][:link])
 			@video.errors.add(:base, 'Please enter a valid YouTube link. (Copy and paste the video link from the address bar on YouTube)')
 			render 'edit' and return
 		end
