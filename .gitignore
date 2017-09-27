@@ -24,3 +24,5 @@ rootkey.csv
 #/config/secrets.yml
 #!/public/media/
 #!/vendor/assets/fonts/
+
+*.DS_Store
