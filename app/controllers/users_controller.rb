@@ -70,7 +70,7 @@ class UsersController < ApplicationController
 					+ CASE WHEN DATE_PART('month',CAST(created_at AS date)) < 8 AND DATE_PART('year',CAST(created_at AS date)) != DATE_PART('year',CURRENT_DATE) THEN 1 ELSE 0 END
 					+ CASE WHEN DATE_PART('month',CAST(created_at AS date)) < 8 AND DATE_PART('year',CAST(created_at AS date)) = DATE_PART('year',CURRENT_DATE) THEN -1 ELSE 0 END
 					+ grade <= 12
-					")
+					").where(admin_confirmed: 1)
 			else
 				@current_users = User.where(created_at: august_date..now).where(
 				"ABS(FLOOR(DATEDIFF(

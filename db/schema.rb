@@ -57,18 +57,6 @@ ActiveRecord::Schema.define(version: 20160613184453) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
-  create_table "grading", force: :cascade do |t|
-    t.string  "grader",        limit: 100
-    t.string  "gs1",           limit: 20
-    t.string  "gs2",           limit: 20
-    t.string  "gs3",           limit: 20
-    t.string  "gs4",           limit: 20
-    t.string  "gs5",           limit: 20
-    t.string  "gs6",           limit: 20
-    t.string  "gs7",           limit: 20
-    t.integer "submission_id", limit: 4
-  end
-
   create_table "suggestions", force: :cascade do |t|
     t.string   "subject",    limit: 255
     t.text     "message",    limit: 65535
@@ -82,7 +70,6 @@ ActiveRecord::Schema.define(version: 20160613184453) do
     t.string   "username",               limit: 255
     t.integer  "id_number",              limit: 4
     t.integer  "grade",                  limit: 4
-    t.integer  "admin_confirmed",        limit: 4,     default: 0,  null: false
     t.string   "email",                  limit: 255,   default: "", null: false
     t.string   "encrypted_password",     limit: 255,   default: "", null: false
     t.string   "reset_password_token",   limit: 255
@@ -106,6 +93,7 @@ ActiveRecord::Schema.define(version: 20160613184453) do
     t.string   "avatar_content_type",    limit: 255
     t.integer  "avatar_file_size",       limit: 4
     t.datetime "avatar_updated_at"
+    t.integer  "admin_confirmed",        limit: 4,     default: 0
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
