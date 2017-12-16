@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :videos, :assigned_jobs, :contents, :contacts, :suggestions, :users
   
+  get "/live-stream" => 'pages#show', format: false, id: 'live-stream'
   get "/join" => 'pages#show', format: false, id: 'join'
   get "/about" => 'users#index', format: false, id: 'about'
   get "/contact" => 'contacts#new', format: false, id: 'contact'

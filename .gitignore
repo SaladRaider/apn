@@ -26,3 +26,4 @@ rootkey.csv
 #!/vendor/assets/fonts/
 
 *.DS_Store
+*.icloud
